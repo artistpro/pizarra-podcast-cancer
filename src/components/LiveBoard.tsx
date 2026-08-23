@@ -11,6 +11,7 @@ import { FullScreenAstral } from './fullscreen/FullScreenAstral';
 import { FullScreenNews } from './fullscreen/FullScreenNews';
 import { FullScreenSupplement } from './fullscreen/FullScreenSupplement';
 import { FullScreenArt } from './fullscreen/FullScreenArt';
+import { QrAffiliateOverlay } from './QrAffiliateOverlay';
 
 interface LiveBoardProps {
   state: BoardState;
@@ -285,6 +286,9 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
             />
           )}
         </div>
+
+        {/* Overlay Flotante Periódico con Código QR de Afiliados (iHerb MBG0640) */}
+        <QrAffiliateOverlay state={state} />
 
         {/* 3. Barras Horizontales Inferiores Fijas y Permanentes (Nunca se reinician ni se mueven) */}
         <footer style={{ width: '100%', paddingBottom: '8px' }}>

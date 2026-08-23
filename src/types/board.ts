@@ -98,6 +98,14 @@ export interface BoardState {
   nextLiveList: string[];
   nextLiveRotationSpeed?: number; // en segundos (ej. 18s)
   
+  // 6. Overlay Código QR Afiliados & Recompensas (iHerb)
+  qrOverlayEnabled?: boolean;
+  qrOverlayCode?: string;
+  qrOverlayInterval?: number; // en segundos entre apariciones (ej. 600 = 10 min)
+  qrOverlayDuration?: number; // en segundos de duracion visible (ej. 35 = 35 seg)
+  qrOverlayTitle?: string;
+  qrOverlaySubtitle?: string;
+  
   // Compatibilidad hacia atrás
   artThatHeals?: ArtCard;
   supplement?: SupplementData;
@@ -360,7 +368,15 @@ export const DEFAULT_BOARD_STATE: BoardState = {
     "¿Quieres participar con tu caso o pregunta? Escríbenos en los enlaces de la descripción",
     "Directo de Preguntas y Respuestas: resuelve tus dudas en vivo con especialistas"
   ],
-  nextLiveRotationSpeed: 390 // Segundos del ciclo continuo de scroll (6.5 min)
+  nextLiveRotationSpeed: 390, // Segundos del ciclo continuo de scroll (6.5 min)
+  
+  // 6. Overlay Código QR Afiliados & Recompensas (iHerb)
+  qrOverlayEnabled: true,
+  qrOverlayCode: "MBG0640",
+  qrOverlayInterval: 600, // Cada 10 minutos (600s)
+  qrOverlayDuration: 35,  // Visible por 35 segundos
+  qrOverlayTitle: "APOYA NUESTRA COMUNIDAD",
+  qrOverlaySubtitle: "Escanea y obtén 5% a 10% de DESCUENTO en iHerb"
 };
 
 export const normalizeBoardState = (saved: any): BoardState => {
@@ -466,6 +482,12 @@ export const normalizeBoardState = (saved: any): BoardState => {
       : DEFAULT_BOARD_STATE.nextLiveRotationSpeed,
     nextLiveLabel: (saved.nextLiveLabel && saved.nextLiveLabel.toUpperCase().includes("ESPECIAL"))
       ? "INVITACIÓN"
-      : (saved.nextLiveLabel || DEFAULT_BOARD_STATE.nextLiveLabel || "INVITACIÓN")
+      : (saved.nextLiveLabel || DEFAULT_BOARD_STATE.nextLiveLabel || "INVITACIÓN"),
+    qrOverlayEnabled: saved.qrOverlayEnabled !== undefined ? saved.qrOverlayEnabled : DEFAULT_BOARD_STATE.qrOverlayEnabled,
+    qrOverlayCode: saved.qrOverlayCode || DEFAULT_BOARD_STATE.qrOverlayCode,
+    qrOverlayInterval: saved.qrOverlayInterval || DEFAULT_BOARD_STATE.qrOverlayInterval,
+    qrOverlayDuration: saved.qrOverlayDuration || DEFAULT_BOARD_STATE.qrOverlayDuration,
+    qrOverlayTitle: saved.qrOverlayTitle || DEFAULT_BOARD_STATE.qrOverlayTitle,
+    qrOverlaySubtitle: saved.qrOverlaySubtitle || DEFAULT_BOARD_STATE.qrOverlaySubtitle
   };
 };

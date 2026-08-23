@@ -1425,6 +1425,95 @@ export const AdminConsole: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Sección 7: Overlay Código QR & Afiliados iHerb */}
+        <section id="sec-qr" style={{ borderTop: '1px solid rgba(212, 175, 55, 0.2)', paddingTop: '1.5rem', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '10px' }}>
+            <div>
+              <h2 className="font-cinzel" style={{ fontSize: '1.2rem', color: '#fde68a' }}>
+                7. Overlay Flotante de Código QR (Afiliados iHerb)
+              </h2>
+              <p style={{ color: '#94a3b8', fontSize: '0.82rem', marginTop: '2px' }}>
+                Proyecta periódicamente un código QR flotante en alta definición para que la audiencia escanee con su celular y obtenga descuento.
+              </p>
+            </div>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={state.qrOverlayEnabled ?? true}
+                onChange={(e) => setState({ ...state, qrOverlayEnabled: e.target.checked })}
+                style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
+              />
+              <span style={{ fontSize: '0.9rem', color: state.qrOverlayEnabled ? '#a7f3d0' : '#94a3b8', fontWeight: 700 }}>
+                {state.qrOverlayEnabled ? '🟢 Activado' : '⚪ Desactivado'}
+              </span>
+            </label>
+          </div>
+
+          <div style={{ background: 'rgba(2, 20, 16, 0.6)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(212, 175, 55, 0.25)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+              <div>
+                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Código de Recompensas iHerb:</label>
+                <input
+                  type="text"
+                  value={state.qrOverlayCode || 'MBG0640'}
+                  onChange={(e) => setState({ ...state, qrOverlayCode: e.target.value })}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                />
+              </div>
+
+              <div>
+                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Frecuencia de Aparición (Segundos):</label>
+                <input
+                  type="number"
+                  min="60"
+                  max="3600"
+                  step="30"
+                  value={state.qrOverlayInterval || 600}
+                  onChange={(e) => setState({ ...state, qrOverlayInterval: Number(e.target.value) })}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                />
+                <span style={{ fontSize: '0.72rem', color: '#64748b' }}>600s = cada 10 minutos</span>
+              </div>
+
+              <div>
+                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Duración en Pantalla (Segundos):</label>
+                <input
+                  type="number"
+                  min="10"
+                  max="180"
+                  step="5"
+                  value={state.qrOverlayDuration || 35}
+                  onChange={(e) => setState({ ...state, qrOverlayDuration: Number(e.target.value) })}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                />
+                <span style={{ fontSize: '0.72rem', color: '#64748b' }}>Tiempo visible antes de ocultarse</span>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              <div>
+                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Título del Banner:</label>
+                <input
+                  type="text"
+                  value={state.qrOverlayTitle || 'APOYA NUESTRA COMUNIDAD'}
+                  onChange={(e) => setState({ ...state, qrOverlayTitle: e.target.value })}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                />
+              </div>
+
+              <div>
+                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Subtítulo / Oferta:</label>
+                <input
+                  type="text"
+                  value={state.qrOverlaySubtitle || '5% a 10% de DESCUENTO en iHerb'}
+                  onChange={(e) => setState({ ...state, qrOverlaySubtitle: e.target.value })}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       {/* Barra Flotante Inferior Pegada */}
