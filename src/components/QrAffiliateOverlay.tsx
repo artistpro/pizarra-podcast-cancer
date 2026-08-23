@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import type { BoardState } from '../types/board';
 
@@ -10,17 +10,27 @@ interface QrAffiliateOverlayProps {
 export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, forceVisible = false }) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(100);
+  const lastForceTriggerRef = useRef<number>(0);
 
   const enabled = state.qrOverlayEnabled ?? true;
   const code = state.qrOverlayCode || "MBG0640";
-  const intervalSec = Math.max(60, state.qrOverlayInterval || 600); // Mínimo 1 minuto, defecto 10 min
-  const durationSec = Math.max(10, state.qrOverlayDuration || 35);   // Mínimo 10 seg, defecto 35 seg
+  const intervalSec = Math.max(10, state.qrOverlayInterval || 600); // Mínimo 10s para pruebas
+  const durationSec = Math.max(5, state.qrOverlayDuration || 35);    // Mínimo 5s
   const title = state.qrOverlayTitle || "APOYA NUESTRA COMUNIDAD";
   const subtitle = state.qrOverlaySubtitle || "5% a 10% de DESCUENTO en iHerb";
 
   const targetUrl = `https://www.iherb.com/?rcode=${code}`;
 
-  // Temporizador de ciclo
+  // 1. Detección de activación manual/forzada desde el admin
+  useEffect(() => {
+    if (state.qrOverlayForceTrigger && state.qrOverlayForceTrigger > lastForceTriggerRef.current) {
+      lastForceTriggerRef.current = state.qrOverlayForceTrigger;
+      setIsVisible(true);
+      setProgress(100);
+    }
+  }, [state.qrOverlayForceTrigger]);
+
+  // 2. Temporizador periódico + Primera aparición rápida al iniciar (4s después de montar)
   useEffect(() => {
     if (!enabled && !forceVisible) {
       setIsVisible(false);
@@ -32,16 +42,25 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
       return;
     }
 
-    // Intervalo de apariciones
-    const triggerInterval = setInterval(() => {
+    // Primera aparición rápida de bienvenida / prueba (4 seg después de cargar)
+    const initialTimeout = setTimeout(() => {
+      setIsVisible(true);
+      setProgress(100);
+    }, 4000);
+
+    // Ciclo periódico continuo
+    const cycleInterval = setInterval(() => {
       setIsVisible(true);
       setProgress(100);
     }, intervalSec * 1000);
 
-    return () => clearInterval(triggerInterval);
+    return () => {
+      clearTimeout(initialTimeout);
+      clearInterval(cycleInterval);
+    };
   }, [enabled, forceVisible, intervalSec]);
 
-  // Temporizador de duración visible
+  // 3. Temporizador de duración visible y barra de progreso
   useEffect(() => {
     if (!isVisible || forceVisible) return;
 
@@ -69,24 +88,24 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
     <div
       style={{
         position: 'absolute',
-        bottom: '88px', // Justo encima de las marquesinas
-        right: '32px',
-        zIndex: 45,
+        bottom: '92px',
+        right: '36px',
+        zIndex: 999,
         display: 'flex',
         alignItems: 'center',
         gap: '16px',
-        background: 'linear-gradient(135deg, rgba(2, 26, 20, 0.94) 0%, rgba(1, 15, 12, 0.96) 100%)',
-        backdropFilter: 'blur(16px)',
+        background: 'linear-gradient(135deg, rgba(2, 26, 20, 0.96) 0%, rgba(1, 15, 12, 0.98) 100%)',
+        backdropFilter: 'blur(20px)',
         padding: '16px 20px',
         borderRadius: '16px',
-        border: '1.5px solid rgba(212, 175, 55, 0.65)',
-        boxShadow: '0 12px 35px rgba(0, 0, 0, 0.65), 0 0 25px rgba(212, 175, 55, 0.25)',
+        border: '1.8px solid rgba(212, 175, 55, 0.75)',
+        boxShadow: '0 16px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.35)',
         animation: 'qrSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        maxWidth: '430px',
+        maxWidth: '440px',
         overflow: 'hidden'
       }}
     >
-      {/* Contenedor QR en Blanco Puro para Alto Contraste */}
+      {/* Contenedor QR en Blanco Puro para Lectura Instantánea */}
       <div
         style={{
           background: '#ffffff',
@@ -95,13 +114,13 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.35)',
+          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.4)',
           flexShrink: 0
         }}
       >
         <QRCodeSVG
           value={targetUrl}
-          size={100}
+          size={105}
           bgColor="#ffffff"
           fgColor="#021813"
           level="Q"
@@ -109,20 +128,20 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
         />
       </div>
 
-      {/* Textos y Llamado a la Acción */}
+      {/* Textos y Detalles */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span
             style={{
-              fontSize: '0.68rem',
+              fontSize: '0.7rem',
               fontWeight: 800,
               letterSpacing: '1px',
               textTransform: 'uppercase',
               color: '#d4af37',
-              background: 'rgba(212, 175, 55, 0.15)',
+              background: 'rgba(212, 175, 55, 0.18)',
               padding: '2px 8px',
               borderRadius: '4px',
-              border: '1px solid rgba(212, 175, 55, 0.3)'
+              border: '1px solid rgba(212, 175, 55, 0.4)'
             }}
           >
             🌿 {title}
@@ -148,8 +167,8 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
               fontSize: '0.85rem',
               fontWeight: 800,
               color: '#fef08a',
-              background: 'rgba(234, 179, 8, 0.2)',
-              padding: '1px 6px',
+              background: 'rgba(234, 179, 8, 0.22)',
+              padding: '1px 7px',
               borderRadius: '4px',
               border: '1px dashed #eab308',
               letterSpacing: '0.5px'
@@ -168,7 +187,7 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
             opacity: 0.95
           }}
         >
-          📱 Escanea con tu cámara y ahorra en suplementación con evidencia médica.
+          📱 Apunta la cámara de tu celular para abrir iHerb con descuento directo.
         </p>
       </div>
 
@@ -179,7 +198,7 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({ state, f
             position: 'absolute',
             bottom: 0,
             left: 0,
-            height: '3px',
+            height: '3.5px',
             width: `${progress}%`,
             background: 'linear-gradient(90deg, #10b981, #d4af37)',
             transition: 'width 0.1s linear'

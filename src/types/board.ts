@@ -105,6 +105,7 @@ export interface BoardState {
   qrOverlayDuration?: number; // en segundos de duracion visible (ej. 35 = 35 seg)
   qrOverlayTitle?: string;
   qrOverlaySubtitle?: string;
+  qrOverlayForceTrigger?: number; // timestamp para forzar aparicion inmediata
   
   // Compatibilidad hacia atrás
   artThatHeals?: ArtCard;
@@ -488,6 +489,7 @@ export const normalizeBoardState = (saved: any): BoardState => {
     qrOverlayInterval: saved.qrOverlayInterval || DEFAULT_BOARD_STATE.qrOverlayInterval,
     qrOverlayDuration: saved.qrOverlayDuration || DEFAULT_BOARD_STATE.qrOverlayDuration,
     qrOverlayTitle: saved.qrOverlayTitle || DEFAULT_BOARD_STATE.qrOverlayTitle,
-    qrOverlaySubtitle: saved.qrOverlaySubtitle || DEFAULT_BOARD_STATE.qrOverlaySubtitle
+    qrOverlaySubtitle: saved.qrOverlaySubtitle || DEFAULT_BOARD_STATE.qrOverlaySubtitle,
+    qrOverlayForceTrigger: saved.qrOverlayForceTrigger || 0
   };
 };

@@ -211,6 +211,18 @@ export const AdminConsole: React.FC = () => {
     }
   };
 
+  // --- Manejo de QR Overlay ---
+  const handleTriggerQrNow = async () => {
+    const updated = {
+      ...state,
+      qrOverlayEnabled: true,
+      qrOverlayForceTrigger: Date.now()
+    };
+    setState(updated);
+    await handleSave(updated);
+    setSaveStatus('📱 ¡Código QR activado en vivo en la pantalla!');
+  };
+
   // --- Manejo de Arte Que Sana ---
   const updateArtCard = (index: number, field: keyof ArtCard, value: string) => {
     const updated = [...(state.artCards || [])];
@@ -1437,17 +1449,37 @@ export const AdminConsole: React.FC = () => {
                 Proyecta periódicamente un código QR flotante en alta definición para que la audiencia escanee con su celular y obtenga descuento.
               </p>
             </div>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-              <input
-                type="checkbox"
-                checked={state.qrOverlayEnabled ?? true}
-                onChange={(e) => setState({ ...state, qrOverlayEnabled: e.target.checked })}
-                style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
-              />
-              <span style={{ fontSize: '0.9rem', color: state.qrOverlayEnabled ? '#a7f3d0' : '#94a3b8', fontWeight: 700 }}>
-                {state.qrOverlayEnabled ? '🟢 Activado' : '⚪ Desactivado'}
-              </span>
-            </label>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <button
+                type="button"
+                onClick={handleTriggerQrNow}
+                style={{
+                  padding: '6px 14px',
+                  fontSize: '0.8rem',
+                  background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+                  border: '1px solid #34d399',
+                  color: '#ffffff',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: 700,
+                  boxShadow: '0 2px 8px rgba(16, 185, 129, 0.4)'
+                }}
+              >
+                👁️ Probar QR en Pantalla Ahora
+              </button>
+
+              <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={state.qrOverlayEnabled ?? true}
+                  onChange={(e) => setState({ ...state, qrOverlayEnabled: e.target.checked })}
+                  style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
+                />
+                <span style={{ fontSize: '0.9rem', color: state.qrOverlayEnabled ? '#a7f3d0' : '#94a3b8', fontWeight: 700 }}>
+                  {state.qrOverlayEnabled ? '🟢 Activado' : '⚪ Desactivado'}
+                </span>
+              </label>
+            </div>
           </div>
 
           <div style={{ background: 'rgba(2, 20, 16, 0.6)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(212, 175, 55, 0.25)' }}>
