@@ -12,6 +12,7 @@ import { DEFAULT_BOARD_STATE, getEffectiveTheme, normalizeBoardState } from '../
 import { saveBoardState, subscribeBoardState } from '../../firebase';
 import { fetchPositiveNewsFromRSS } from '../../services/rssService';
 import { fetchDailyHealthNews } from '../../services/newsService';
+import { QrAffiliateOverlay } from '../QrAffiliateOverlay';
 
 const SUPPLEMENT_PRESETS: SupplementData[] = [
   {
@@ -1483,6 +1484,42 @@ export const AdminConsole: React.FC = () => {
           </div>
 
           <div style={{ background: 'rgba(2, 20, 16, 0.6)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(212, 175, 55, 0.25)' }}>
+            {/* Modo de Proyección */}
+            <div style={{ marginBottom: '1.2rem', paddingBottom: '1rem', borderBottom: '1px solid rgba(212, 175, 55, 0.15)' }}>
+              <label style={{ fontSize: '0.82rem', color: '#fef3c7', fontWeight: 700, display: 'block', marginBottom: '8px' }}>
+                Modo de Visualización en Pantalla:
+              </label>
+              <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="qrDisplayMode"
+                    value="always"
+                    checked={(state.qrOverlayDisplayMode || 'periodic') === 'always'}
+                    onChange={() => setState({ ...state, qrOverlayDisplayMode: 'always' })}
+                    style={{ accentColor: '#10b981' }}
+                  />
+                  <span style={{ fontSize: '0.85rem', color: '#a7f3d0', fontWeight: 600 }}>
+                    📌 Fijo Permanente (Siempre visible en pantalla)
+                  </span>
+                </label>
+
+                <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                  <input
+                    type="radio"
+                    name="qrDisplayMode"
+                    value="periodic"
+                    checked={(state.qrOverlayDisplayMode || 'periodic') === 'periodic'}
+                    onChange={() => setState({ ...state, qrOverlayDisplayMode: 'periodic' })}
+                    style={{ accentColor: '#10b981' }}
+                  />
+                  <span style={{ fontSize: '0.85rem', color: '#fde68a', fontWeight: 600 }}>
+                    ⏱️ Periódico Intermitente (Aparece cada X tiempo)
+                  </span>
+                </label>
+              </div>
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
               <div>
                 <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Código de Recompensas iHerb:</label>
@@ -1495,35 +1532,41 @@ export const AdminConsole: React.FC = () => {
               </div>
 
               <div>
-                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Frecuencia de Aparición (Segundos):</label>
-                <input
-                  type="number"
-                  min="60"
-                  max="3600"
-                  step="30"
-                  value={state.qrOverlayInterval || 600}
-                  onChange={(e) => setState({ ...state, qrOverlayInterval: Number(e.target.value) })}
-                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
-                />
-                <span style={{ fontSize: '0.72rem', color: '#64748b' }}>600s = cada 10 minutos</span>
-              </div>
-
-              <div>
-                <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Duración en Pantalla (Segundos):</label>
+                <label style={{ fontSize: '0.8rem', color: (state.qrOverlayDisplayMode === 'always') ? '#64748b' : '#94a3b8' }}>
+                  Frecuencia de Aparición (Segundos):
+                </label>
                 <input
                   type="number"
                   min="10"
+                  max="3600"
+                  step="10"
+                  disabled={state.qrOverlayDisplayMode === 'always'}
+                  value={state.qrOverlayInterval || 600}
+                  onChange={(e) => setState({ ...state, qrOverlayInterval: Number(e.target.value) })}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px', opacity: state.qrOverlayDisplayMode === 'always' ? 0.4 : 1 }}
+                />
+                <span style={{ fontSize: '0.72rem', color: '#64748b' }}>600s = cada 10 min | 60s = cada 1 min</span>
+              </div>
+
+              <div>
+                <label style={{ fontSize: '0.8rem', color: (state.qrOverlayDisplayMode === 'always') ? '#64748b' : '#94a3b8' }}>
+                  Duración en Pantalla (Segundos):
+                </label>
+                <input
+                  type="number"
+                  min="5"
                   max="180"
                   step="5"
+                  disabled={state.qrOverlayDisplayMode === 'always'}
                   value={state.qrOverlayDuration || 35}
                   onChange={(e) => setState({ ...state, qrOverlayDuration: Number(e.target.value) })}
-                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                  style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px', opacity: state.qrOverlayDisplayMode === 'always' ? 0.4 : 1 }}
                 />
                 <span style={{ fontSize: '0.72rem', color: '#64748b' }}>Tiempo visible antes de ocultarse</span>
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.2rem' }}>
               <div>
                 <label style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Título del Banner:</label>
                 <input
@@ -1542,6 +1585,16 @@ export const AdminConsole: React.FC = () => {
                   onChange={(e) => setState({ ...state, qrOverlaySubtitle: e.target.value })}
                   style={{ width: '100%', padding: '8px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
                 />
+              </div>
+            </div>
+
+            {/* Vista Previa en Vivo Integrada en el Panel */}
+            <div style={{ background: '#011410', padding: '16px', borderRadius: '10px', border: '1px dashed rgba(212, 175, 55, 0.4)' }}>
+              <span style={{ fontSize: '0.78rem', color: '#d4af37', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', display: 'block', marginBottom: '10px' }}>
+                👁️ Vista Previa en Vivo del Banner QR:
+              </span>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <QrAffiliateOverlay state={state} inlinePreview={true} />
               </div>
             </div>
           </div>

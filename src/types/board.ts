@@ -100,6 +100,7 @@ export interface BoardState {
   
   // 6. Overlay Código QR Afiliados & Recompensas (iHerb)
   qrOverlayEnabled?: boolean;
+  qrOverlayDisplayMode?: "always" | "periodic"; // 'always' = Fijo Permanente, 'periodic' = Intermitente
   qrOverlayCode?: string;
   qrOverlayInterval?: number; // en segundos entre apariciones (ej. 600 = 10 min)
   qrOverlayDuration?: number; // en segundos de duracion visible (ej. 35 = 35 seg)
@@ -373,6 +374,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
   
   // 6. Overlay Código QR Afiliados & Recompensas (iHerb)
   qrOverlayEnabled: true,
+  qrOverlayDisplayMode: "periodic",
   qrOverlayCode: "MBG0640",
   qrOverlayInterval: 600, // Cada 10 minutos (600s)
   qrOverlayDuration: 35,  // Visible por 35 segundos
@@ -485,6 +487,7 @@ export const normalizeBoardState = (saved: any): BoardState => {
       ? "INVITACIÓN"
       : (saved.nextLiveLabel || DEFAULT_BOARD_STATE.nextLiveLabel || "INVITACIÓN"),
     qrOverlayEnabled: saved.qrOverlayEnabled !== undefined ? saved.qrOverlayEnabled : DEFAULT_BOARD_STATE.qrOverlayEnabled,
+    qrOverlayDisplayMode: saved.qrOverlayDisplayMode || DEFAULT_BOARD_STATE.qrOverlayDisplayMode || "periodic",
     qrOverlayCode: saved.qrOverlayCode || DEFAULT_BOARD_STATE.qrOverlayCode,
     qrOverlayInterval: saved.qrOverlayInterval || DEFAULT_BOARD_STATE.qrOverlayInterval,
     qrOverlayDuration: saved.qrOverlayDuration || DEFAULT_BOARD_STATE.qrOverlayDuration,
