@@ -262,7 +262,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
     }
   ],
   newsMode: "carousel",
-  newsRotationSpeed: 15,
+  newsRotationSpeed: 30,
   rssUrl: "https://noticiaspositivas.org/feed/",
   
   // Tarjeta Astral / Video
@@ -476,7 +476,7 @@ export const normalizeBoardState = (saved: any): BoardState => {
       rotationSpeed: baseAstral.rotationSpeed || DEFAULT_BOARD_STATE.astralCard.rotationSpeed || 20
     },
     goodNews,
-    newsRotationSpeed: saved.newsRotationSpeed || DEFAULT_BOARD_STATE.newsRotationSpeed || 15,
+    newsRotationSpeed: saved.newsRotationSpeed || DEFAULT_BOARD_STATE.newsRotationSpeed || 30,
     dailyReminders,
     dailyReminderRotationSpeed: (saved.dailyReminderRotationSpeed && saved.dailyReminderRotationSpeed >= 200)
       ? saved.dailyReminderRotationSpeed

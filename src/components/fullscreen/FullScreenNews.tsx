@@ -10,7 +10,7 @@ interface FullScreenNewsProps {
 
 export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
   news,
-  rotationSpeed = 15
+  rotationSpeed = 30
 }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isFading, setIsFading] = useState<boolean>(false);
@@ -24,7 +24,7 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
         setCurrentIndex((prev) => (prev + 1) % news.length);
         setIsFading(false);
       }, 500);
-    }, Math.max(10, rotationSpeed) * 1000);
+    }, Math.max(20, rotationSpeed) * 1000);
 
     return () => clearInterval(interval);
   }, [news, rotationSpeed]);
