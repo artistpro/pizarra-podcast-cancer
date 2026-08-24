@@ -49,77 +49,86 @@ export const LiveAlertsOverlay: React.FC<LiveAlertsOverlayProps> = ({ initialAle
 
   const isWelcome = currentAlert.type === 'welcome';
 
-  // 1. Alerta de Bienvenida (Telegram) -> ARRIBA A LA DERECHA (top: 95px, right: 36px)
+  // 1. Alerta de Bienvenida (Telegram) -> ARRIBA A LA DERECHA (top: 88px, right: 36px)
   if (isWelcome) {
     return (
       <div
         style={{
           position: 'absolute',
-          top: '95px',
+          top: '88px',
           right: '36px',
           zIndex: 9998,
-          width: '490px',
+          width: '450px',
           maxWidth: '90vw',
           background: 'linear-gradient(135deg, rgba(3, 35, 28, 0.98) 0%, rgba(2, 22, 17, 0.98) 100%)',
           backdropFilter: 'blur(16px)',
-          borderRadius: '22px',
+          borderRadius: '20px',
           border: '2.2px solid #d4af37',
-          padding: '16px 22px',
+          padding: '14px 20px',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px',
+          gap: '14px',
           boxShadow: '0 16px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.45)',
           animation: 'alertSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards'
         }}
       >
         {/* Ícono Circular Radiante */}
         <div style={{
-          width: '64px',
-          height: '64px',
+          width: '58px',
+          height: '58px',
           borderRadius: '50%',
           background: 'radial-gradient(circle, #10b981 0%, #047857 100%)',
           border: '2px solid #fef08a',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '1.9rem',
+          fontSize: '1.75rem',
           flexShrink: 0,
-          boxShadow: '0 0 20px rgba(16, 185, 129, 0.7)'
+          boxShadow: '0 0 18px rgba(16, 185, 129, 0.7)'
         }}>
           🌿
         </div>
 
         {/* Contenido de la Bienvenida */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', flex: 1 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', flex: 1, overflow: 'hidden' }}>
           <div style={{
-            fontSize: '0.92rem',
+            fontSize: '0.86rem',
             fontWeight: 900,
-            letterSpacing: '1.5px',
+            letterSpacing: '1.2px',
             color: '#a7f3d0',
             textTransform: 'uppercase',
             display: 'flex',
             alignItems: 'center',
-            gap: '6px'
+            gap: '6px',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
           }}>
             <span>✨</span>
             <span>{currentAlert.title || "¡BIENVENIDO(A) A LA COMUNIDAD!"}</span>
           </div>
 
           <div className="font-cinzel" style={{
-            fontSize: '1.65rem',
+            fontSize: '1.55rem',
             fontWeight: 900,
             color: '#ffffff',
             letterSpacing: '0.8px',
-            textShadow: '0 0 16px rgba(212, 175, 55, 0.8), 0 2px 8px rgba(0,0,0,0.95)'
+            textShadow: '0 0 16px rgba(212, 175, 55, 0.8), 0 2px 8px rgba(0,0,0,0.95)',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
           }}>
             {currentAlert.name}
           </div>
 
           <div style={{
-            fontSize: '1.02rem',
+            fontSize: '0.96rem',
             color: '#fef3c7',
             fontWeight: 600,
-            textShadow: '0 1px 4px rgba(0,0,0,0.9)'
+            textShadow: '0 1px 4px rgba(0,0,0,0.9)',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis'
           }}>
             {currentAlert.subtitle || "se unió a nuestro Telegram de apoyo y vida 🤍"}
           </div>

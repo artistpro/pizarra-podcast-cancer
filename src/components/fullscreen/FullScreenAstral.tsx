@@ -189,18 +189,19 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
         zIndex: 10,
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '16px',
-        padding: '14px 48px',
+        gap: '12px',
+        maxWidth: '960px',
+        padding: '10px 36px',
         borderRadius: '36px',
         background: 'rgba(212, 175, 55, 0.32)',
         border: '2.2px solid rgba(212, 175, 55, 0.85)',
         boxShadow: '0 0 35px rgba(212, 175, 55, 0.55)'
       }}>
-        <span style={{ fontSize: '2rem' }}>✨</span>
+        <span style={{ fontSize: '1.7rem' }}>✨</span>
         <span className="font-cinzel" style={{
-          fontSize: '1.65rem',
+          fontSize: '1.45rem',
           fontWeight: 900,
-          letterSpacing: '4px',
+          letterSpacing: '3px',
           color: '#fef3c7',
           textTransform: 'uppercase',
           textShadow: '0 0 20px rgba(212, 175, 55, 0.85)'
@@ -208,7 +209,7 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
           ✦ ENFOQUE ESPECIAL • {card.category || "ENERGÍA VITAL Y FORTALEZA INTERIOR"} ✦
         </span>
         {quotes.length > 1 && (
-          <span style={{ fontSize: '1.35rem', color: '#fde047', fontWeight: 900, opacity: 0.95 }}>
+          <span style={{ fontSize: '1.25rem', color: '#fde047', fontWeight: 900, opacity: 0.95 }}>
             ({currentIndex + 1}/{quotes.length})
           </span>
         )}
