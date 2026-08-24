@@ -12,6 +12,7 @@ import { FullScreenNews } from './fullscreen/FullScreenNews';
 import { FullScreenSupplement } from './fullscreen/FullScreenSupplement';
 import { FullScreenArt } from './fullscreen/FullScreenArt';
 import { QrAffiliateOverlay } from './QrAffiliateOverlay';
+import { LiveAlertsOverlay } from './LiveAlertsOverlay';
 
 interface LiveBoardProps {
   state: BoardState;
@@ -300,6 +301,9 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
             />
           )}
         </div>
+
+        {/* Overlay Flotante de Alertas en Vivo (Bienvenidas de Telegram y Regalos de YouTube) */}
+        <LiveAlertsOverlay initialAlert={state.latestAlert} />
 
         {/* Overlay Flotante Periódico con Código QR de Afiliados (iHerb MBG0640) */}
         <QrAffiliateOverlay state={state} />

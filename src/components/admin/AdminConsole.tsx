@@ -9,7 +9,7 @@ import type {
   FullScreenViewType 
 } from '../../types/board';
 import { DEFAULT_BOARD_STATE, getEffectiveTheme, normalizeBoardState } from '../../types/board';
-import { saveBoardState, subscribeBoardState } from '../../firebase';
+import { saveBoardState, subscribeBoardState, sendLiveAlert } from '../../firebase';
 import { fetchPositiveNewsFromRSS } from '../../services/rssService';
 import { fetchDailyHealthNews } from '../../services/newsService';
 import { QrAffiliateOverlay } from '../QrAffiliateOverlay';
@@ -395,6 +395,44 @@ export const AdminConsole: React.FC = () => {
     setState({ ...state, activeFullScreenViews: updated });
   };
 
+  const [testWelcomeName, setTestWelcomeName] = useState<string>("Claudia M.");
+  const [testDonationName, setTestDonationName] = useState<string>("Juan Pablo R.");
+  const [testDonationAmount, setTestDonationAmount] = useState<string>("Super Chat $10.00");
+  const [testDonationMsg, setTestDonationMsg] = useState<string>("Con mucho amor y gratitud para toda la comunidad");
+  const [alertTriggerStatus, setAlertTriggerStatus] = useState<string>("");
+
+  const triggerWelcomeAlert = async (customName?: string) => {
+    const name = customName || testWelcomeName || "Nuevo Miembro";
+    const alert = {
+      id: `welcome_${Date.now()}`,
+      type: "welcome",
+      title: "¡BIENVENIDO(A) A LA COMUNIDAD!",
+      name,
+      subtitle: "se unió a nuestro Telegram de apoyo y vida 🤍",
+      timestamp: Date.now(),
+      durationSec: 9
+    };
+    await sendLiveAlert(alert);
+    setAlertTriggerStatus(`✅ Alerta de bienvenida para "${name}" enviada a pantalla`);
+    setTimeout(() => setAlertTriggerStatus(""), 4000);
+  };
+
+  const triggerDonationAlert = async () => {
+    const alert = {
+      id: `donation_${Date.now()}`,
+      type: "donation",
+      title: "¡GRACIAS POR TU REGALO / APOYO!",
+      name: testDonationName || "Donante Anónimo",
+      amount: testDonationAmount || "Regalo YouTube 🎁",
+      message: testDonationMsg || "Apoyo amoroso a la comunidad",
+      timestamp: Date.now(),
+      durationSec: 15
+    };
+    await sendLiveAlert(alert);
+    setAlertTriggerStatus(`✅ Alerta de regalo de "${alert.name}" enviada a pantalla`);
+    setTimeout(() => setAlertTriggerStatus(""), 4000);
+  };
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
@@ -505,6 +543,7 @@ export const AdminConsole: React.FC = () => {
           <button type="button" onClick={() => scrollTo('sec-astral')} style={{ padding: '4px 10px', fontSize: '0.78rem', background: '#021a14', border: '1px solid rgba(212,175,55,0.3)', color: '#fef3c7', borderRadius: '4px', cursor: 'pointer' }}>✨ Tarjeta Astral ({state.astralCard.quotesList?.length || 1})</button>
           <button type="button" onClick={() => scrollTo('sec-suplementos')} style={{ padding: '4px 10px', fontSize: '0.78rem', background: '#021a14', border: '1px solid rgba(212,175,55,0.3)', color: '#fef3c7', borderRadius: '4px', cursor: 'pointer' }}>💊 Suplementos ({state.supplementsList?.length || 0})</button>
           <button type="button" onClick={() => scrollTo('sec-tickers')} style={{ padding: '4px 10px', fontSize: '0.78rem', background: '#021a14', border: '1px solid rgba(212,175,55,0.3)', color: '#fef3c7', borderRadius: '4px', cursor: 'pointer' }}>🤍 Marquesinas Inferiores</button>
+          <button type="button" onClick={() => scrollTo('sec-alertas')} style={{ padding: '4px 10px', fontSize: '0.78rem', background: '#021a14', border: '1px solid #d4af37', color: '#fef08a', borderRadius: '4px', cursor: 'pointer', fontWeight: 700 }}>🔔 Alertas & Regalos</button>
         </div>
 
         {saveStatus && (
@@ -1639,6 +1678,190 @@ export const AdminConsole: React.FC = () => {
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <QrAffiliateOverlay state={state} inlinePreview={true} />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* 8. GESTIÓN DE ALERTAS EN VIVO (BIENVENIDAS & REGALOS YOUTUBE) */}
+        {/* ========================================================================= */}
+        <section id="sec-alertas" style={{ marginBottom: '2.5rem' }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            borderBottom: '1px solid rgba(212, 175, 55, 0.3)',
+            paddingBottom: '0.5rem',
+            marginBottom: '1rem'
+          }}>
+            <h2 className="font-cinzel" style={{ fontSize: '1.25rem', color: '#fef3c7', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>🔔</span> 8. Alertas en Vivo: Bienvenidas de Telegram & Regalos de YouTube
+            </h2>
+            <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: 600 }}>
+              🛡️ Cero Spam en Telegram • Pruebas Directas a Pantalla
+            </span>
+          </div>
+
+          {alertTriggerStatus && (
+            <div style={{
+              padding: '10px 16px',
+              marginBottom: '1rem',
+              borderRadius: '8px',
+              background: 'rgba(16, 185, 129, 0.2)',
+              border: '1px solid #10b981',
+              color: '#a7f3d0',
+              fontWeight: 600,
+              fontSize: '0.9rem'
+            }}>
+              {alertTriggerStatus}
+            </div>
+          )}
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            {/* A. Alerta de Bienvenida Telegram (Arriba Derecha) */}
+            <div style={{
+              background: 'rgba(2, 24, 18, 0.8)',
+              padding: '1.2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(16, 185, 129, 0.4)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: '#a7f3d0', fontWeight: 700, fontSize: '0.95rem' }}>
+                    🌿 Alerta de Bienvenida (Telegram)
+                  </span>
+                  <span style={{ fontSize: '0.75rem', background: '#021a14', color: '#d4af37', padding: '2px 8px', borderRadius: '4px', border: '1px solid rgba(212,175,55,0.3)' }}>
+                    📍 Arriba a la Derecha (9s)
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: '0 0 12px' }}>
+                  Se dispara automáticamente en tiempo real cuando alguien entra al grupo de Telegram con Makix Bot. Puedes probarla aquí sin enviar mensajes al grupo:
+                </p>
+
+                <label style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>Nombre del Miembro:</label>
+                <input
+                  type="text"
+                  value={testWelcomeName}
+                  onChange={(e) => setTestWelcomeName(e.target.value)}
+                  placeholder="Ej: Claudia M. o Carlos R."
+                  style={{ width: '100%', padding: '8px', background: '#011410', border: '1px solid rgba(16, 185, 129, 0.4)', color: '#fff', borderRadius: '6px', marginTop: '4px', marginBottom: '10px' }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={() => triggerWelcomeAlert()}
+                  style={{
+                    flex: 1,
+                    padding: '9px 14px',
+                    borderRadius: '8px',
+                    background: 'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontWeight: 700,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)'
+                  }}
+                >
+                  🚀 Probar Bienvenida en Pantalla
+                </button>
+                <button
+                  type="button"
+                  onClick={() => triggerWelcomeAlert("María Elena G.")}
+                  style={{
+                    padding: '9px 12px',
+                    borderRadius: '8px',
+                    background: '#021a14',
+                    border: '1px solid rgba(212,175,55,0.4)',
+                    color: '#fef08a',
+                    fontWeight: 600,
+                    fontSize: '0.8rem',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Probar "María Elena G."
+                </button>
+              </div>
+            </div>
+
+            {/* B. Alerta de Regalos / Super Chats de YouTube (Abajo Izquierda) */}
+            <div style={{
+              background: 'rgba(38, 26, 6, 0.8)',
+              padding: '1.2rem',
+              borderRadius: '12px',
+              border: '1px solid rgba(212, 175, 55, 0.4)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: '#fef08a', fontWeight: 700, fontSize: '0.95rem' }}>
+                    ⭐ Regalos & Super Chats (YouTube)
+                  </span>
+                  <span style={{ fontSize: '0.75rem', background: '#1c1303', color: '#fef08a', padding: '2px 8px', borderRadius: '4px', border: '1px solid rgba(212,175,55,0.4)' }}>
+                    📍 Abajo a la Izquierda (15s)
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: '0 0 12px' }}>
+                  Agradece donaciones, Super Chats o regalos del directo de YouTube con una burbuja dorada sin solaparse con el código QR:
+                </p>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '8px', marginBottom: '8px' }}>
+                  <div>
+                    <label style={{ fontSize: '0.78rem', color: '#cbd5e1' }}>Nombre Donante:</label>
+                    <input
+                      type="text"
+                      value={testDonationName}
+                      onChange={(e) => setTestDonationName(e.target.value)}
+                      style={{ width: '100%', padding: '6px 8px', background: '#140d02', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '2px' }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '0.78rem', color: '#cbd5e1' }}>Monto / Regalo:</label>
+                    <input
+                      type="text"
+                      value={testDonationAmount}
+                      onChange={(e) => setTestDonationAmount(e.target.value)}
+                      style={{ width: '100%', padding: '6px 8px', background: '#140d02', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '2px' }}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label style={{ fontSize: '0.78rem', color: '#cbd5e1' }}>Mensaje del Donante:</label>
+                  <input
+                    type="text"
+                    value={testDonationMsg}
+                    onChange={(e) => setTestDonationMsg(e.target.value)}
+                    style={{ width: '100%', padding: '6px 8px', background: '#140d02', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '2px', marginBottom: '10px' }}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => triggerDonationAlert()}
+                style={{
+                  width: '100%',
+                  padding: '9px 14px',
+                  borderRadius: '8px',
+                  background: 'linear-gradient(135deg, #d4af37 0%, #b45309 100%)',
+                  color: '#021a14',
+                  border: 'none',
+                  fontWeight: 800,
+                  fontSize: '0.88rem',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(212, 175, 55, 0.3)'
+                }}
+              >
+                🎁 Probar Alerta de Regalo / Super Chat en Pantalla
+              </button>
             </div>
           </div>
         </section>

@@ -58,11 +58,24 @@ export type BroadcastMode =
   | "fullscreen_supplement" 
   | "fullscreen_art";
 
+export interface LiveAlert {
+  id: string;
+  type: 'welcome' | 'donation' | 'superchat' | 'gift' | 'custom';
+  name: string;
+  title?: string;
+  subtitle?: string;
+  amount?: string;
+  message?: string;
+  timestamp: number;
+  durationSec?: number;
+}
+
 export type FullScreenViewType = "astral" | "news" | "supplement" | "art";
 
 export interface BoardState {
   theme: ThemeMode;
   isLive: boolean;
+  latestAlert?: LiveAlert | null;
   headerTitle: string;
   headerSubtitle: string;
   

@@ -98,3 +98,25 @@ export const subscribeBoardState = (callback: (state: BoardState) => void): (() 
     if (unsubscribeFirebase) unsubscribeFirebase();
   };
 };
+
+export const sendLiveAlert = async (alert: any): Promise<void> => {
+  if (db) {
+    try {
+      const alertRef = ref(db, "podcast_cancer/live_alerts/latest");
+      await set(alertRef, alert);
+    } catch (err) {
+      console.error("Error enviando live alert a Firebase:", err);
+    }
+  }
+};
+
+export const subscribeLiveAlert = (callback: (alert: any) => void): (() => void) => {
+  if (!db) return () => {};
+  const alertRef = ref(db, "podcast_cancer/live_alerts/latest");
+  return onValue(alertRef, (snapshot) => {
+    const val = snapshot.val();
+    if (val) {
+      callback(val);
+    }
+  });
+};
