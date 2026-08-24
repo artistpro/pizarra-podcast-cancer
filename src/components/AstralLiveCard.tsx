@@ -199,25 +199,25 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          padding: '6px 24px',
-          borderRadius: '24px',
-          background: 'rgba(212, 175, 55, 0.15)',
-          border: '1.2px solid rgba(212, 175, 55, 0.45)',
-          boxShadow: '0 0 16px rgba(212, 175, 55, 0.25)'
+          padding: '7px 28px',
+          borderRadius: '26px',
+          background: 'rgba(212, 175, 55, 0.22)',
+          border: '1.4px solid rgba(212, 175, 55, 0.6)',
+          boxShadow: '0 0 18px rgba(212, 175, 55, 0.35)'
         }}>
-          <span style={{ fontSize: '1.1rem' }}>✨</span>
+          <span style={{ fontSize: '1.25rem' }}>✨</span>
           <span className="font-cinzel" style={{
-            fontSize: '0.92rem',
+            fontSize: '1.05rem',
             fontWeight: 800,
             letterSpacing: '2.5px',
             color: '#fef3c7',
             textTransform: 'uppercase',
-            textShadow: '0 0 10px rgba(212, 175, 55, 0.5)'
+            textShadow: '0 0 12px rgba(212, 175, 55, 0.6)'
           }}>
             AHORA • {card.category || "ENERGÍA VITAL Y FORTALEZA INTERIOR"}
           </span>
           {quotes.length > 1 && (
-            <span style={{ fontSize: '0.75rem', opacity: 0.85, color: '#fde047', fontWeight: 700 }}>
+            <span style={{ fontSize: '0.88rem', opacity: 0.95, color: '#fde047', fontWeight: 800 }}>
               ({currentIndex + 1}/{quotes.length})
             </span>
           )}
@@ -229,19 +229,19 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
         position: 'relative',
         zIndex: 10,
         textAlign: 'center',
-        padding: '0 10px',
+        padding: '0 16px',
         margin: 'auto 0',
         opacity: isFading ? 0.2 : 1,
         transform: isFading ? 'translateY(3px)' : 'translateY(0)',
         transition: 'opacity 0.5s ease, transform 0.5s ease'
       }}>
         <p className="font-cinzel" style={{
-          fontSize: '1.85rem',
-          lineHeight: 1.42,
-          fontWeight: 700,
+          fontSize: '2.25rem',
+          lineHeight: 1.35,
+          fontWeight: 800,
           color: '#ffffff',
-          letterSpacing: '1px',
-          textShadow: '0 0 20px rgba(212, 175, 55, 0.5), 0 3px 10px rgba(0, 0, 0, 0.95)'
+          letterSpacing: '0.8px',
+          textShadow: '0 0 24px rgba(212, 175, 55, 0.6), 0 3px 12px rgba(0, 0, 0, 0.98)'
         }}>
           "{currentQuote}"
         </p>
@@ -258,15 +258,16 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
           display: 'inline-flex',
           alignItems: 'center',
           gap: '8px',
-          padding: '6px 20px',
-          borderRadius: '16px',
-          background: 'rgba(0, 0, 0, 0.45)',
-          border: '1px solid rgba(212, 175, 55, 0.35)'
+          padding: '7px 24px',
+          borderRadius: '18px',
+          background: 'rgba(0, 0, 0, 0.65)',
+          border: '1.2px solid rgba(212, 175, 55, 0.5)',
+          boxShadow: '0 4px 14px rgba(0,0,0,0.5)'
         }}>
           <span style={{
-            fontSize: '0.92rem',
-            color: '#d4af37',
-            fontWeight: 600,
+            fontSize: '1.08rem',
+            color: '#fbbf24',
+            fontWeight: 700,
             letterSpacing: '0.5px'
           }}>
             {card.cta || "Enlaces de acompañamiento en la descripción ⚡"}

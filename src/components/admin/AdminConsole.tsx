@@ -439,7 +439,7 @@ export const AdminConsole: React.FC = () => {
               PANEL DE CONTROL • MASTER BROADCAST DIRECTOR
             </h1>
             <p style={{ color: '#d4af37', fontSize: '0.88rem', marginTop: '4px' }}>
-              El Podcast del Cáncer • Dirección de Escenas en Vivo & Transición Pizarra ⟷ Pantalla Completa
+              El Podcast del Cáncer • v1.1 (Senior-Friendly Bold) • Dirección de Escenas en Vivo & Transición Pizarra ⟷ Pantalla Completa
             </p>
           </div>
 

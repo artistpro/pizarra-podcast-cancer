@@ -45,21 +45,21 @@ export const Header: React.FC<HeaderProps> = ({ state, effectiveTheme }) => {
 
         <div>
           <h1 className="font-cinzel" style={{
-            fontSize: '1.75rem',
-            fontWeight: 800,
+            fontSize: '2.05rem',
+            fontWeight: 900,
             letterSpacing: '2.5px',
             color: '#fef3c7',
             textTransform: 'uppercase',
             lineHeight: 1.1,
-            textShadow: '0 0 16px rgba(212, 175, 55, 0.5), 0 2px 6px rgba(0,0,0,0.8)'
+            textShadow: '0 0 18px rgba(212, 175, 55, 0.55), 0 2px 8px rgba(0,0,0,0.9)'
           }}>
             {state.headerTitle || "EL PODCAST DEL CÁNCER"}
           </h1>
           <div className="font-cinzel" style={{
-            fontSize: '0.92rem',
+            fontSize: '1.12rem',
             letterSpacing: '3.5px',
             color: '#fbbf24',
-            fontWeight: 700,
+            fontWeight: 800,
             marginTop: '3px'
           }}>
             {state.headerSubtitle || "COMUNIDAD SANANTE"}
@@ -74,15 +74,15 @@ export const Header: React.FC<HeaderProps> = ({ state, effectiveTheme }) => {
           display: 'flex',
           alignItems: 'center',
           gap: '8px',
-          padding: '6px 18px',
-          borderRadius: '20px',
-          background: isNight ? 'rgba(30, 58, 138, 0.45)' : 'rgba(6, 78, 59, 0.45)',
-          border: isNight ? '1.2px solid rgba(147, 197, 253, 0.4)' : '1.2px solid rgba(110, 231, 183, 0.4)',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.3)'
+          padding: '7px 22px',
+          borderRadius: '22px',
+          background: isNight ? 'rgba(30, 58, 138, 0.55)' : 'rgba(6, 78, 59, 0.55)',
+          border: isNight ? '1.4px solid rgba(147, 197, 253, 0.55)' : '1.4px solid rgba(110, 231, 183, 0.55)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.4)'
         }}>
-          <span style={{ fontSize: '1.1rem' }}>{isNight ? '🌙' : '☀️'}</span>
+          <span style={{ fontSize: '1.25rem' }}>{isNight ? '🌙' : '☀️'}</span>
           <span className="font-cinzel" style={{
-            fontSize: '0.85rem',
+            fontSize: '1rem',
             fontWeight: 800,
             letterSpacing: '2px',
             color: isNight ? '#bfdbfe' : '#a7f3d0'
@@ -97,24 +97,24 @@ export const Header: React.FC<HeaderProps> = ({ state, effectiveTheme }) => {
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            padding: '7px 20px',
-            borderRadius: '20px',
-            background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(153, 27, 27, 0.4) 100%)',
-            border: '1.2px solid rgba(239, 68, 68, 0.65)',
-            boxShadow: '0 0 16px rgba(239, 68, 68, 0.4)'
+            padding: '8px 24px',
+            borderRadius: '22px',
+            background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(153, 27, 27, 0.5) 100%)',
+            border: '1.4px solid rgba(239, 68, 68, 0.75)',
+            boxShadow: '0 0 18px rgba(239, 68, 68, 0.5)'
           }}>
             <span style={{
-              width: '10px',
-              height: '10px',
+              width: '11px',
+              height: '11px',
               borderRadius: '50%',
               backgroundColor: '#ef4444',
               display: 'inline-block',
               animation: 'pulse 1.8s infinite',
-              boxShadow: '0 0 10px #ef4444'
+              boxShadow: '0 0 12px #ef4444'
             }} />
             <span className="font-cinzel" style={{
-              fontSize: '0.88rem',
-              fontWeight: 800,
+              fontSize: '1.02rem',
+              fontWeight: 900,
               letterSpacing: '2.5px',
               color: '#fee2e2'
             }}>

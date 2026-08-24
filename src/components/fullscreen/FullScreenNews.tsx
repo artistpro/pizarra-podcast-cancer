@@ -35,7 +35,7 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
 
   const defaultKeyPoints = [
     "Evidencia científica contrastada y aplicable en tu día a día",
-    "Prácticas y hábitos que impulsan tu energía celular y emocional",
+    "Prácticas y hábitos que impulsan tu energía celular y bienestar",
     "Validado por profesionales de la salud y medicina integrativa",
     "Fomento de la resiliencia y el proyecto de vida en comunidad"
   ];
@@ -48,10 +48,10 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
     <div style={{
       width: '100%',
       height: '100%',
-      padding: '16px 45px',
+      padding: '8px 24px',
       display: 'grid',
-      gridTemplateColumns: '0.95fr 1.05fr',
-      gap: '40px',
+      gridTemplateColumns: '0.85fr 1.15fr',
+      gap: '28px',
       alignItems: 'center',
       opacity: isFading ? 0.2 : 1,
       transform: isFading ? 'translateY(6px)' : 'translateY(0)',
@@ -60,11 +60,11 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
       {/* Columna Izquierda: Imagen HD en Gran Formato */}
       <div style={{
         position: 'relative',
-        height: '540px',
-        borderRadius: '24px',
+        height: '620px',
+        borderRadius: '26px',
         overflow: 'hidden',
-        border: '2px solid rgba(212, 175, 55, 0.65)',
-        boxShadow: '0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.25)',
+        border: '2.5px solid rgba(212, 175, 55, 0.85)',
+        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.35)',
         background: '#011410'
       }}>
         <img
@@ -74,7 +74,7 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            filter: 'brightness(0.92) contrast(1.06)'
+            filter: 'brightness(0.92) contrast(1.08)'
           }}
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1200&q=85";
@@ -85,7 +85,7 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to top, rgba(2, 20, 16, 0.95) 0%, rgba(2, 20, 16, 0.4) 40%, transparent 100%)'
+          background: 'linear-gradient(to top, rgba(2, 20, 16, 0.98) 0%, rgba(2, 20, 16, 0.45) 45%, transparent 100%)'
         }} />
 
         {/* Badge Superior */}
@@ -97,15 +97,16 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
           gap: '10px'
         }}>
           <div style={{
-            padding: '6px 18px',
-            borderRadius: '16px',
-            background: 'rgba(2, 24, 19, 0.9)',
-            border: '1.4px solid #d4af37',
+            padding: '10px 26px',
+            borderRadius: '22px',
+            background: 'rgba(2, 24, 19, 0.95)',
+            border: '1.8px solid #d4af37',
             color: '#fef3c7',
-            fontSize: '0.88rem',
-            fontWeight: 800,
+            fontSize: '1.2rem',
+            fontWeight: 900,
             letterSpacing: '1.5px',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            boxShadow: '0 4px 18px rgba(0,0,0,0.7)'
           }}>
             📰 NOTICIA DESTACADA ({currentIndex + 1}/{news.length})
           </div>
@@ -114,23 +115,23 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
         {/* Fuente en la base de la foto */}
         <div style={{
           position: 'absolute',
-          bottom: '18px',
+          bottom: '22px',
           left: '24px',
           right: '24px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <span style={{ fontSize: '1rem', color: '#fbbf24', fontWeight: 700 }}>
+          <span style={{ fontSize: '1.35rem', color: '#fbbf24', fontWeight: 900, textShadow: '0 2px 10px rgba(0,0,0,0.95)' }}>
             🏷️ {currentItem.category || "BIENESTAR Y SALUD"}
           </span>
-          <span style={{ fontSize: '0.92rem', color: '#94a3b8', fontWeight: 600 }}>
+          <span style={{ fontSize: '1.2rem', color: '#e2e8f0', fontWeight: 700, textShadow: '0 2px 10px rgba(0,0,0,0.95)' }}>
             Fuente: {currentItem.source || "Periodismo de Soluciones"}
           </span>
         </div>
       </div>
 
-      {/* Columna Derecha: Titular, Narrativa y Puntos Clave */}
+      {/* Columna Derecha: Titular, Narrativa y Puntos Clave Extra Grandes */}
       <div style={{
         display: 'flex',
         flexDirection: 'column',
@@ -139,10 +140,10 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
       }}>
         <div>
           <div className="font-cinzel" style={{
-            fontSize: '0.95rem',
-            letterSpacing: '3px',
+            fontSize: '1.25rem',
+            letterSpacing: '4px',
             color: '#d4af37',
-            fontWeight: 800,
+            fontWeight: 900,
             marginBottom: '6px',
             textTransform: 'uppercase'
           }}>
@@ -150,56 +151,57 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
           </div>
 
           <h1 className="font-cinzel" style={{
-            fontSize: '2.1rem',
-            lineHeight: 1.26,
+            fontSize: '3.3rem',
+            lineHeight: 1.16,
             fontWeight: 900,
             color: '#ffffff',
-            letterSpacing: '1px',
+            letterSpacing: '0.5px',
             margin: '0 0 12px',
-            textShadow: '0 0 25px rgba(212, 175, 55, 0.45), 0 3px 8px rgba(0,0,0,0.9)'
+            textShadow: '0 0 32px rgba(212, 175, 55, 0.6), 0 4px 12px rgba(0,0,0,0.98)'
           }}>
             {currentItem.title}
           </h1>
 
           <p style={{
-            fontSize: '1.24rem',
-            lineHeight: 1.5,
-            color: '#e2e8f0',
+            fontSize: '1.75rem',
+            lineHeight: 1.42,
+            color: '#f8fafc',
             fontWeight: 500,
-            textShadow: '0 1px 6px rgba(0,0,0,0.85)'
+            textShadow: '0 2px 8px rgba(0,0,0,0.95)',
+            margin: 0
           }}>
             {currentItem.description}
           </p>
         </div>
 
-        {/* Cuadro de Puntos Clave */}
+        {/* Cuadro de Puntos Clave Extra Grande */}
         <div style={{
-          background: 'rgba(2, 24, 19, 0.85)',
-          border: '1.6px solid rgba(212, 175, 55, 0.45)',
-          borderRadius: '18px',
-          padding: '18px 24px',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.5)'
+          background: 'rgba(2, 24, 19, 0.94)',
+          border: '2px solid rgba(212, 175, 55, 0.75)',
+          borderRadius: '24px',
+          padding: '20px 28px',
+          boxShadow: '0 12px 35px rgba(0,0,0,0.75)'
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
-            marginBottom: '10px',
+            gap: '12px',
+            marginBottom: '14px',
             color: '#fef08a',
-            fontSize: '1rem',
-            fontWeight: 800
+            fontSize: '1.35rem',
+            fontWeight: 900
           }}>
-            <span>💡</span>
-            <span className="font-cinzel" style={{ letterSpacing: '2px' }}>
+            <span style={{ fontSize: '1.5rem' }}>💡</span>
+            <span className="font-cinzel" style={{ letterSpacing: '3px' }}>
               CLAVES PARA TU SALUD INTEGRAL
             </span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px 24px' }}>
             {pointsToShow.map((pt, idx) => (
-              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                <span style={{ color: '#10b981', fontSize: '1rem', marginTop: '2px' }}>✔</span>
-                <span style={{ fontSize: '0.98rem', color: '#f1f5f9', lineHeight: 1.35, fontWeight: 500 }}>
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                <span style={{ color: '#10b981', fontSize: '1.45rem', marginTop: '1px', fontWeight: 900 }}>✔</span>
+                <span style={{ fontSize: '1.45rem', color: '#ffffff', lineHeight: 1.32, fontWeight: 600, textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>
                   {pt}
                 </span>
               </div>

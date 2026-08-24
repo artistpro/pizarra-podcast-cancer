@@ -95,7 +95,7 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
       // Geometría Sagrada Monumental
       const centerX = width / 2;
       const centerY = height / 2;
-      const radius = Math.min(width, height) * 0.42;
+      const radius = Math.min(width, height) * 0.44;
 
       rotationAngle += 0.0014;
 
@@ -103,21 +103,27 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
       ctx.translate(centerX, centerY);
       ctx.rotate(rotationAngle);
 
-      ctx.strokeStyle = effectiveTheme === 'night' ? 'rgba(212, 175, 55, 0.18)' : 'rgba(212, 175, 55, 0.26)';
-      ctx.lineWidth = 1.6;
+      ctx.strokeStyle = effectiveTheme === 'night'
+        ? 'rgba(147, 197, 253, 0.25)'
+        : 'rgba(212, 175, 55, 0.28)';
+      ctx.lineWidth = 1.8;
+
+      for (let i = 0; i < 6; i++) {
+        const angle = (i * Math.PI) / 3;
+        const x = Math.cos(angle) * (radius * 0.52);
+        const y = Math.sin(angle) * (radius * 0.52);
+        ctx.beginPath();
+        ctx.arc(x, y, radius * 0.52, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.52, 0, Math.PI * 2);
+      ctx.stroke();
 
       ctx.beginPath();
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
       ctx.stroke();
-
-      for (let i = 0; i < 12; i++) {
-        const angle = (i * Math.PI) / 6;
-        const x = Math.cos(angle) * (radius * 0.5);
-        const y = Math.sin(angle) * (radius * 0.5);
-        ctx.beginPath();
-        ctx.arc(x, y, radius * 0.5, 0, Math.PI * 2);
-        ctx.stroke();
-      }
 
       ctx.restore();
 
@@ -127,8 +133,8 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
     render();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [effectiveTheme, card.bgMode, card.videoSrc]);
 
@@ -141,10 +147,11 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
-      padding: '20px 80px'
+      justifyContent: 'space-between',
+      padding: '24px 40px',
+      maxHeight: '620px'
     }}>
-      {/* Fondo de Video o Canvas */}
+      {/* Fondo Video o Canvas */}
       {card.bgMode === 'video' && card.videoSrc ? (
         <video
           autoPlay
@@ -176,75 +183,75 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
         />
       )}
 
-      {/* Badge de Categoría Astral */}
+      {/* Badge de Categoría Astral Extra Grande */}
       <div style={{
         position: 'relative',
         zIndex: 10,
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '12px',
-        padding: '10px 36px',
-        borderRadius: '30px',
-        background: 'rgba(212, 175, 55, 0.2)',
-        border: '1.6px solid rgba(212, 175, 55, 0.6)',
-        boxShadow: '0 0 25px rgba(212, 175, 55, 0.35)',
-        marginBottom: '28px'
+        gap: '16px',
+        padding: '14px 48px',
+        borderRadius: '36px',
+        background: 'rgba(212, 175, 55, 0.32)',
+        border: '2.2px solid rgba(212, 175, 55, 0.85)',
+        boxShadow: '0 0 35px rgba(212, 175, 55, 0.55)'
       }}>
-        <span style={{ fontSize: '1.4rem' }}>✨</span>
+        <span style={{ fontSize: '2rem' }}>✨</span>
         <span className="font-cinzel" style={{
-          fontSize: '1.15rem',
-          fontWeight: 800,
-          letterSpacing: '3.5px',
+          fontSize: '1.65rem',
+          fontWeight: 900,
+          letterSpacing: '4px',
           color: '#fef3c7',
           textTransform: 'uppercase',
-          textShadow: '0 0 14px rgba(212, 175, 55, 0.6)'
+          textShadow: '0 0 20px rgba(212, 175, 55, 0.85)'
         }}>
           ✦ ENFOQUE ESPECIAL • {card.category || "ENERGÍA VITAL Y FORTALEZA INTERIOR"} ✦
         </span>
         {quotes.length > 1 && (
-          <span style={{ fontSize: '0.9rem', color: '#fde047', fontWeight: 800, opacity: 0.9 }}>
+          <span style={{ fontSize: '1.35rem', color: '#fde047', fontWeight: 900, opacity: 0.95 }}>
             ({currentIndex + 1}/{quotes.length})
           </span>
         )}
       </div>
 
-      {/* Cita Monumental */}
+      {/* Cita Monumental Gigante para Móvil */}
       <div style={{
         position: 'relative',
         zIndex: 10,
-        maxWidth: '1400px',
+        maxWidth: '1700px',
         textAlign: 'center',
+        padding: '0 24px',
+        margin: 'auto 0',
         opacity: isFading ? 0.15 : 1,
         transform: isFading ? 'scale(0.97)' : 'scale(1)',
         transition: 'opacity 0.6s ease, transform 0.6s ease'
       }}>
         <p className="font-cinzel" style={{
-          fontSize: '2.65rem',
-          lineHeight: 1.42,
-          fontWeight: 800,
+          fontSize: '4.6rem',
+          lineHeight: 1.25,
+          fontWeight: 900,
           color: '#ffffff',
-          letterSpacing: '1.5px',
-          textShadow: '0 0 35px rgba(212, 175, 55, 0.65), 0 4px 18px rgba(0, 0, 0, 0.98)'
+          letterSpacing: '1px',
+          textShadow: '0 0 45px rgba(212, 175, 55, 0.85), 0 4px 24px rgba(0, 0, 0, 0.98)'
         }}>
           "{currentQuote}"
         </p>
       </div>
 
-      {/* Barra CTA Elevada */}
+      {/* Barra CTA Elevada Extra Grande */}
       <div style={{
         position: 'relative',
         zIndex: 10,
-        marginTop: '36px',
-        padding: '10px 32px',
-        borderRadius: '24px',
-        background: 'rgba(2, 24, 19, 0.85)',
-        border: '1.4px solid rgba(212, 175, 55, 0.45)',
-        boxShadow: '0 8px 24px rgba(0,0,0,0.6)'
+        padding: '14px 48px',
+        borderRadius: '30px',
+        background: 'rgba(2, 24, 19, 0.96)',
+        border: '2px solid rgba(212, 175, 55, 0.75)',
+        boxShadow: '0 12px 35px rgba(0,0,0,0.8)'
       }}>
         <span style={{
-          fontSize: '1.15rem',
+          fontSize: '1.65rem',
           color: '#fbbf24',
-          fontWeight: 700,
+          fontWeight: 900,
           letterSpacing: '1px'
         }}>
           {card.cta || "Enlaces de acompañamiento en la descripción ⚡"}

@@ -94,19 +94,21 @@ export const ArtThatHeals: React.FC<ArtThatHealsProps> = ({
         alignItems: 'center'
       }}>
         <div className="gold-pill-header" style={{
-          padding: '6px 20px',
-          borderRadius: '20px',
-          fontSize: '0.85rem',
+          padding: '7px 22px',
+          borderRadius: '22px',
+          fontSize: '1rem',
+          fontWeight: 800,
           width: '100%',
           textAlign: 'center',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '8px'
+          gap: '8px',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
         }}>
           <span>🎨 {currentItem?.title || "ARTE QUE SANA"}</span>
           {artList.length > 1 && (
-            <span style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 800 }}>
+            <span style={{ fontSize: '0.88rem', opacity: 0.95, fontWeight: 800 }}>
               ({currentIndex + 1}/{artList.length})
             </span>
           )}
@@ -127,12 +129,12 @@ export const ArtThatHeals: React.FC<ArtThatHealsProps> = ({
         transition: 'opacity 0.5s ease, transform 0.5s ease'
       }}>
         <p style={{
-          fontSize: '1.15rem',
+          fontSize: '1.38rem',
           color: '#ffffff',
-          fontWeight: 600,
+          fontWeight: 700,
           letterSpacing: '0.3px',
-          lineHeight: 1.38,
-          textShadow: '0 2px 8px rgba(0,0,0,0.98)',
+          lineHeight: 1.35,
+          textShadow: '0 2px 10px rgba(0,0,0,0.98), 0 0 12px rgba(0,0,0,0.9)',
           margin: 0
         }}>
           "{currentItem?.caption || "Crear también es una forma de respirar y reconectar con la paz interior"}"

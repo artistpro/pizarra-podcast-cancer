@@ -98,31 +98,31 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        gap: '16px',
+        gap: '18px',
         background: 'linear-gradient(135deg, rgba(2, 26, 20, 0.96) 0%, rgba(1, 15, 12, 0.98) 100%)',
-        padding: '16px 20px',
-        borderRadius: '16px',
+        padding: '18px 22px',
+        borderRadius: '20px',
         border: '1.8px solid rgba(212, 175, 55, 0.75)',
         boxShadow: '0 8px 25px rgba(0, 0, 0, 0.6)',
-        maxWidth: '440px',
+        maxWidth: '520px',
         overflow: 'hidden'
       }
     : {
         position: 'absolute',
-        bottom: '92px',
+        bottom: '100px',
         right: '36px',
         zIndex: 999,
         display: 'flex',
         alignItems: 'center',
-        gap: '16px',
+        gap: '18px',
         background: 'linear-gradient(135deg, rgba(2, 26, 20, 0.96) 0%, rgba(1, 15, 12, 0.98) 100%)',
         backdropFilter: 'blur(20px)',
-        padding: '16px 20px',
-        borderRadius: '16px',
+        padding: '18px 22px',
+        borderRadius: '20px',
         border: '1.8px solid rgba(212, 175, 55, 0.75)',
         boxShadow: '0 16px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(212, 175, 55, 0.35)',
         animation: 'qrSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        maxWidth: '440px',
+        maxWidth: '520px',
         overflow: 'hidden'
       };
 
@@ -133,7 +133,7 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
         style={{
           background: '#ffffff',
           padding: '8px',
-          borderRadius: '12px',
+          borderRadius: '14px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -143,7 +143,7 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
       >
         <QRCodeSVG
           value={targetUrl}
-          size={100}
+          size={110}
           bgColor="#ffffff"
           fgColor="#021813"
           level="Q"
@@ -152,19 +152,19 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
       </div>
 
       {/* Textos y Detalles */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <span
             style={{
-              fontSize: '0.7rem',
+              fontSize: '0.88rem',
               fontWeight: 800,
               letterSpacing: '1px',
               textTransform: 'uppercase',
               color: '#d4af37',
-              background: 'rgba(212, 175, 55, 0.18)',
-              padding: '2px 8px',
-              borderRadius: '4px',
-              border: '1px solid rgba(212, 175, 55, 0.4)'
+              background: 'rgba(212, 175, 55, 0.22)',
+              padding: '3px 10px',
+              borderRadius: '6px',
+              border: '1px solid rgba(212, 175, 55, 0.5)'
             }}
           >
             🌿 {title}
@@ -174,27 +174,28 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
         <h4
           style={{
             margin: '2px 0 0 0',
-            fontSize: '0.98rem',
-            fontWeight: 800,
+            fontSize: '1.22rem',
+            fontWeight: 900,
             color: '#ffffff',
-            lineHeight: 1.2
+            lineHeight: 1.25,
+            textShadow: '0 1px 4px rgba(0,0,0,0.8)'
           }}
         >
           {subtitle}
         </h4>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
-          <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Cupón:</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
+          <span style={{ fontSize: '0.92rem', color: '#cbd5e1', fontWeight: 600 }}>Cupón directo:</span>
           <span
             style={{
-              fontSize: '0.85rem',
-              fontWeight: 800,
+              fontSize: '1.05rem',
+              fontWeight: 900,
               color: '#fef08a',
-              background: 'rgba(234, 179, 8, 0.22)',
-              padding: '1px 7px',
-              borderRadius: '4px',
-              border: '1px dashed #eab308',
-              letterSpacing: '0.5px'
+              background: 'rgba(234, 179, 8, 0.28)',
+              padding: '2px 9px',
+              borderRadius: '6px',
+              border: '1.2px dashed #eab308',
+              letterSpacing: '0.8px'
             }}
           >
             {code}
@@ -204,10 +205,10 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
         <p
           style={{
             margin: '3px 0 0 0',
-            fontSize: '0.72rem',
+            fontSize: '0.88rem',
             color: '#a7f3d0',
-            lineHeight: 1.25,
-            opacity: 0.95
+            lineHeight: 1.3,
+            fontWeight: 500
           }}
         >
           📱 Apunta la cámara de tu celular para abrir iHerb con descuento directo.

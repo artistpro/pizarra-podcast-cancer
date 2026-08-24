@@ -35,10 +35,10 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
       position: 'relative',
       width: '100%',
       height: '100%',
-      borderRadius: '18px',
+      borderRadius: '20px',
       overflow: 'hidden',
-      border: '1.8px solid rgba(212, 175, 55, 0.55)',
-      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 0, 0, 0.6)',
+      border: '1.8px solid rgba(212, 175, 55, 0.65)',
+      boxShadow: '0 10px 28px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.6)',
       background: '#021813',
       display: 'flex',
       flexDirection: 'column'
@@ -75,7 +75,7 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
         <div style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to top, rgba(2, 22, 17, 0.98) 0%, rgba(2, 22, 17, 0.92) 42%, rgba(2, 22, 17, 0.4) 68%, rgba(2, 22, 17, 0.65) 100%)'
+          background: 'linear-gradient(to top, rgba(2, 22, 17, 0.98) 0%, rgba(2, 22, 17, 0.94) 46%, rgba(2, 22, 17, 0.4) 72%, rgba(2, 22, 17, 0.65) 100%)'
         }} />
       </div>
 
@@ -91,19 +91,21 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
         alignItems: 'center'
       }}>
         <div className="gold-pill-header" style={{
-          padding: '6px 20px',
-          borderRadius: '20px',
-          fontSize: '0.85rem',
+          padding: '7px 22px',
+          borderRadius: '22px',
+          fontSize: '1rem',
+          fontWeight: 800,
           width: '100%',
           textAlign: 'center',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '8px'
+          gap: '8px',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
         }}>
           <span>✨ BUENAS NOTICIAS</span>
           {news && news.length > 1 && (
-            <span style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 800 }}>
+            <span style={{ fontSize: '0.88rem', opacity: 0.95, fontWeight: 800 }}>
               ({currentIndex + 1}/{news.length})
             </span>
           )}
@@ -120,7 +122,7 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
         padding: '16px 22px 14px',
         display: 'flex',
         flexDirection: 'column',
-        gap: '7px',
+        gap: '8px',
         opacity: isFading ? 0.2 : 1,
         transform: isFading ? 'translateY(3px)' : 'translateY(0)',
         transition: 'opacity 0.45s ease, transform 0.45s ease'
@@ -131,15 +133,16 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
             display: 'inline-flex',
             alignItems: 'center',
             alignSelf: 'flex-start',
-            padding: '3px 12px',
-            borderRadius: '12px',
-            background: 'rgba(212, 175, 55, 0.25)',
-            border: '1.2px solid rgba(212, 175, 55, 0.5)',
+            padding: '4px 14px',
+            borderRadius: '14px',
+            background: 'rgba(212, 175, 55, 0.28)',
+            border: '1.4px solid rgba(212, 175, 55, 0.6)',
             color: '#fef08a',
-            fontSize: '0.78rem',
+            fontSize: '0.92rem',
             fontWeight: 800,
             letterSpacing: '1.2px',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.5)'
           }}>
             🌱 {currentItem.category}
           </div>
@@ -147,12 +150,12 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
 
         {/* Titular Principal en Letra Grande y Nítida */}
         <h3 style={{
-          fontSize: '1.22rem',
-          lineHeight: 1.3,
+          fontSize: '1.45rem',
+          lineHeight: 1.25,
           color: '#ffffff',
           fontWeight: 800,
           letterSpacing: '0.2px',
-          textShadow: '0 2px 10px rgba(0,0,0,0.98), 0 0 12px rgba(0,0,0,0.85)',
+          textShadow: '0 2px 10px rgba(0,0,0,0.98), 0 0 14px rgba(0,0,0,0.9)',
           margin: 0
         }}>
           {currentItem ? currentItem.title : "Noticias de bienestar y calidad de vida"}
@@ -161,10 +164,10 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
         {/* Texto Enriquecido / Descripción Ampliada */}
         {currentItem?.description && (
           <p style={{
-            fontSize: '1.02rem',
+            fontSize: '1.22rem',
             lineHeight: 1.38,
-            color: '#e2e8f0',
-            fontWeight: 400,
+            color: '#f1f5f9',
+            fontWeight: 500,
             textShadow: '0 1px 6px rgba(0,0,0,0.95)',
             display: '-webkit-box',
             WebkitLineClamp: 3,
@@ -179,13 +182,14 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
         {/* Fuente & Fecha */}
         {currentItem?.source && (
           <div style={{
-            fontSize: '0.84rem',
+            fontSize: '1rem',
             color: '#a7f3d0',
-            fontWeight: 600,
+            fontWeight: 700,
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
-            marginTop: '2px'
+            marginTop: '2px',
+            textShadow: '0 1px 4px rgba(0,0,0,0.9)'
           }}>
             <span style={{ color: '#d4af37' }}>✦</span>
             <span>Fuente: {currentItem.source}</span>

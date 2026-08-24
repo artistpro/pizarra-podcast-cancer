@@ -35,7 +35,7 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
 
   const defaultBenefits = [
     "Modulación y equilibrio de la respuesta inmunitaria natural",
-    "Protección frente al estrés oxidativo y apoyo mitocondrial",
+    "Protección frente al estrés oxidativo y apoyo mitocondrial celular",
     "Respaldado por publicaciones en oncología y nutrición integrativa"
   ];
 
@@ -47,31 +47,32 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
     <div style={{
       width: '100%',
       height: '100%',
-      padding: '16px 45px',
+      padding: '8px 24px',
       display: 'grid',
       gridTemplateColumns: '0.85fr 1.15fr',
-      gap: '40px',
+      gap: '28px',
       alignItems: 'center',
       opacity: isFading ? 0.2 : 1,
       transform: isFading ? 'translateY(6px)' : 'translateY(0)',
       transition: 'opacity 0.5s ease, transform 0.5s ease'
     }}>
-      {/* Columna Izquierda: Frasco Ilustrado + Consejos de Toma */}
+      {/* Columna Izquierda: Frasco Ilustrado + Consejos Ocupando Todo el Alto */}
       <div style={{
+        height: '620px',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        gap: '16px'
+        justifyContent: 'space-between',
+        gap: '14px'
       }}>
+        {/* Contenedor del Frasco */}
         <div style={{
           position: 'relative',
           width: '100%',
-          maxWidth: '420px',
-          height: '320px',
-          borderRadius: '24px',
-          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(2, 24, 19, 0.95) 100%)',
-          border: '2px solid rgba(212, 175, 55, 0.65)',
-          boxShadow: '0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(212, 175, 55, 0.3)',
+          flex: 1,
+          borderRadius: '26px',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, rgba(2, 24, 19, 0.98) 100%)',
+          border: '2.5px solid rgba(212, 175, 55, 0.85)',
+          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.9), 0 0 45px rgba(212, 175, 55, 0.4)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -82,10 +83,10 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
               src={currentItem.imageSrc}
               alt={currentItem.name}
               style={{
-                width: '90%',
-                height: '90%',
+                width: '92%',
+                height: '92%',
                 objectFit: 'contain',
-                filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.8))'
+                filter: 'drop-shadow(0 16px 32px rgba(0,0,0,0.95))'
               }}
               onError={(e) => {
                 (e.target as HTMLElement).style.display = 'none';
@@ -93,21 +94,40 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
             />
           ) : null}
 
+          {/* Badge Superior Frasco */}
+          <div style={{
+            position: 'absolute',
+            top: '18px',
+            left: '18px',
+            padding: '8px 22px',
+            borderRadius: '20px',
+            background: 'rgba(2, 24, 19, 0.95)',
+            border: '1.8px solid #d4af37',
+            color: '#fef3c7',
+            fontSize: '1.15rem',
+            fontWeight: 900,
+            letterSpacing: '1.5px',
+            textTransform: 'uppercase',
+            boxShadow: '0 4px 18px rgba(0,0,0,0.7)'
+          }}>
+            💊 SUPLEMENTO ({currentIndex + 1}/{supplements.length})
+          </div>
+
           {/* Emblema Solar */}
           <div style={{
             position: 'absolute',
-            bottom: '14px',
-            right: '14px',
-            width: '50px',
-            height: '50px',
+            bottom: '18px',
+            right: '18px',
+            width: '64px',
+            height: '64px',
             borderRadius: '50%',
             background: 'radial-gradient(circle, #fbbf24 0%, #d97706 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 18px rgba(251, 191, 36, 0.8)'
+            boxShadow: '0 0 26px rgba(251, 191, 36, 0.95)'
           }}>
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="4" />
               <path d="M12 2v2" />
               <path d="M12 20v2" />
@@ -121,103 +141,99 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
           </div>
         </div>
 
-        {/* Caja de Consejos y Sinergias */}
+        {/* Caja de Forma de Consumo */}
         <div style={{
           width: '100%',
-          maxWidth: '420px',
-          background: 'rgba(2, 24, 19, 0.85)',
-          border: '1.4px solid rgba(212, 175, 55, 0.4)',
-          borderRadius: '16px',
-          padding: '14px 18px'
+          background: 'rgba(2, 24, 19, 0.96)',
+          border: '2px solid rgba(212, 175, 55, 0.75)',
+          borderRadius: '22px',
+          padding: '16px 24px',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.75)'
         }}>
-          <div style={{ fontSize: '0.85rem', color: '#fbbf24', fontWeight: 800, marginBottom: '4px' }}>
+          <div style={{ fontSize: '1.25rem', color: '#fbbf24', fontWeight: 900, marginBottom: '6px', letterSpacing: '1px' }}>
             💡 FORMA DE CONSUMO & SINERGIAS:
           </div>
-          <p style={{ fontSize: '0.98rem', color: '#e2e8f0', margin: '0 0 4px', lineHeight: 1.35 }}>
+          <p style={{ fontSize: '1.45rem', color: '#ffffff', margin: '0 0 6px', lineHeight: 1.35, fontWeight: 600 }}>
             {currentItem.usageTips || "Tomar junto a una comida principal para optimizar su absorción natural."}
           </p>
-          <p style={{ fontSize: '0.88rem', color: '#a7f3d0', margin: 0, fontStyle: 'italic' }}>
+          <p style={{ fontSize: '1.25rem', color: '#a7f3d0', margin: 0, fontStyle: 'italic', fontWeight: 700 }}>
             {currentItem.synergies || "Consulta posibles sinergias con otros nutrientes."}
           </p>
         </div>
       </div>
 
-      {/* Columna Derecha: Detalles Clínicos, Beneficios y Criterio Médico */}
+      {/* Columna Derecha: Titular, Narrativa y Beneficios Extra Grandes */}
       <div style={{
+        height: '620px',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        gap: '16px'
+        justifyContent: 'space-between',
+        gap: '14px'
       }}>
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-            <div style={{
-              padding: '4px 16px',
-              borderRadius: '14px',
-              background: 'rgba(212, 175, 55, 0.2)',
-              border: '1.2px solid rgba(212, 175, 55, 0.5)',
-              color: '#fde047',
-              fontSize: '0.82rem',
-              fontWeight: 800,
-              letterSpacing: '1.5px'
-            }}>
-              💊 GUÍA DE EVIDENCIA ({currentIndex + 1}/{supplements.length})
-            </div>
-            <span style={{ color: '#fbbf24', fontSize: '0.88rem', fontWeight: 700 }}>
-              {currentItem.subtitle || "FICHA DE HOY"}
-            </span>
+          <div className="font-cinzel" style={{
+            fontSize: '1.25rem',
+            letterSpacing: '4px',
+            color: '#d4af37',
+            fontWeight: 900,
+            marginBottom: '6px',
+            textTransform: 'uppercase'
+          }}>
+            ✦ GUÍA DE EVIDENCIA CLÍNICA • {currentItem.subtitle || "FICHA DE HOY"} ✦
           </div>
 
           <h1 className="font-cinzel" style={{
-            fontSize: '2.35rem',
+            fontSize: '3.5rem',
+            lineHeight: 1.15,
             fontWeight: 900,
             color: '#ffffff',
-            letterSpacing: '2px',
+            letterSpacing: '1px',
             margin: '0 0 10px',
-            textShadow: '0 0 25px rgba(212, 175, 55, 0.5), 0 3px 8px rgba(0,0,0,0.9)'
+            textShadow: '0 0 32px rgba(212, 175, 55, 0.65), 0 4px 12px rgba(0,0,0,0.98)'
           }}>
             {currentItem.name}
           </h1>
 
           <p style={{
-            fontSize: '1.24rem',
-            lineHeight: 1.48,
-            color: '#f1f5f9',
+            fontSize: '1.75rem',
+            lineHeight: 1.4,
+            color: '#f8fafc',
             fontWeight: 500,
-            textShadow: '0 1px 6px rgba(0,0,0,0.85)'
+            textShadow: '0 2px 8px rgba(0,0,0,0.95)',
+            margin: 0
           }}>
             {currentItem.description}
           </p>
         </div>
 
-        {/* Beneficios Fisiológicos Principales */}
+        {/* Beneficios Fisiológicos Principales Extra Grandes */}
         <div style={{
-          background: 'rgba(2, 24, 19, 0.85)',
-          border: '1.6px solid rgba(212, 175, 55, 0.45)',
-          borderRadius: '18px',
-          padding: '18px 24px',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.5)'
+          background: 'rgba(2, 24, 19, 0.94)',
+          border: '2px solid rgba(212, 175, 55, 0.75)',
+          borderRadius: '24px',
+          padding: '18px 28px',
+          boxShadow: '0 12px 35px rgba(0,0,0,0.75)'
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
-            marginBottom: '10px',
+            gap: '12px',
+            marginBottom: '12px',
             color: '#fef08a',
-            fontSize: '1rem',
-            fontWeight: 800
+            fontSize: '1.35rem',
+            fontWeight: 900
           }}>
-            <span>🔬</span>
-            <span className="font-cinzel" style={{ letterSpacing: '2px' }}>
+            <span style={{ fontSize: '1.5rem' }}>🔬</span>
+            <span className="font-cinzel" style={{ letterSpacing: '3px' }}>
               ACCIONES Y BENEFICIOS BIOLÓGICOS
             </span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {benefitsToShow.map((b, idx) => (
-              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <span style={{ color: '#10b981', fontSize: '1.05rem', marginTop: '2px' }}>✔</span>
-                <span style={{ fontSize: '1.02rem', color: '#f8fafc', lineHeight: 1.35, fontWeight: 500 }}>
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                <span style={{ color: '#10b981', fontSize: '1.5rem', marginTop: '1px', fontWeight: 900 }}>✔</span>
+                <span style={{ fontSize: '1.48rem', color: '#ffffff', lineHeight: 1.3, fontWeight: 600, textShadow: '0 1px 4px rgba(0,0,0,0.9)' }}>
                   {b}
                 </span>
               </div>
@@ -225,22 +241,23 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
           </div>
         </div>
 
-        {/* Cuadro de Descargo y Criterio Profesional */}
+        {/* Cuadro de Descargo y Criterio Profesional Extra Grande */}
         <div style={{
-          background: 'rgba(2, 18, 14, 0.9)',
-          border: '1.6px solid rgba(251, 191, 36, 0.65)',
-          borderRadius: '16px',
-          padding: '14px 20px',
+          background: 'rgba(2, 18, 14, 0.96)',
+          border: '2px solid rgba(251, 191, 36, 0.85)',
+          borderRadius: '20px',
+          padding: '14px 26px',
           display: 'flex',
           alignItems: 'center',
-          gap: '12px'
+          gap: '16px',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.7)'
         }}>
-          <span style={{ fontSize: '1.5rem' }}>⚠️</span>
+          <span style={{ fontSize: '2.2rem' }}>⚠️</span>
           <div>
-            <div className="font-cinzel" style={{ fontSize: '0.88rem', color: '#fef08a', fontWeight: 800, letterSpacing: '1.5px', marginBottom: '2px' }}>
+            <div className="font-cinzel" style={{ fontSize: '1.18rem', color: '#fef08a', fontWeight: 900, letterSpacing: '2px', marginBottom: '2px' }}>
               CRITERIO CLÍNICO RESPONSABLE
             </div>
-            <p style={{ fontSize: '0.98rem', color: '#fde047', margin: 0, fontStyle: 'italic', fontWeight: 600 }}>
+            <p style={{ fontSize: '1.35rem', color: '#fde047', margin: 0, fontStyle: 'italic', fontWeight: 700 }}>
               {currentItem.disclaimer || "Revisa niveles, dosis e interacciones con un profesional de la salud."}
             </p>
           </div>
