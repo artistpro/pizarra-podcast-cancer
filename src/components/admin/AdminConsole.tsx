@@ -733,6 +733,49 @@ export const AdminConsole: React.FC = () => {
                 })}
               </div>
             </div>
+
+            {/* Control para Suspender / Incluir Pizarra General en el Bucle */}
+            <div style={{
+              gridColumn: '1 / -1',
+              padding: '12px 16px',
+              background: 'rgba(2, 24, 19, 0.7)',
+              borderRadius: '10px',
+              border: '1.5px solid rgba(212, 175, 55, 0.4)',
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '12px'
+            }}>
+              <div>
+                <span style={{ fontSize: '0.92rem', color: '#fef3c7', fontWeight: 800 }}>
+                  📱 Modo Optimizado Móviles: ¿Incluir Pizarra General de 4 Cuadrantes en el Bucle?
+                </span>
+                <p style={{ margin: '2px 0 0', fontSize: '0.8rem', color: '#94a3b8' }}>
+                  Si desactivas esta opción, la emisión transmitirá <strong>exclusivamente las Fichas Ampliadas (Full-Screen)</strong> en bucle continuo, maximizando la legibilidad para celulares y adultos mayores.
+                </p>
+              </div>
+              <label style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 14px',
+                borderRadius: '8px',
+                background: state.includeGeneralViewInLoop !== false ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                border: state.includeGeneralViewInLoop !== false ? '1.5px solid #10b981' : '1.5px solid #ef4444',
+                color: state.includeGeneralViewInLoop !== false ? '#a7f3d0' : '#fca5a5',
+                fontSize: '0.88rem',
+                fontWeight: 800,
+                cursor: 'pointer'
+              }}>
+                <input
+                  type="checkbox"
+                  checked={state.includeGeneralViewInLoop !== false}
+                  onChange={(e) => setState({ ...state, includeGeneralViewInLoop: e.target.checked })}
+                />
+                {state.includeGeneralViewInLoop !== false ? '✅ Pizarra General Incluida' : '🚫 Pizarra General Suspendida (Solo Fichas Full)'}
+              </label>
+            </div>
           </div>
         </section>
 

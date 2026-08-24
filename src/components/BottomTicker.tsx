@@ -59,54 +59,54 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      gap: '10px',
-      padding: '0 36px 14px'
+      gap: '12px',
+      padding: '0 32px 10px'
     }}>
-      {/* Barra 1: HOY RECORDAMOS (Marquesina Continua Asíncrona) */}
+      {/* Barra 1: HOY RECORDAMOS (Doble Tamaño 84px) */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        height: '56px',
-        borderRadius: '28px',
-        border: '1.8px solid rgba(212, 175, 55, 0.75)',
-        background: 'linear-gradient(90deg, rgba(3, 30, 24, 0.96) 0%, rgba(2, 22, 17, 0.94) 100%)',
+        height: '84px',
+        borderRadius: '42px',
+        border: '2.5px solid rgba(212, 175, 55, 0.85)',
+        background: 'linear-gradient(90deg, rgba(3, 30, 24, 0.98) 0%, rgba(2, 22, 17, 0.96) 100%)',
         backdropFilter: 'blur(16px)',
         overflow: 'hidden',
-        boxShadow: '0 6px 22px rgba(0, 0, 0, 0.65), 0 0 18px rgba(212, 175, 55, 0.3)'
+        boxShadow: '0 8px 28px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.35)'
       }}>
-        {/* Badge Dorado con Ancho Fijo y Texto Centrado */}
+        {/* Badge Dorado Ampliado (340px) */}
         <div style={{
-          width: '260px',
-          minWidth: '260px',
-          maxWidth: '260px',
+          width: '340px',
+          minWidth: '340px',
+          maxWidth: '340px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '10px',
-          padding: '0 14px',
-          borderRight: '1.8px solid rgba(212, 175, 55, 0.6)',
+          gap: '14px',
+          padding: '0 18px',
+          borderRight: '2.2px solid rgba(212, 175, 55, 0.7)',
           flexShrink: 0,
-          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.32) 0%, rgba(180, 140, 30, 0.2) 100%)',
+          background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.38) 0%, rgba(180, 140, 30, 0.25) 100%)',
           height: '100%',
           zIndex: 5
         }}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fef08a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fef08a" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
             <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
           </svg>
           <span className="font-cinzel" style={{
-            fontSize: '1.05rem',
+            fontSize: '1.45rem',
             fontWeight: 900,
-            letterSpacing: '2px',
+            letterSpacing: '2.5px',
             color: '#fef3c7',
             textTransform: 'uppercase',
-            textShadow: '0 0 12px rgba(212, 175, 55, 0.6)',
+            textShadow: '0 0 16px rgba(212, 175, 55, 0.75)',
             whiteSpace: 'nowrap'
           }}>
             {dailyReminderLabel || "HOY RECORDAMOS"}
           </span>
         </div>
 
-        {/* Pista de Desplazamiento Continuo De Derecha a Izquierda */}
+        {/* Pista de Desplazamiento Continuo Extra Grande */}
         <div style={{
           flex: 1,
           overflow: 'hidden',
@@ -127,14 +127,14 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
             {doubledReminders.map((msg, idx) => {
               const icon = SEPARATOR_ICONS[idx % SEPARATOR_ICONS.length];
               return (
-                <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: '14px', paddingRight: '48px' }}>
-                  <span style={{ fontSize: '1.35rem', opacity: 0.95 }}>{icon}</span>
+                <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: '18px', paddingRight: '60px' }}>
+                  <span style={{ fontSize: '2.1rem', opacity: 0.95 }}>{icon}</span>
                   <span style={{
-                    fontSize: '1.38rem',
+                    fontSize: '2.25rem',
                     color: '#ffffff',
-                    fontWeight: 700,
-                    letterSpacing: '0.4px',
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.95)'
+                    fontWeight: 800,
+                    letterSpacing: '0.5px',
+                    textShadow: '0 3px 12px rgba(0, 0, 0, 0.98)'
                   }}>
                     {msg}
                   </span>
@@ -145,51 +145,51 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
         </div>
       </div>
 
-      {/* Barra 2: INVITACIÓN (Marquesina Continua Asíncrona) */}
+      {/* Barra 2: INVITACIÓN (Doble Tamaño 84px) */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        height: '56px',
-        borderRadius: '28px',
-        border: '1.8px solid rgba(16, 185, 129, 0.75)',
-        background: 'linear-gradient(90deg, rgba(3, 30, 24, 0.96) 0%, rgba(2, 22, 17, 0.94) 100%)',
+        height: '84px',
+        borderRadius: '42px',
+        border: '2.5px solid rgba(16, 185, 129, 0.85)',
+        background: 'linear-gradient(90deg, rgba(3, 30, 24, 0.98) 0%, rgba(2, 22, 17, 0.96) 100%)',
         backdropFilter: 'blur(16px)',
         overflow: 'hidden',
-        boxShadow: '0 6px 22px rgba(0, 0, 0, 0.65), 0 0 18px rgba(16, 185, 129, 0.3)'
+        boxShadow: '0 8px 28px rgba(0, 0, 0, 0.75), 0 0 25px rgba(16, 185, 129, 0.35)'
       }}>
-        {/* Badge Esmeralda con Mismo Ancho Fijo (260px) y Texto Centrado */}
+        {/* Badge Esmeralda Ampliado (340px) */}
         <div style={{
-          width: '260px',
-          minWidth: '260px',
-          maxWidth: '260px',
+          width: '340px',
+          minWidth: '340px',
+          maxWidth: '340px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: '10px',
-          padding: '0 14px',
-          borderRight: '1.8px solid rgba(16, 185, 129, 0.6)',
+          gap: '14px',
+          padding: '0 18px',
+          borderRight: '2.2px solid rgba(16, 185, 129, 0.7)',
           flexShrink: 0,
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.32) 0%, rgba(5, 150, 105, 0.2) 100%)',
+          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.38) 0%, rgba(5, 150, 105, 0.25) 100%)',
           height: '100%',
           zIndex: 5
         }}>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#6ee7b7" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
           <span className="font-cinzel" style={{
-            fontSize: '1.05rem',
+            fontSize: '1.45rem',
             fontWeight: 900,
-            letterSpacing: '2px',
+            letterSpacing: '2.5px',
             color: '#a7f3d0',
             textTransform: 'uppercase',
-            textShadow: '0 0 12px rgba(16, 185, 129, 0.6)',
+            textShadow: '0 0 16px rgba(16, 185, 129, 0.75)',
             whiteSpace: 'nowrap'
           }}>
             {formattedLiveLabel}
           </span>
         </div>
 
-        {/* Pista de Desplazamiento Continuo Asíncrono */}
+        {/* Pista de Desplazamiento Continuo Extra Grande */}
         <div style={{
           flex: 1,
           overflow: 'hidden',
@@ -210,14 +210,14 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
             {doubledLiveList.map((msg, idx) => {
               const icon = SEPARATOR_ICONS[(idx + 2) % SEPARATOR_ICONS.length];
               return (
-                <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: '14px', paddingRight: '48px' }}>
-                  <span style={{ fontSize: '1.35rem', opacity: 0.95 }}>{icon}</span>
+                <div key={idx} style={{ display: 'inline-flex', alignItems: 'center', gap: '18px', paddingRight: '60px' }}>
+                  <span style={{ fontSize: '2.1rem', opacity: 0.95 }}>{icon}</span>
                   <span style={{
-                    fontSize: '1.38rem',
+                    fontSize: '2.25rem',
                     color: '#f8fafc',
-                    fontWeight: 700,
-                    letterSpacing: '0.4px',
-                    textShadow: '0 2px 8px rgba(0, 0, 0, 0.95)'
+                    fontWeight: 800,
+                    letterSpacing: '0.5px',
+                    textShadow: '0 3px 12px rgba(0, 0, 0, 0.98)'
                   }}>
                     {msg}
                   </span>

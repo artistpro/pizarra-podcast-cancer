@@ -109,7 +109,7 @@ export const QrAffiliateOverlay: React.FC<QrAffiliateOverlayProps> = ({
       }
     : {
         position: 'absolute',
-        bottom: '100px',
+        bottom: '210px',
         right: '36px',
         zIndex: 999,
         display: 'flex',

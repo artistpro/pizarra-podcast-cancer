@@ -92,13 +92,12 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
         ? state.activeFullScreenViews
         : ['astral', 'news', 'supplement', 'art'];
 
+      const includeGeneral = state.includeGeneralViewInLoop !== false;
       const generalDurationMs = Math.max(10, state.generalViewDuration || 180) * 1000;
       const fullDurationMs = Math.max(10, state.fullScreenDuration || 120) * 1000;
 
       let timeoutId: number;
 
-      // Inicia siempre en Pizarra General
-      setCurrentView('general');
       fullScreenIndexRef.current = 0;
 
       // Función para cambiar a la siguiente vista con transición suave
@@ -111,21 +110,35 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
         }, 750);
       };
 
-      // Paso A: Mostrar Pantalla Completa correspondiente
-      const showFullScreenStep = () => {
-        const targetView = fullViews[fullScreenIndexRef.current % fullViews.length];
-        fullScreenIndexRef.current = (fullScreenIndexRef.current + 1) % fullViews.length;
-        
-        transitionTo(targetView, showGeneralStep, fullDurationMs);
-      };
+      if (!includeGeneral) {
+        // Bucle Exclusivo de Fichas Ampliadas Full Screen (Óptimo para Móviles)
+        const firstView = fullViews[0];
+        setCurrentView(firstView);
+        fullScreenIndexRef.current = 1 % fullViews.length;
 
-      // Paso B: Regresar a la Pizarra General
-      const showGeneralStep = () => {
-        transitionTo('general', showFullScreenStep, generalDurationMs);
-      };
+        const cycleNextFullScreen = () => {
+          const targetView = fullViews[fullScreenIndexRef.current % fullViews.length];
+          fullScreenIndexRef.current = (fullScreenIndexRef.current + 1) % fullViews.length;
+          transitionTo(targetView, cycleNextFullScreen, fullDurationMs);
+        };
 
-      // Primer temporizador: Esperar el ciclo completo de la Pizarra General antes de pasar al primer Full Screen
-      timeoutId = window.setTimeout(showFullScreenStep, generalDurationMs);
+        timeoutId = window.setTimeout(cycleNextFullScreen, fullDurationMs);
+      } else {
+        // Bucle Híbrido: Pizarra General ⟷ Pantallas Completas
+        setCurrentView('general');
+
+        const showFullScreenStep = () => {
+          const targetView = fullViews[fullScreenIndexRef.current % fullViews.length];
+          fullScreenIndexRef.current = (fullScreenIndexRef.current + 1) % fullViews.length;
+          transitionTo(targetView, showGeneralStep, fullDurationMs);
+        };
+
+        const showGeneralStep = () => {
+          transitionTo('general', showFullScreenStep, generalDurationMs);
+        };
+
+        timeoutId = window.setTimeout(showFullScreenStep, generalDurationMs);
+      }
 
       return () => {
         if (timeoutId) clearTimeout(timeoutId);
@@ -135,7 +148,8 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
     state.broadcastMode,
     state.generalViewDuration,
     state.fullScreenDuration,
-    state.activeFullScreenViews
+    state.activeFullScreenViews,
+    state.includeGeneralViewInLoop
   ]);
 
   const isNight = effectiveTheme === 'night';

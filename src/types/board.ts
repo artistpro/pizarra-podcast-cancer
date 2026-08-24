@@ -71,6 +71,7 @@ export interface BoardState {
   generalViewDuration: number; // Duración de Pizarra General en segundos (ej. 180s = 3 min)
   fullScreenDuration: number;  // Duración de cada Pantalla Completa en segundos (ej. 120s = 2 min)
   activeFullScreenViews: FullScreenViewType[]; // Vistas activas en el bucle
+  includeGeneralViewInLoop?: boolean; // Si es false, se suspende la pizarra general y solo emite fichas ampliadas en bucle
   
   // 1. Arte Que Sana (Multificha rotativo)
   artCards: ArtCard[];
@@ -162,6 +163,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
   generalViewDuration: 180, // 3 minutos en Pizarra General
   fullScreenDuration: 120,  // 2 minutos en cada Pantalla Completa
   activeFullScreenViews: ["astral", "news", "supplement", "art"],
+  includeGeneralViewInLoop: false, // Suspender pizarra general para privilegiar fichas full-screen en móviles
   
   // Galería de Arte Que Sana
   artCards: [
@@ -462,6 +464,7 @@ export const normalizeBoardState = (saved: any): BoardState => {
     generalViewDuration: saved.generalViewDuration || DEFAULT_BOARD_STATE.generalViewDuration || 180,
     fullScreenDuration: saved.fullScreenDuration || DEFAULT_BOARD_STATE.fullScreenDuration || 120,
     activeFullScreenViews: saved.activeFullScreenViews || DEFAULT_BOARD_STATE.activeFullScreenViews || ["astral", "news", "supplement", "art"],
+    includeGeneralViewInLoop: saved.includeGeneralViewInLoop !== undefined ? saved.includeGeneralViewInLoop : false,
     artCards,
     artRotationSpeed: saved.artRotationSpeed || DEFAULT_BOARD_STATE.artRotationSpeed || 20,
     supplementsList,
