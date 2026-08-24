@@ -303,7 +303,7 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
         </div>
 
         {/* Overlay Flotante de Alertas en Vivo (Bienvenidas de Telegram y Regalos de YouTube) */}
-        <LiveAlertsOverlay initialAlert={state.latestAlert} />
+        <LiveAlertsOverlay state={state} initialAlert={state.latestAlert} />
 
         {/* Overlay Flotante Periódico con Código QR de Afiliados (iHerb MBG0640) */}
         <QrAffiliateOverlay state={state} />

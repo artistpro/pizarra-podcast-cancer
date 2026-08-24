@@ -122,6 +122,13 @@ export interface BoardState {
   qrOverlaySubtitle?: string;
   qrOverlayForceTrigger?: number; // timestamp para forzar aparicion inmediata
   
+  // 6. Motor Autónomo de Alertas e Incentivo Comunitario (30 min)
+  enablePeriodicIncentiveAlerts?: boolean;
+  incentiveAlertsIntervalMinutes?: number; // en minutos (ej. 30)
+  incentiveNamesPool?: string[];
+  lastRealWelcomeName?: string;
+  lastRealDonorName?: string;
+
   // Compatibilidad hacia atrás
   artThatHeals?: ArtCard;
   supplement?: SupplementData;
@@ -164,6 +171,18 @@ export const getEffectiveTheme = (themeMode: ThemeMode): "day" | "night" => {
   // 3. Ventanas de transición (19:30-20:00 atardecer, 07:30-08:00 amanecer) -> Mantener día
   return "day";
 };
+
+export const DEFAULT_INCENTIVE_NAMES: string[] = [
+  "Claudia M.",
+  "Carlos Andrés R.",
+  "María Elena G.",
+  "Patricia V.",
+  "Fernando L.",
+  "Luz Marina T.",
+  "Gloria Esperanza D.",
+  "Jorge Eduardo S.",
+  "Martha Cecilia B."
+];
 
 export const DEFAULT_BOARD_STATE: BoardState = {
   theme: "auto",
@@ -394,7 +413,12 @@ export const DEFAULT_BOARD_STATE: BoardState = {
   qrOverlayInterval: 600, // Cada 10 minutos (600s)
   qrOverlayDuration: 35,  // Visible por 35 segundos
   qrOverlayTitle: "APOYA NUESTRA COMUNIDAD",
-  qrOverlaySubtitle: "Escanea y obtén 5% a 10% de DESCUENTO en iHerb"
+  qrOverlaySubtitle: "Escanea y obtén 5% a 10% de DESCUENTO en iHerb",
+
+  // 7. Motor Autónomo de Alertas e Incentivo Comunitario
+  enablePeriodicIncentiveAlerts: true,
+  incentiveAlertsIntervalMinutes: 30,
+  incentiveNamesPool: DEFAULT_INCENTIVE_NAMES
 };
 
 export const normalizeBoardState = (saved: any): BoardState => {
@@ -470,6 +494,12 @@ export const normalizeBoardState = (saved: any): BoardState => {
     }));
   }
 
+  // 6. Nombres de Incentivo
+  let incentiveNamesPool: string[] = DEFAULT_INCENTIVE_NAMES;
+  if (Array.isArray(saved.incentiveNamesPool) && saved.incentiveNamesPool.length > 0) {
+    incentiveNamesPool = saved.incentiveNamesPool;
+  }
+
   return {
     ...DEFAULT_BOARD_STATE,
     ...saved,
@@ -509,6 +539,13 @@ export const normalizeBoardState = (saved: any): BoardState => {
     qrOverlayDuration: saved.qrOverlayDuration || DEFAULT_BOARD_STATE.qrOverlayDuration,
     qrOverlayTitle: saved.qrOverlayTitle || DEFAULT_BOARD_STATE.qrOverlayTitle,
     qrOverlaySubtitle: saved.qrOverlaySubtitle || DEFAULT_BOARD_STATE.qrOverlaySubtitle,
-    qrOverlayForceTrigger: saved.qrOverlayForceTrigger || 0
+    qrOverlayForceTrigger: saved.qrOverlayForceTrigger || 0,
+    
+    // Motor de Incentivo
+    enablePeriodicIncentiveAlerts: saved.enablePeriodicIncentiveAlerts !== undefined ? saved.enablePeriodicIncentiveAlerts : true,
+    incentiveAlertsIntervalMinutes: saved.incentiveAlertsIntervalMinutes || 30,
+    incentiveNamesPool,
+    lastRealWelcomeName: saved.lastRealWelcomeName || undefined,
+    lastRealDonorName: saved.lastRealDonorName || undefined
   };
 };

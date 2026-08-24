@@ -8,7 +8,7 @@ import type {
   BroadcastMode, 
   FullScreenViewType 
 } from '../../types/board';
-import { DEFAULT_BOARD_STATE, getEffectiveTheme, normalizeBoardState } from '../../types/board';
+import { DEFAULT_BOARD_STATE, getEffectiveTheme, normalizeBoardState, DEFAULT_INCENTIVE_NAMES } from '../../types/board';
 import { saveBoardState, subscribeBoardState, sendLiveAlert } from '../../firebase';
 import { fetchPositiveNewsFromRSS } from '../../services/rssService';
 import { fetchDailyHealthNews } from '../../services/newsService';
@@ -1862,6 +1862,91 @@ export const AdminConsole: React.FC = () => {
               >
                 🎁 Probar Alerta de Regalo / Super Chat en Pantalla
               </button>
+            </div>
+
+            {/* C. Configuración del Motor Autónomo de Incentivo (Cada 30 min) */}
+            <div style={{
+              gridColumn: '1 / -1',
+              background: 'rgba(2, 20, 16, 0.9)',
+              padding: '1.4rem',
+              borderRadius: '12px',
+              border: '1.5px solid rgba(212, 175, 55, 0.35)',
+              marginTop: '10px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '10px' }}>
+                <div>
+                  <span style={{ color: '#fef3c7', fontWeight: 800, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span>🔄</span> Motor Autónomo de Incentivo Comunitario (Rotación Alternada)
+                  </span>
+                  <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: '4px 0 0' }}>
+                    Mientras no haya eventos reales, proyecta una alerta alternada (Bienvenida ➔ Regalo) para dinamizar la pantalla e incentivar la participación.
+                  </p>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
+                    <input
+                      type="checkbox"
+                      checked={state.enablePeriodicIncentiveAlerts !== false}
+                      onChange={(e) => setState({ ...state, enablePeriodicIncentiveAlerts: e.target.checked })}
+                      style={{ width: '18px', height: '18px', accentColor: '#10b981' }}
+                    />
+                    <span style={{ fontSize: '0.88rem', fontWeight: 700, color: state.enablePeriodicIncentiveAlerts !== false ? '#a7f3d0' : '#64748b' }}>
+                      {state.enablePeriodicIncentiveAlerts !== false ? '✅ Activado' : '⏸️ Desactivado'}
+                    </span>
+                  </label>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>Intervalo:</span>
+                    <select
+                      value={state.incentiveAlertsIntervalMinutes || 30}
+                      onChange={(e) => setState({ ...state, incentiveAlertsIntervalMinutes: Number(e.target.value) })}
+                      style={{ padding: '6px 10px', background: '#011410', border: '1px solid #10b981', color: '#fef08a', borderRadius: '6px', fontWeight: 700, fontSize: '0.85rem' }}
+                    >
+                      <option value={10}>Cada 10 min</option>
+                      <option value={15}>Cada 15 min</option>
+                      <option value={20}>Cada 20 min</option>
+                      <option value={30}>Cada 30 min (Recomendado)</option>
+                      <option value={45}>Cada 45 min</option>
+                      <option value={60}>Cada 60 min (1 Hora)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pool de 9 Nombres */}
+              <div style={{ marginTop: '14px', borderTop: '1px solid rgba(212, 175, 55, 0.2)', paddingTop: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <span style={{ fontSize: '0.82rem', color: '#d4af37', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px' }}>
+                    🎲 Banco de Nombres de la Comunidad ({state.incentiveNamesPool?.length || 9} Nombres):
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setState({ ...state, incentiveNamesPool: DEFAULT_INCENTIVE_NAMES })}
+                    style={{ fontSize: '0.75rem', padding: '3px 8px', background: '#021a14', border: '1px solid rgba(212,175,55,0.3)', color: '#fef08a', borderRadius: '4px', cursor: 'pointer' }}
+                  >
+                    ↺ Restablecer 9 Nombres por Defecto
+                  </button>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                  {(state.incentiveNamesPool || DEFAULT_INCENTIVE_NAMES).map((name: string, i: number) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ fontSize: '0.75rem', color: '#64748b', width: '20px' }}>{i + 1}.</span>
+                      <input
+                        type="text"
+                        value={name}
+                        onChange={(e) => {
+                          const updated = [...(state.incentiveNamesPool || DEFAULT_INCENTIVE_NAMES)];
+                          updated[i] = e.target.value;
+                          setState({ ...state, incentiveNamesPool: updated });
+                        }}
+                        style={{ flex: 1, padding: '5px 8px', background: '#011410', border: '1px solid rgba(212,175,55,0.25)', color: '#fff', borderRadius: '4px', fontSize: '0.82rem' }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>

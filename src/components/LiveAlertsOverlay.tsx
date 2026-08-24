@@ -1,17 +1,41 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { subscribeLiveAlert } from '../firebase';
-import type { LiveAlert } from '../types/board';
+import type { LiveAlert, BoardState } from '../types/board';
+import { DEFAULT_INCENTIVE_NAMES } from '../types/board';
 
 interface LiveAlertsOverlayProps {
+  state?: BoardState;
   initialAlert?: LiveAlert | null;
 }
 
-export const LiveAlertsOverlay: React.FC<LiveAlertsOverlayProps> = ({ initialAlert: _initialAlert }) => {
+const SAMPLE_GIFT_AMOUNTS = [
+  "Super Chat $5.00",
+  "Super Chat $10.00",
+  "Regalo YouTube 🎁",
+  "Super Thanks $5.00",
+  "Super Chat $15.00"
+];
+
+const SAMPLE_GIFT_MESSAGES = [
+  "Con mucho amor y gratitud para toda la comunidad 🤍",
+  "Gracias por este espacio de esperanza y serenidad diaria ✨",
+  "Bendiciones y fortaleza para todos en el proceso 🙏",
+  "Un abrazo fraterno para toda la Comunidad Sanante 🌿",
+  "Por la salud, la vitalidad y la paz de cada familia 🤍"
+];
+
+export const LiveAlertsOverlay: React.FC<LiveAlertsOverlayProps> = ({ state, initialAlert: _initialAlert }) => {
   const [currentAlert, setCurrentAlert] = useState<LiveAlert | null>(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  
   const processedAlertsRef = useRef<Set<string>>(new Set());
+  const lastAlertTimeRef = useRef<number>(Date.now());
+  const lastRealWelcomeRef = useRef<string | null>(state?.lastRealWelcomeName || null);
+  const lastRealDonorRef = useRef<string | null>(state?.lastRealDonorName || null);
+  const incentiveIndexRef = useRef<number>(0);
+  const nextIncentiveTypeRef = useRef<'welcome' | 'gift'>('welcome');
 
-  // Escuchar alertas en tiempo real desde Firebase
+  // 1. Escuchar alertas en tiempo real desde Firebase (Eventos reales de Telegram / YouTube)
   useEffect(() => {
     const unsubscribe = subscribeLiveAlert((alert) => {
       if (!alert || !alert.id) return;
@@ -24,7 +48,15 @@ export const LiveAlertsOverlay: React.FC<LiveAlertsOverlayProps> = ({ initialAle
       const ageMs = Date.now() - (alert.timestamp || 0);
       if (ageMs > 60000) return;
 
-      // Disparar alerta
+      // Actualizar último timestamp y nombre real registrado
+      lastAlertTimeRef.current = Date.now();
+      if (alert.type === 'welcome' && alert.name) {
+        lastRealWelcomeRef.current = alert.name;
+      } else if ((alert.type === 'donation' || alert.type === 'gift' || alert.type === 'superchat') && alert.name) {
+        lastRealDonorRef.current = alert.name;
+      }
+
+      // Disparar alerta en pantalla
       setCurrentAlert(alert);
       setIsVisible(true);
 
@@ -44,6 +76,83 @@ export const LiveAlertsOverlay: React.FC<LiveAlertsOverlayProps> = ({ initialAle
       if (typeof unsubscribe === 'function') unsubscribe();
     };
   }, []);
+
+  // 2. Motor Autónomo de Incentivo Comunitario (Cada 30 minutos mientras no haya alertas reales)
+  useEffect(() => {
+    const isEnabled = state?.enablePeriodicIncentiveAlerts !== false;
+    const intervalMinutes = Math.max(1, state?.incentiveAlertsIntervalMinutes || 30);
+    const intervalMs = intervalMinutes * 60 * 1000;
+    const namesPool = (state?.incentiveNamesPool && state.incentiveNamesPool.length > 0)
+      ? state.incentiveNamesPool
+      : DEFAULT_INCENTIVE_NAMES;
+
+    const intervalTimer = setInterval(() => {
+      if (!isEnabled) return;
+
+      const elapsed = Date.now() - lastAlertTimeRef.current;
+      if (elapsed >= intervalMs) {
+        // Reiniciar cronómetro
+        lastAlertTimeRef.current = Date.now();
+
+        const type = nextIncentiveTypeRef.current;
+        nextIncentiveTypeRef.current = type === 'welcome' ? 'gift' : 'welcome';
+
+        // Obtener el siguiente nombre del pool de 9 nombres
+        const currentIdx = incentiveIndexRef.current % namesPool.length;
+        const candidateName = namesPool[currentIdx];
+        incentiveIndexRef.current += 1;
+
+        let simulatedAlert: LiveAlert;
+
+        if (type === 'welcome') {
+          // Si tenemos un miembro real reciente, podemos saludarlo de forma especial
+          const isRealMember = lastRealWelcomeRef.current && Math.random() > 0.6;
+          const memberName = isRealMember ? lastRealWelcomeRef.current! : candidateName;
+
+          simulatedAlert = {
+            id: `incentive_welcome_${Date.now()}`,
+            type: 'welcome',
+            title: isRealMember ? "SALUDAMOS A NUESTRO MIEMBRO RECIENTE" : "¡BIENVENIDO(A) A LA COMUNIDAD!",
+            name: memberName,
+            subtitle: "se unió a nuestro Telegram de apoyo y vida 🤍",
+            timestamp: Date.now(),
+            durationSec: 9
+          };
+        } else {
+          // Alerta de Regalo / Super Chat de YouTube
+          const isRealDonor = lastRealDonorRef.current && Math.random() > 0.6;
+          const donorName = isRealDonor ? lastRealDonorRef.current! : candidateName;
+          const randomAmount = SAMPLE_GIFT_AMOUNTS[Math.floor(Math.random() * SAMPLE_GIFT_AMOUNTS.length)];
+          const randomMsg = SAMPLE_GIFT_MESSAGES[Math.floor(Math.random() * SAMPLE_GIFT_MESSAGES.length)];
+
+          simulatedAlert = {
+            id: `incentive_gift_${Date.now()}`,
+            type: 'gift',
+            title: "¡GRACIAS POR TU REGALO / APOYO!",
+            name: donorName,
+            amount: randomAmount,
+            message: randomMsg,
+            timestamp: Date.now(),
+            durationSec: 15
+          };
+        }
+
+        // Mostrar en pantalla
+        setCurrentAlert(simulatedAlert);
+        setIsVisible(true);
+
+        const durationMs = (simulatedAlert.durationSec || 9) * 1000;
+        setTimeout(() => {
+          setIsVisible(false);
+          setTimeout(() => {
+            setCurrentAlert(null);
+          }, 600);
+        }, durationMs);
+      }
+    }, 15000); // Chequea cada 15 segundos
+
+    return () => clearInterval(intervalTimer);
+  }, [state?.enablePeriodicIncentiveAlerts, state?.incentiveAlertsIntervalMinutes, state?.incentiveNamesPool]);
 
   if (!currentAlert || !isVisible) return null;
 
