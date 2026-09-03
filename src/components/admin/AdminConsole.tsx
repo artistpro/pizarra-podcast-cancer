@@ -99,6 +99,57 @@ const SUPPLEMENT_PRESETS: SupplementData[] = [
     ],
     synergies: "Combinable con L-Carnitina y complejo B para bioenergética.",
     usageTips: "Tomar por la mañana junto con el desayuno."
+  },
+  {
+    id: "preset-mb",
+    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
+    badge: "INFORMACIÓN RESPONSABLE",
+    subtitle: "FICHA DE HOY",
+    name: "AZUL DE METILENO (GRADO USP)",
+    description: "Aceptor y donante catalítico de electrones a nivel mitocondrial. Optimiza el consumo de oxígeno celular en el complejo IV y ejerce una potente acción antioxidante y neuroprotectora.",
+    disclaimer: "Uso exclusivo grado USP libre de metales pesados. Consulta dosis e interacciones con tu médico.",
+    imageSrc: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+    keyBenefits: [
+      "Optimización de la respiración celular y síntesis de ATP mitocondrial",
+      "Neutralización selectiva de radicales libres sin bloquear la señal fisiológica",
+      "Soporte neurocognitivo y protección mitocondrial frente al daño oxidativo"
+    ],
+    synergies: "Gran sinergia con terapia de luz roja e infrarroja cercana (fotobiomodulación).",
+    usageTips: "Iniciar siempre con dosis mínimas tituladas bajo supervisión médica."
+  },
+  {
+    id: "preset-vitc-iv",
+    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
+    badge: "INFORMACIÓN RESPONSABLE",
+    subtitle: "FICHA DE HOY",
+    name: "VITAMINA C INTRAVENOSA",
+    description: "En concentraciones plasmáticas elevadas alcanzables por vía endovenosa, actúa como pro-oxidante selectivo generando peróxido de hidrógeno que daña selectivamente a células metabólicamente disfuncionales.",
+    disclaimer: "Requiere prueba previa de G6PD, evaluación de función renal y administración por profesional de salud.",
+    imageSrc: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
+    keyBenefits: [
+      "Generación selectiva de estrés oxidativo en tejidos tumorales vulnerables",
+      "Cofactor fundamental para la síntesis de colágeno e integridad de tejidos",
+      "Disminución de la astenia y mejora sustancial de la calidad de vida"
+    ],
+    synergies: "Protocolos graduales con hidratación y osmolaridad controlada.",
+    usageTips: "Administración clínica protocolizada en clínicas y centros integrativos autorizados."
+  },
+  {
+    id: "preset-cardo",
+    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
+    badge: "INFORMACIÓN RESPONSABLE",
+    subtitle: "FICHA DE HOY",
+    name: "CARDO MARIANO (SILIBININA)",
+    description: "Extracto con flavonolignanos activos que estabilizan la membrana del hepatocito, estimulan la regeneración del tejido hepático y promueven la síntesis de glutatión endógeno.",
+    disclaimer: "Consulta interacciones potenciales en citocromo P450 con tus fármacos oncológicos activos.",
+    imageSrc: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
+    keyBenefits: [
+      "Protección hepática frente a la sobrecarga y toxicidad metabólica",
+      "Estimulación de la producción de glutatión (Fases I y II hepáticas)",
+      "Acción antioxidante y antiinflamatoria en membranas celulares"
+    ],
+    synergies: "Extractos estandarizados al 70-80% de silimarina, preferiblemente en formulación fitosoma.",
+    usageTips: "Tomar con alimentos que contengan grasas saludables para favorecer su biodisponibilidad."
   }
 ];
 

@@ -314,12 +314,13 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
             dailyReminder={state.dailyReminder}
             dailyReminders={state.dailyReminders}
             dailyReminderLabel={state.dailyReminderLabel}
-            dailyReminderRotationSpeed={state.dailyReminderRotationSpeed || 480}
+            dailyReminderRotationSpeed={state.dailyReminderRotationSpeed || 95}
             
             nextLive={state.nextLive}
             nextLiveList={state.nextLiveList}
             nextLiveLabel={state.nextLiveLabel}
-            nextLiveRotationSpeed={state.nextLiveRotationSpeed || 390}
+            nextLiveRotationSpeed={state.nextLiveRotationSpeed || 85}
+            lastUpdated={state.lastUpdated}
           />
         </footer>
       </div>

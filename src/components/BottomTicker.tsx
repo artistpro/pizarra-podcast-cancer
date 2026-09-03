@@ -10,6 +10,7 @@ interface BottomTickerProps {
   nextLiveList?: string[];
   nextLiveLabel?: string;
   nextLiveRotationSpeed?: number;
+  lastUpdated?: number;
 }
 
 const SEPARATOR_ICONS = ["✉️", "📢", "📰", "✨", "🌿"];
@@ -18,12 +19,13 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
   dailyReminder,
   dailyReminders,
   dailyReminderLabel = "HOY RECORDAMOS",
-  dailyReminderRotationSpeed = 480,
+  dailyReminderRotationSpeed = 95,
   
   nextLive,
   nextLiveList,
   nextLiveLabel = "INVITACIÓN",
-  nextLiveRotationSpeed = 390
+  nextLiveRotationSpeed = 85,
+  lastUpdated
 }) => {
   // Lista 1: Recordatorios de vida
   const reminderList = dailyReminders && dailyReminders.length > 0
@@ -117,6 +119,7 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)'
         }}>
           <div
+            key={`reminders-${(reminderList || []).join('-').slice(0, 40)}-${dailyReminderRotationSpeed}-${lastUpdated || 0}`}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -200,6 +203,7 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)'
         }}>
           <div
+            key={`live-${(liveList || []).join('-').slice(0, 40)}-${nextLiveRotationSpeed}-${lastUpdated || 0}`}
             style={{
               display: 'inline-flex',
               alignItems: 'center',

@@ -192,8 +192,8 @@ export const DEFAULT_BOARD_STATE: BoardState = {
   
   // Configuración de Emisión en Bucle
   broadcastMode: "auto_loop",
-  generalViewDuration: 180, // 3 minutos en Pizarra General
-  fullScreenDuration: 120,  // 2 minutos en cada Pantalla Completa
+  generalViewDuration: 60,  // 1 minuto en Pizarra General
+  fullScreenDuration: 75,   // 75 segundos en cada Pantalla Completa (rotación ágil)
   activeFullScreenViews: ["astral", "news", "supplement", "art"],
   includeGeneralViewInLoop: false, // Suspender pizarra general para privilegiar fichas full-screen en móviles
   
@@ -315,75 +315,75 @@ export const DEFAULT_BOARD_STATE: BoardState = {
   // Catálogo de Suplementos
   supplementsList: [
     {
-      id: "sup-1",
+      id: "sup-azul-metileno",
       sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
       badge: "INFORMACIÓN RESPONSABLE",
       subtitle: "FICHA DE HOY",
-      name: "VITAMINA D3",
-      description: "Participa de forma fundamental en la salud ósea, la modulación inmunitaria y la respuesta antiinflamatoria. La dosis adecuada depende de analíticas periódicas de 25(OH)D.",
-      disclaimer: "Revisa niveles en sangre, dosis personalizada e interacciones con tu médico.",
+      name: "AZUL DE METILENO (GRADO USP)",
+      description: "Aceptor y donante catalítico de electrones a nivel mitocondrial. Optimiza el consumo de oxígeno celular en el complejo IV y ejerce una potente acción antioxidante y neuroprotectora.",
+      disclaimer: "Uso exclusivo grado USP libre de metales pesados. Consulta dosis e interacciones farmacológicas con tu médico.",
       imageSrc: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
       keyBenefits: [
-        "Regulación de más de 200 genes relacionados con la inmunidad",
-        "Mantenimiento de la densidad y mineralización ósea",
-        "Apoyo al estado de ánimo y bienestar neuromuscular"
+        "Optimización de la respiración celular y síntesis de ATP mitocondrial",
+        "Neutralización selectiva de radicales libres sin bloquear la señal fisiológica",
+        "Soporte neurocognitivo y protección mitocondrial frente al daño oxidativo"
       ],
-      synergies: "Sinergia óptima con Vitamina K2 (MK-7) y Magnesio para su correcta activación tisular.",
-      usageTips: "Tomar preferentemente con la comida principal que contenga grasas saludables para maximizar su absorción."
+      synergies: "Gran sinergia con terapia de luz roja e infrarroja cercana (fotobiomodulación).",
+      usageTips: "Iniciar siempre con dosis mínimas tituladas bajo supervisión médica."
     },
     {
-      id: "sup-2",
+      id: "sup-vitamina-c-iv",
       sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
       badge: "INFORMACIÓN RESPONSABLE",
       subtitle: "FICHA DE HOY",
-      name: "MAGNESIO BISGLICINATO",
-      description: "Forma de alta biodisponibilidad y excelente tolerancia digestiva. Favorece la relajación muscular, la calma del sistema nervioso y la calidad del sueño profundo reparador.",
-      disclaimer: "Consulta tolerancia digestiva, función renal y dosis recomendada con un profesional.",
+      name: "VITAMINA C INTRAVENOSA",
+      description: "En concentraciones plasmáticas elevadas alcanzables por vía endovenosa, actúa como pro-oxidante selectivo generando peróxido de hidrógeno que daña selectivamente a células metabólicamente disfuncionales.",
+      disclaimer: "Requiere prueba previa de G6PD, evaluación de función renal y administración por profesional de salud.",
       imageSrc: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
       keyBenefits: [
-        "Cofactor en más de 300 reacciones enzimáticas esenciales",
-        "Relajación del tono muscular y alivio de calambres",
-        "Activación del neurotransmisor GABA para el descanso nocturno"
+        "Generación selectiva de estrés oxidativo en tejidos tumorales vulnerables",
+        "Cofactor fundamental para la síntesis de colágeno e integridad de tejidos",
+        "Disminución de la astenia y mejora sustancial de la calidad de vida"
       ],
-      synergies: "Excelente combinación con L-Teanina o Manzanilla antes de dormir.",
-      usageTips: "Consumir 30 a 60 minutos antes de acostarse para inducir un sueño reparador continuo."
+      synergies: "Protocolos graduales con hidratación y osmolaridad controlada.",
+      usageTips: "Administración clínica protocolizada en clínicas y centros integrativos autorizados."
     },
     {
-      id: "sup-3",
+      id: "sup-cardo-mariano",
       sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
       badge: "INFORMACIÓN RESPONSABLE",
       subtitle: "FICHA DE HOY",
-      name: "OMEGA 3 (EPA / DHA)",
-      description: "Ácidos grasos esenciales con amplia evidencia en la modulación del equilibrio inflamatorio corporal, el apoyo a la salud cardiovascular y la función cognitiva.",
-      disclaimer: "Verifica certificación de pureza IFOS libre de metales pesados y consulta con tu especialista.",
+      name: "CARDO MARIANO (SILIBININA)",
+      description: "Extracto con flavonolignanos activos que estabilizan la membrana del hepatocito, estimulan la regeneración del tejido hepático y promueven la síntesis de glutatión endógeno.",
+      disclaimer: "Consulta interacciones potenciales en citocromo P450 con tus fármacos oncológicos activos.",
       imageSrc: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
       keyBenefits: [
-        "Precursores de resolvinas y protectinas antiinflamatorias",
-        "Protección de la salud cardiovascular y endotelial",
-        "Integridad de las membranas neuronales y soporte anímico"
+        "Protección hepática frente a la sobrecarga y toxicidad metabólica",
+        "Estimulación de la producción de glutatión (Fases I y II hepáticas)",
+        "Acción antioxidante y antiinflamatoria en membranas celulares"
       ],
-      synergies: "Acompañar con antioxidantes naturales (como Vitamina E) para prevenir su oxidación.",
-      usageTips: "Almacenar en lugar fresco y oscuro; verificar que no tenga olor rancio."
+      synergies: "Extractos estandarizados al 70-80% de silimarina, preferiblemente en formulación fitosoma.",
+      usageTips: "Tomar con alimentos que contengan grasas saludables para favorecer su biodisponibilidad."
     },
     {
-      id: "sup-4",
+      id: "sup-curcumina",
       sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
       badge: "INFORMACIÓN RESPONSABLE",
       subtitle: "FICHA DE HOY",
-      name: "CURCUMINA FITOSOMADA",
-      description: "Compuesto bioactivo con reconocidas propiedades antioxidantes y moduladoras. Su formulación con fosfolípidos o piperina optimiza drásticamente su absorción biológica.",
-      disclaimer: "Verifica posibles interacciones farmacológicas con tu equipo de oncología integrativa.",
+      name: "CÚRCUMA (CURCUMINA FITOSOMADA)",
+      description: "Polifenol de referencia con amplia documentación en la inhibición del factor de transcripción NF-kB, reduciendo la producción de citocinas inflamatorias y citoquinas tisulares.",
+      disclaimer: "Suspender antes de procedimientos quirúrgicos por su efecto modulador sobre la agregación plaquetaria.",
       imageSrc: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",
       keyBenefits: [
-        "Potente modulación de vías de señalización celular (NF-kB)",
-        "Protección contra el estrés oxidativo tisular",
-        "Apoyo al confort articular y digestivo"
+        "Potente modulación de vías de señalización proinflamatorias (NF-kB y COX-2)",
+        "Soporte antioxidante tisular y bienestar de la mucosa intestinal",
+        "Alivio del malestar articular y equilibrio oxidativo general"
       ],
-      synergies: "Formulaciones fitosomadas multiplican hasta 29 veces su absorción sistémica.",
-      usageTips: "Evitar en casos de obstrucción biliar activa y consultar antes de procedimientos quirúrgicos."
+      synergies: "Complejos fitosomados con fosfatidilcolina multiplican hasta 29 veces su absorción plasmática.",
+      usageTips: "Consumir junto a la comida principal para optimizar su efecto fisiológico."
     }
   ],
-  supplementRotationSpeed: 25,
+  supplementRotationSpeed: 30,
   
   // Marquesinas Inferiores Continuas Asíncronas
   dailyReminderLabel: "HOY RECORDAMOS",
@@ -394,7 +394,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
     "¿Quieres ver tu mensaje o testimonio aquí en la pizarra? Más información en la descripción del directo",
     "Pedir ayuda y descansar cuando tu cuerpo lo necesita también es un acto de valentía"
   ],
-  dailyReminderRotationSpeed: 480, // Segundos del ciclo continuo de scroll (desplazamiento hiper pausado de 8 min)
+  dailyReminderRotationSpeed: 95, // Segundos del ciclo continuo de scroll (desplazamiento hiper pausado de 8 min)
   
   nextLiveLabel: "INVITACIÓN",
   nextLiveList: [
@@ -404,7 +404,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
     "¿Quieres participar con tu caso o pregunta? Escríbenos en los enlaces de la descripción",
     "Directo de Preguntas y Respuestas: resuelve tus dudas en vivo con especialistas"
   ],
-  nextLiveRotationSpeed: 390, // Segundos del ciclo continuo de scroll (6.5 min)
+  nextLiveRotationSpeed: 85, // Segundos del ciclo continuo de scroll (6.5 min)
   
   // 6. Overlay Código QR Afiliados & Recompensas (iHerb)
   qrOverlayEnabled: true,
@@ -521,14 +521,14 @@ export const normalizeBoardState = (saved: any): BoardState => {
     goodNews,
     newsRotationSpeed: saved.newsRotationSpeed || DEFAULT_BOARD_STATE.newsRotationSpeed || 30,
     dailyReminders,
-    dailyReminderRotationSpeed: (saved.dailyReminderRotationSpeed && saved.dailyReminderRotationSpeed >= 200)
-      ? saved.dailyReminderRotationSpeed
-      : DEFAULT_BOARD_STATE.dailyReminderRotationSpeed,
+    dailyReminderRotationSpeed: saved.dailyReminderRotationSpeed
+      ? Math.max(15, Number(saved.dailyReminderRotationSpeed))
+      : (DEFAULT_BOARD_STATE.dailyReminderRotationSpeed || 95),
     dailyReminderLabel: saved.dailyReminderLabel || DEFAULT_BOARD_STATE.dailyReminderLabel || "HOY RECORDAMOS",
     nextLiveList,
-    nextLiveRotationSpeed: (saved.nextLiveRotationSpeed && saved.nextLiveRotationSpeed >= 200)
-      ? saved.nextLiveRotationSpeed
-      : DEFAULT_BOARD_STATE.nextLiveRotationSpeed,
+    nextLiveRotationSpeed: saved.nextLiveRotationSpeed
+      ? Math.max(15, Number(saved.nextLiveRotationSpeed))
+      : (DEFAULT_BOARD_STATE.nextLiveRotationSpeed || 85),
     nextLiveLabel: (saved.nextLiveLabel && saved.nextLiveLabel.toUpperCase().includes("ESPECIAL"))
       ? "INVITACIÓN"
       : (saved.nextLiveLabel || DEFAULT_BOARD_STATE.nextLiveLabel || "INVITACIÓN"),
