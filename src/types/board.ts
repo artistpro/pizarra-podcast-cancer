@@ -545,7 +545,7 @@ export const normalizeBoardState = (saved: any): BoardState => {
     enablePeriodicIncentiveAlerts: saved.enablePeriodicIncentiveAlerts !== undefined ? saved.enablePeriodicIncentiveAlerts : true,
     incentiveAlertsIntervalMinutes: saved.incentiveAlertsIntervalMinutes || 30,
     incentiveNamesPool,
-    lastRealWelcomeName: saved.lastRealWelcomeName || undefined,
-    lastRealDonorName: saved.lastRealDonorName || undefined
+    ...(saved.lastRealWelcomeName ? { lastRealWelcomeName: saved.lastRealWelcomeName } : {}),
+    ...(saved.lastRealDonorName ? { lastRealDonorName: saved.lastRealDonorName } : {})
   };
 };

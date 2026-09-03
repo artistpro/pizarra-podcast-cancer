@@ -33,16 +33,45 @@ export const saveBoardState = async (state: BoardState): Promise<void> => {
     lastUpdated: Date.now()
   };
 
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(stateWithTimestamp));
-  window.dispatchEvent(new CustomEvent("board_state_updated", { detail: stateWithTimestamp }));
+  // 1. Sanitización profunda: elimina cualquier clave undefined que pueda bloquear Firebase
+  const cleanPayload = JSON.parse(JSON.stringify(stateWithTimestamp));
 
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cleanPayload));
+  window.dispatchEvent(new CustomEvent("board_state_updated", { detail: cleanPayload }));
+
+  let savedSuccessfully = false;
+
+  // 2. Intento vía Firebase Web SDK (WebSocket)
   if (db) {
     try {
       const boardRef = ref(db, "podcast_cancer/board_state");
-      await set(boardRef, stateWithTimestamp);
+      await set(boardRef, cleanPayload);
+      savedSuccessfully = true;
     } catch (err) {
-      console.error("Error guardando en Firebase:", err);
+      console.warn("Firebase Web SDK set() fallo, usando fallback REST API directo:", err);
     }
+  }
+
+  // 3. Fallback Infalible: REST API directo (HTTP PUT a Firebase RTDB)
+  if (!savedSuccessfully) {
+    try {
+      const resp = await fetch("https://dashboard-bch-default-rtdb.firebaseio.com/podcast_cancer/board_state.json", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cleanPayload)
+      });
+      if (resp.ok) {
+        savedSuccessfully = true;
+      } else {
+        console.error("Fallo REST API Firebase:", resp.status, await resp.text());
+      }
+    } catch (restErr) {
+      console.error("Error en petición REST a Firebase:", restErr);
+    }
+  }
+
+  if (!savedSuccessfully) {
+    throw new Error("No se pudo persistir el estado en Firebase.");
   }
 };
 
@@ -100,12 +129,28 @@ export const subscribeBoardState = (callback: (state: BoardState) => void): (() 
 };
 
 export const sendLiveAlert = async (alert: any): Promise<void> => {
+  const cleanAlert = JSON.parse(JSON.stringify(alert));
+  let sent = false;
+
   if (db) {
     try {
       const alertRef = ref(db, "podcast_cancer/live_alerts/latest");
-      await set(alertRef, alert);
+      await set(alertRef, cleanAlert);
+      sent = true;
     } catch (err) {
-      console.error("Error enviando live alert a Firebase:", err);
+      console.warn("Fallo SDK enviando alerta, usando fallback REST:", err);
+    }
+  }
+
+  if (!sent) {
+    try {
+      await fetch("https://dashboard-bch-default-rtdb.firebaseio.com/podcast_cancer/live_alerts/latest.json", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(cleanAlert)
+      });
+    } catch (e) {
+      console.error("Error en fallback REST de alerta:", e);
     }
   }
 };
