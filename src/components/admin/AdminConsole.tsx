@@ -13,146 +13,14 @@ import { saveBoardState, subscribeBoardState, sendLiveAlert } from '../../fireba
 import { fetchPositiveNewsFromRSS } from '../../services/rssService';
 import { fetchDailyHealthNews } from '../../services/newsService';
 import { getDailyArtGallery } from '../../services/artService';
+import { 
+  MASTER_SUPPLEMENTS_BANK, 
+  getDailySupplements, 
+  getAllSupplements 
+} from '../../services/supplementService';
 import { QrAffiliateOverlay } from '../QrAffiliateOverlay';
 
-const SUPPLEMENT_PRESETS: SupplementData[] = [
-  {
-    id: "preset-d3",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "VITAMINA D3",
-    description: "Participa de forma fundamental en la salud ósea, la modulación inmunitaria y la respuesta antiinflamatoria. La dosis adecuada depende de analíticas periódicas de 25(OH)D.",
-    disclaimer: "Revisa niveles en sangre, dosis personalizada e interacciones con tu médico.",
-    imageSrc: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Regulación de más de 200 genes de respuesta inmunológica",
-      "Mantenimiento de la densidad y mineralización ósea",
-      "Apoyo al estado anímico y neuromuscular"
-    ],
-    synergies: "Sinergia con Vitamina K2 y Magnesio para activación tisular.",
-    usageTips: "Tomar con la comida principal que contenga grasas saludables."
-  },
-  {
-    id: "preset-mg",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "MAGNESIO BISGLICINATO",
-    description: "Forma de alta biodisponibilidad y excelente tolerancia digestiva. Favorece la relajación muscular, la calma del sistema nervioso y la calidad del sueño profundo reparador.",
-    disclaimer: "Consulta tolerancia digestiva, función renal y dosis recomendada con un profesional.",
-    imageSrc: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Cofactor en más de 300 reacciones enzimáticas",
-      "Relajación muscular y alivio de tensiones físicas",
-      "Inducción del neurotransmisor GABA para el descanso"
-    ],
-    synergies: "Excelente con L-Teanina o infusión de manzanilla antes de dormir.",
-    usageTips: "Tomar de 30 a 60 minutos antes del descanso nocturno."
-  },
-  {
-    id: "preset-o3",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "OMEGA 3 (EPA / DHA)",
-    description: "Ácidos grasos esenciales con amplia evidencia en la modulación del equilibrio inflamatorio corporal, el apoyo a la salud cardiovascular y la función cognitiva.",
-    disclaimer: "Verifica certificación de pureza IFOS libre de metales pesados y consulta con tu especialista.",
-    imageSrc: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Modulación de vías inflamatorias corporales",
-      "Protección de salud cardiovascular y cerebral",
-      "Integridad de membranas celulares"
-    ],
-    synergies: "Consumir junto a antioxidantes como Vitamina E natural.",
-    usageTips: "Almacenar en lugar fresco y oscuro libre de calor."
-  },
-  {
-    id: "preset-curc",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "CURCUMINA FITOSOMADA",
-    description: "Compuesto bioactivo con reconocidas propiedades antioxidantes y moduladoras. Su formulación con fosfolípidos o piperina optimiza drásticamente su absorción biológica.",
-    disclaimer: "Verifica posibles interacciones farmacológicas con tu equipo de oncología integrativa.",
-    imageSrc: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Modulación de señalizaciones celulares de inflamación",
-      "Protección antioxidante de tejidos",
-      "Apoyo al confort articular y digestivo"
-    ],
-    synergies: "Formulación con fosfolípidos que multiplica su absorción biológica.",
-    usageTips: "Consultar previamente en casos de cirugías programadas."
-  },
-  {
-    id: "preset-coq10",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "COENZIMA Q10 (UBIQUINOL)",
-    description: "Elemento clave en la bioenergética celular y la función mitocondrial. Actúa como un potente antioxidante lipídico protegiendo membranas celulares.",
-    disclaimer: "Coordina la indicación y momentos de toma con tu especialista tratante.",
-    imageSrc: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Producción de ATP y energía celular mitocondrial",
-      "Potente acción antioxidante en membranas celulares",
-      "Soporte al rendimiento físico y muscular"
-    ],
-    synergies: "Combinable con L-Carnitina y complejo B para bioenergética.",
-    usageTips: "Tomar por la mañana junto con el desayuno."
-  },
-  {
-    id: "preset-mb",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "AZUL DE METILENO (GRADO USP)",
-    description: "Aceptor y donante catalítico de electrones a nivel mitocondrial. Optimiza el consumo de oxígeno celular en el complejo IV y ejerce una potente acción antioxidante y neuroprotectora.",
-    disclaimer: "Uso exclusivo grado USP libre de metales pesados. Consulta dosis e interacciones con tu médico.",
-    imageSrc: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Optimización de la respiración celular y síntesis de ATP mitocondrial",
-      "Neutralización selectiva de radicales libres sin bloquear la señal fisiológica",
-      "Soporte neurocognitivo y protección mitocondrial frente al daño oxidativo"
-    ],
-    synergies: "Gran sinergia con terapia de luz roja e infrarroja cercana (fotobiomodulación).",
-    usageTips: "Iniciar siempre con dosis mínimas tituladas bajo supervisión médica."
-  },
-  {
-    id: "preset-vitc-iv",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "VITAMINA C INTRAVENOSA",
-    description: "En concentraciones plasmáticas elevadas alcanzables por vía endovenosa, actúa como pro-oxidante selectivo generando peróxido de hidrógeno que daña selectivamente a células metabólicamente disfuncionales.",
-    disclaimer: "Requiere prueba previa de G6PD, evaluación de función renal y administración por profesional de salud.",
-    imageSrc: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Generación selectiva de estrés oxidativo en tejidos tumorales vulnerables",
-      "Cofactor fundamental para la síntesis de colágeno e integridad de tejidos",
-      "Disminución de la astenia y mejora sustancial de la calidad de vida"
-    ],
-    synergies: "Protocolos graduales con hidratación y osmolaridad controlada.",
-    usageTips: "Administración clínica protocolizada en clínicas y centros integrativos autorizados."
-  },
-  {
-    id: "preset-cardo",
-    sectionTitle: "SUPLEMENTOS Y EVIDENCIA",
-    badge: "INFORMACIÓN RESPONSABLE",
-    subtitle: "FICHA DE HOY",
-    name: "CARDO MARIANO (SILIBININA)",
-    description: "Extracto con flavonolignanos activos que estabilizan la membrana del hepatocito, estimulan la regeneración del tejido hepático y promueven la síntesis de glutatión endógeno.",
-    disclaimer: "Consulta interacciones potenciales en citocromo P450 con tus fármacos oncológicos activos.",
-    imageSrc: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
-    keyBenefits: [
-      "Protección hepática frente a la sobrecarga y toxicidad metabólica",
-      "Estimulación de la producción de glutatión (Fases I y II hepáticas)",
-      "Acción antioxidante y antiinflamatoria en membranas celulares"
-    ],
-    synergies: "Extractos estandarizados al 70-80% de silimarina, preferiblemente en formulación fitosoma.",
-    usageTips: "Tomar con alimentos que contengan grasas saludables para favorecer su biodisponibilidad."
-  }
-];
+const SUPPLEMENT_PRESETS: SupplementData[] = MASTER_SUPPLEMENTS_BANK;
 
 const ART_PRESETS: ArtCard[] = [
   {
@@ -255,6 +123,32 @@ export const AdminConsole: React.FC = () => {
     setState(updated);
     await saveBoardState(updated);
     setSaveStatus('✅ Sincronizada Galería Diaria (8 Obras: Comunidad + Maestros)');
+    setTimeout(() => setSaveStatus(''), 4500);
+  };
+
+  const handleLoadDailySupplements = async () => {
+    const dailySups = getDailySupplements();
+    const updated = {
+      ...state,
+      supplementsList: dailySups,
+      supplement: dailySups[0]
+    };
+    setState(updated);
+    await saveBoardState(updated);
+    setSaveStatus('✅ Sincronizados 4 Suplementos de Hoy (Protocolo Dr. Sulack & Oncología Integrativa)');
+    setTimeout(() => setSaveStatus(''), 4500);
+  };
+
+  const handleLoadAllSupplements = async () => {
+    const allSups = getAllSupplements();
+    const updated = {
+      ...state,
+      supplementsList: allSups,
+      supplement: allSups[0]
+    };
+    setState(updated);
+    await saveBoardState(updated);
+    setSaveStatus('✅ Cargadas las 24 Variantes de Suplementos en el Carrusel');
     setTimeout(() => setSaveStatus(''), 4500);
   };
 
@@ -1377,6 +1271,41 @@ export const AdminConsole: React.FC = () => {
                 />
                 <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>seg</span>
               </div>
+
+              <button
+                type="button"
+                onClick={handleLoadDailySupplements}
+                style={{
+                  padding: '6px 14px',
+                  fontSize: '0.8rem',
+                  background: 'linear-gradient(135deg, #d4af37 0%, #b48c1e 100%)',
+                  border: '1.4px solid #fef08a',
+                  color: '#021813',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: 800,
+                  boxShadow: '0 0 10px rgba(212, 175, 55, 0.35)'
+                }}
+              >
+                ✨ Sincronizar Fichas de Hoy (4 Activas)
+              </button>
+
+              <button
+                type="button"
+                onClick={handleLoadAllSupplements}
+                style={{
+                  padding: '6px 14px',
+                  fontSize: '0.8rem',
+                  background: '#021a14',
+                  border: '1.4px solid rgba(212, 175, 55, 0.6)',
+                  color: '#fef3c7',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: 700
+                }}
+              >
+                📚 Cargar las 24 Variantes
+              </button>
 
               <button
                 type="button"

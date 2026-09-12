@@ -81,13 +81,21 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
   - *Algoritmo de Rotación 24h:* Banco maestro de 40 obras con ventana deslizante diaria (`offset = (día * 2) % 20`): 4 obras nuevas cada día a las 00:00 y 4 conservadas.
   - *Blindaje Total YouTube Live:* Cero desnudez, cero términos anatómicos/sensibles, cero imágenes quirúrgicas para garantizar streaming libre de penalizaciones.
   - *Automatización Full-Stack:* Script `auto_art_updater.py` con cron a las 00:00 en VPS 1 inyectando en Firebase RTDB y botón interactivo *"✨ Sincronizar Galería de Hoy"* en `AdminConsole.tsx`.
+* **v1.7 (12 Septiembre 2026):**  
+  **Catálogo Maestro de 24 Suplementos (Protocolo Dr. Pete Sulack) & Blindaje de Imágenes:**
+  - *24 Variantes Clínicas en 4 Bloques:* Basado en el Protocolo de Resiliencia del Dr. Sulack y oncología metabólica (Bloque A: Mitocondrial/Energía, Bloque B: Inmunidad/Metabolismo, Bloque C: Genética/Metilación, Bloque D: Intestino/Detox).
+  - *Blindaje Triple de Imágenes:* Eliminación total del bug `display: none` en `SupplementCard.tsx` y `FullScreenSupplement.tsx`. Fallback indestructible a `FALLBACK_SUPPLEMENT_IMAGE` con conmutación en 1 frame; cero cajas vacías en la transmisión.
+  - *Rotación Diaria Continua (Sliding Window):* Ventana deslizante matemática `(día * 2) % 24` para exhibir 4 suplementos en carrusel rotando 2 nuevos cada medianoche (00:00).
+  - *Automatización y Administración:* Script `auto_supplement_updater.py` en VPS 1 (Cron `0 0 * * *`) inyectando en `supplementsList.json` y `supplement.json`, y botones de 1-clic (*"✨ Sincronizar Fichas de Hoy"* y *"📚 Cargar las 24 Variantes"*) en `AdminConsole.tsx`.
 
 ---
 
 ## 🚀 4. Próximas Mejoras y Roadmap (Para continuar en esta carpeta)
 
-### 🔹 Fase 1: Ampliación del Catálogo Clínico Integrativo
-- [ ] Ampliar el banco de fichas de suplementación a 10 referencias (Melatonina en alta dosis, Hongos Medicinales Reishi/Coriolus, Té Verde EGCG, Boswellia Serrata, Quercetina).
+### 🔹 Fase 1: Catálogo Clínico Integrativo (Completado en v1.7)
+- [x] Ampliar el banco de fichas de suplementación a 24 referencias clínicas integrativas basadas en el protocolo del Dr. Pete Sulack.
+- [x] Blindaje triple de imágenes contra pantallas vacías o fallos de red.
+- [x] Rotación matemática diaria continua en el carrusel de emisión (4 activas por día).
 - [ ] Selector por categorías en el admin: *Inmunomodulación*, *Hepatoprotección*, *Respiración Mitocondrial*, *Calidad de Sueño*.
 
 ### 🔹 Fase 2: Interactividad en Vivo con la Audiencia
@@ -107,8 +115,9 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
 | Identificador | `AUD-20260912-PODCAST-001` |
 | :--- | :--- |
 | **Fecha de Certificación:** | 12 de Septiembre de 2026 |
-| **Módulos Auditados:** | • **Buenas Noticias:** Filtro lingüístico anti-inglés, pool español EFE/Infosalus/Gaceta, banco de 24 referencias integrativas, directriz anti-alarmismo, blindaje YouTube Safe y presupuesto Regla 12 (`.news_budget_ledger.json`).<br>• **Arte Que Sana:** Galería dinámica de 8 obras (4 de sanantes/comunidad + 4 de grandes maestros de la luz), rotación continua de 4 obras cada 24 horas (00:00), guía respiratoria 4x4 en pantalla completa y blindaje total ante desnudez o censura en YouTube. |
-| **Infraestructura Activa:** | • **VPS 1 (`217.216.48.120:2222`):** Cronjobs verificados a las `06:00/18:00` (`auto_news_updater.py`) y a las `00:00` (`auto_art_updater.py`).<br>• **Firebase RTDB:** Nodos `goodNews.json` (4 activas) y `artCards.json` (8 activas) sincronizados en tiempo real.<br>• **YouTube Live Stream:** Transmisión 24/7 continua con clave `wy04-7pxe-5w3z-13dr-10a5` en 1080p sin microcortes ni reinicios.<br>• **Frontend (Vercel):** `pizarra-podcast-cancer.vercel.app` sincronizado con control interactivo en `AdminConsole.tsx`. |
+| **Módulos Auditados:** | • **Buenas Noticias:** Filtro lingüístico anti-inglés, pool español EFE/Infosalus/Gaceta, banco de 24 referencias integrativas, directriz anti-alarmismo, blindaje YouTube Safe y presupuesto Regla 12 (`.news_budget_ledger.json`).<br>• **Arte Que Sana:** Galería dinámica de 8 obras (4 de sanantes/comunidad + 4 de grandes maestros de la luz), rotación continua de 4 obras cada 24 horas (00:00), guía respiratoria 4x4 en pantalla completa y blindaje total ante desnudez o censura en YouTube.<br>• **Suplementos y Evidencia:** Catálogo maestro de 24 variantes del Protocolo Dr. Pete Sulack en 4 bloques, blindaje indestructible de imágenes contra cuadros vacíos, rotación diaria matemática (sliding window de 4 fichas) y sincronización dual VPS 1 / AdminConsole. |
+| **Infraestructura Activa:** | • **VPS 1 (`217.216.48.120:2222`):** Cronjobs verificados a las `06:00/18:00` (`auto_news_updater.py`), a las `00:00` (`auto_art_updater.py`) y a las `00:00` (`auto_supplement_updater.py`).<br>• **Firebase RTDB:** Nodos `goodNews.json` (4 activas), `artCards.json` (8 activas) y `supplementsList.json` (4 activas) sincronizados en tiempo real.<br>• **YouTube Live Stream:** Transmisión 24/7 continua con clave `wy04-7pxe-5w3z-13dr-10a5` en 1080p sin microcortes ni reinicios.<br>• **Frontend (Vercel):** `pizarra-podcast-cancer.vercel.app` sincronizado con control interactivo en `AdminConsole.tsx`. |
 | **Conformidad de Reglas:** | Reglas 1 (Aprobación explícita), 3 (Aislamiento de riesgo), 9 (Feedback continuo), 10 (Cero popups), 11 (Cero borrado) y 12 (Budget guard & Circuit breaker) al 100% verificadas. |
 | **Commits Oficiales:** | `e3688e0`, `c2f3286`, `f3017a8`, `99a605f` |
+
 

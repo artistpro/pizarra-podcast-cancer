@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { SupplementData } from '../types/board';
+import { FALLBACK_SUPPLEMENT_IMAGE } from '../services/supplementService';
 
 interface SupplementCardProps {
   supplement?: SupplementData;
@@ -126,21 +127,22 @@ export const SupplementCard: React.FC<SupplementCardProps> = ({
           flexShrink: 0,
           boxShadow: '0 6px 18px rgba(0,0,0,0.55)'
         }}>
-          {currentItem.imageSrc ? (
-            <img
-              src={currentItem.imageSrc}
-              alt={currentItem.name}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                padding: '6px'
-              }}
-              onError={(e) => {
-                (e.target as HTMLElement).style.display = 'none';
-              }}
-            />
-          ) : null}
+          <img
+            src={currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE}
+            alt={currentItem.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+              padding: '6px'
+            }}
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src !== FALLBACK_SUPPLEMENT_IMAGE) {
+                target.src = FALLBACK_SUPPLEMENT_IMAGE;
+              }
+            }}
+          />
 
           {/* Icono Solar Dorado Superpuesto */}
           <div style={{

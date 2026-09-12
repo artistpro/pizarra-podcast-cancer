@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { SupplementData, BoardState } from '../../types/board';
+import { FALLBACK_SUPPLEMENT_IMAGE } from '../../services/supplementService';
 
 interface FullScreenSupplementProps {
   supplements: SupplementData[];
@@ -78,21 +79,22 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
           justifyContent: 'center',
           overflow: 'hidden'
         }}>
-          {currentItem.imageSrc ? (
-            <img
-              src={currentItem.imageSrc}
-              alt={currentItem.name}
-              style={{
-                width: '92%',
-                height: '92%',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 16px 32px rgba(0,0,0,0.95))'
-              }}
-              onError={(e) => {
-                (e.target as HTMLElement).style.display = 'none';
-              }}
-            />
-          ) : null}
+          <img
+            src={currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE}
+            alt={currentItem.name}
+            style={{
+              width: '92%',
+              height: '92%',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 16px 32px rgba(0,0,0,0.95))'
+            }}
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src !== FALLBACK_SUPPLEMENT_IMAGE) {
+                target.src = FALLBACK_SUPPLEMENT_IMAGE;
+              }
+            }}
+          />
 
           {/* Badge Superior Frasco */}
           <div style={{
