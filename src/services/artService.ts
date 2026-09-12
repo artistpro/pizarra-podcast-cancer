@@ -91,7 +91,7 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
     author: "Roberto H. (Sanante, Comunidad Hombres de Esperanza)",
     caption: "La montaña no lucha contra el viento, permanece firme en su quietud: así cultivo mi paz interior",
     fullDescription: "La serenidad ante la incertidumbre clínica reduce la activación del sistema nervioso simpático, permitiendo un ahorro metabólico crucial para la recuperación física.",
-    imageSrc: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/montanas_resiliencia.jpg"
   },
   {
     id: "com-art-12",
@@ -99,7 +99,7 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
     author: "Taller Vivir con Sentido (Programa Psico-Oncológico)",
     caption: "Cuando las aguas de la mente se calman, podemos contemplar con claridad la belleza de nuestro ser",
     fullDescription: "Las escenas de agua quieta modulan la frecuencia cardíaca y estimulan el ritmo alfa del cerebro, facilitando un descanso reparador y libre de rumiación mental.",
-    imageSrc: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/lago_sereno_acuarela.jpg"
   },
   {
     id: "com-art-13",
@@ -107,7 +107,7 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
     author: "Clara S. (Sobreviviente de Cáncer, Colectivo Renacer)",
     caption: "Soltar lo que ya cumplió su ciclo nos permite abrir los brazos a una vida llena de nueva luz",
     fullDescription: "El otoño enseña la sabiduría del desprendimiento sin resistencia. La aceptación activa potencia la resiliencia psicológica y mejora la adherencia a hábitos saludables.",
-    imageSrc: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/hojas_doradas.jpg"
   },
   {
     id: "com-art-14",
@@ -115,7 +115,7 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
     author: "Colectivo de Arte-Terapia San Juan de Dios",
     caption: "Una pequeña llama de esperanza basta para disipar todas las sombras y calmar el pensamiento",
     fullDescription: "El punto de enfoque en una luz cálida es uno de los ejercicios de anclaje más efectivos para cortar espirales de preocupación y anclar la mente en el presente.",
-    imageSrc: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/velas_quietud.jpg"
   },
   {
     id: "com-art-15",
@@ -250,7 +250,7 @@ export const MASTERS_ART_BANK: ArtCard[] = [
     author: "Albert Bierstadt (Luminismo Americano, 1868)",
     caption: "La grandeza serena de la naturaleza nos envuelve y nos recuerda cuán profunda es nuestra fuerza",
     fullDescription: "El sentimiento de 'asombro' (awe) ante paisajes majestuosos reduce marcadores proinflamatorios y genera una sensación profunda de gratitud por la vida.",
-    imageSrc: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/bierstadt_yosemite.jpg"
   },
   {
     id: "mas-art-11",
@@ -266,7 +266,7 @@ export const MASTERS_ART_BANK: ArtCard[] = [
     author: "Gustav Klimt (1907)",
     caption: "Un tapiz vegetal rebosante de vida que nos recuerda la abundancia regenerativa de la naturaleza",
     fullDescription: "La densidad de flores sin horizonte definido sumerge la mirada en un baño cromático reparador, ideal para acompañar la fase de retención de aire (4s).",
-    imageSrc: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/klimt_jardin.jpg"
   },
   {
     id: "mas-art-13",
@@ -274,7 +274,7 @@ export const MASTERS_ART_BANK: ArtCard[] = [
     author: "Claude Monet (1882)",
     caption: "La inmensidad del océano arrulla las tensiones del día y renueva la respiración con aire puro",
     fullDescription: "La horizontalidad marina produce un reflejo neurobiológico de relajación muscular y descenso del tono simpático, preparándonos para la calma interior.",
-    imageSrc: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/monet_normandia.jpg"
   },
   {
     id: "mas-art-14",
@@ -282,7 +282,7 @@ export const MASTERS_ART_BANK: ArtCard[] = [
     author: "Vincent van Gogh (Saint-Rémy, 1889)",
     caption: "El olivo es símbolo milenario de paz, sanación y resistencia honorable ante el tiempo",
     fullDescription: "Van Gogh encontró en los olivares un refugio sagrado de consuelo. Los tonos plateados y ocres reconfortan la mente y evocan nutrición mediterránea.",
-    imageSrc: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "/art/vangogh_olivos.jpg"
   },
   {
     id: "mas-art-15",

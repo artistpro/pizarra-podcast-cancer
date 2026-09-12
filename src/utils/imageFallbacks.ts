@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SAFE_ART_FALLBACK = "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=85";
+export const SAFE_ART_FALLBACK = "/art/lago_sereno_acuarela.jpg";
 export const SAFE_SUPPLEMENT_FALLBACK = "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&h=675&q=85";
 export const FALLBACK_SUPPLEMENT_IMAGE = SAFE_SUPPLEMENT_FALLBACK;
 

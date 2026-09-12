@@ -93,6 +93,7 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
           border: '1.8px solid rgba(212, 175, 55, 0.45)'
         }}>
           <img
+            key={currentItem.id || currentItem.title}
             src={currentItem.imageSrc}
             alt={currentItem.title}
             style={{
