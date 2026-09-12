@@ -38,7 +38,7 @@ SSL_CTX = ssl._create_unverified_context()
 FIREBASE_SUPS_LIST_URL = "https://dashboard-bch-default-rtdb.firebaseio.com/podcast_cancer/board_state/supplementsList.json"
 FIREBASE_SUP_SINGLE_URL = "https://dashboard-bch-default-rtdb.firebaseio.com/podcast_cancer/board_state/supplement.json"
 
-FALLBACK_IMAGE = "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80"
+FALLBACK_IMAGE = "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&h=675&q=85"
 
 # ============================================================================
 # BANCO MAESTRO: 24 SUPLEMENTOS CLÍNICOS E INTEGRATIVOS
@@ -53,7 +53,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "AZUL DE METILENO (GRADO USP)",
         "description": "Aceptor y donante catalítico de electrones a nivel mitocondrial. Optimiza el consumo de oxígeno celular en el complejo IV y ejerce una potente acción antioxidante y neuroprotectora.",
         "disclaimer": "Uso exclusivo grado USP libre de metales pesados. Consulta dosis e interacciones farmacológicas con tu médico tratante.",
-        "imageSrc": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Optimización de la respiración celular y síntesis de ATP mitocondrial",
             "Neutralización selectiva de radicales libres sin bloquear la señal fisiológica",
@@ -70,7 +70,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "COENZIMA Q10 (UBIQUINOL) + PQQ",
         "description": "Cofactores indispensables en la cadena de transporte de electrones. Estimulan la biogénesis mitocondrial y protegen los lípidos de membrana frente a la peroxidación.",
         "disclaimer": "Coordina la indicación y momentos de toma con tu especialista tratante.",
-        "imageSrc": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Estímulo directo a la creación de nuevas mitocondrias sanas (biogénesis)",
             "Potente protección antioxidante en la membrana interna mitocondrial",
@@ -87,7 +87,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "VITAMINA C INTRAVENOSA / LIPOSOMAL",
         "description": "En dosis elevadas genera peróxido de hidrógeno que daña selectivamente células con disfunción metabólica, mientras estimula la síntesis de colágeno y el sistema inmune.",
         "disclaimer": "Requiere prueba previa de G6PD, evaluación de función renal y administración por profesional de salud.",
-        "imageSrc": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Generación selectiva de estrés oxidativo en tejidos metabólicamente vulnerables",
             "Cofactor fundamental para la síntesis de colágeno e integridad tisular",
@@ -104,7 +104,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "GLUTATIÓN LIPOSOMAL & NAC",
         "description": "El antioxidante maestro intracelular junto a su precursor clave. Fundamental para la neutralización de xenobióticos, soporte inmunológico y desintoxicación hepática.",
         "disclaimer": "Evitar en ventanas inmediatamente adyacentes a ciertas quimioterapias pro-oxidantes según criterio oncológico.",
-        "imageSrc": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Neutralización directa de toxinas y metales pesados en Fase II hepática",
             "Preservación de la función inmune de linfocitos y macrófagos",
@@ -123,7 +123,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "BERBERINA HCL (ACTIVADOR AMPK)",
         "description": "Alcaloide natural que activa la enzima AMPK y modula la captación de glucosa celular. Induce restricción metabólica en vías celulares dependientes de fermentación anaeróbica.",
         "disclaimer": "Monitorear glucemia si se combinan hipoglucemiantes o metformina.",
-        "imageSrc": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Activación de la vía AMPK y regulación de la sensibilidad a la insulina",
             "Restricción glucolítica en el microambiente metabólico",
@@ -140,7 +140,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "TÉ VERDE (EGCG FITOSOMADO)",
         "description": "El polifenol más potente de Camellia sinensis. Documentado por su capacidad para inhibir la formación de nuevos vasos sanguíneos no deseados (antiangiogénesis) y modular quinasas.",
         "disclaimer": "Optar por extractos descafeinados y evitar tomas nocturnas.",
-        "imageSrc": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Inhibición de factores de crecimiento endotelial (antiangiogénesis)",
             "Potente neutralización de radicales libres y protección del ADN celular",
@@ -157,7 +157,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "CURCUMINA FITOSOMADA (MERIVA)",
         "description": "Polifenol de referencia con amplia documentación en la inhibición del factor de transcripción NF-kB, reduciendo la producción de citocinas inflamatorias y citoquinas tisulares.",
         "disclaimer": "Suspender antes de procedimientos quirúrgicos por su efecto modulador sobre la agregación plaquetaria.",
-        "imageSrc": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Potente modulación de vías proinflamatorias (NF-kB, COX-2 y TNF-alfa)",
             "Soporte antioxidante tisular y bienestar de la mucosa intestinal",
@@ -174,7 +174,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "COMPLEJO DE HONGOS MEDICINALES",
         "description": "Sinergia de Reishi, Melena de León, Cordyceps y Cola de Pavo (PSK/PSP). Ricos en beta-glucanos 1,3/1,6 que entrenan la vigilancia inmune y activan las células Natural Killer.",
         "disclaimer": "Verificar extractos estandarizados en polisacáridos y libre de micotoxinas.",
-        "imageSrc": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1543883341-ab66702da8b9?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Activación y maduración de células dendríticas y Natural Killer (NK)",
             "Apoyo adaptogénico frente a la fatiga y el desgaste biológico",
@@ -191,7 +191,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "ACEITE DE SEMILLA NEGRA (TIMOKINONA)",
         "description": "Extracto oleoso de Nigella sativa estandarizado en timokinona. Ejerce una notable modulación inmune, protección broncopulmonar y selectiva citotoxicidad frente a células anómalas.",
         "disclaimer": "Utilizar aceite prensado en frío 100% puro y con análisis de pureza certificado.",
-        "imageSrc": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Modulación de la apoptosis y regulación de genes supresores",
             "Soporte antiinflamatorio en vías respiratorias y bronquiales",
@@ -208,7 +208,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "GRAVIOLA (ACETOGENINAS ANNONÁCEAS)",
         "description": "Extracto botánico de Annona muricata rico en acetogeninas. Estas moléculas interfieren con el complejo I mitocondrial de células dependientes de altos requerimientos energéticos.",
         "disclaimer": "No utilizar por períodos prolongados ininterrumpidos sin descansos mensuales.",
-        "imageSrc": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Inhibición enzimática selectiva en células con sobreexpresión de bombas ATP",
             "Apoyo a la respuesta inmunitaria innata",
@@ -225,7 +225,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "ARTEMISININA (AJENJO DULCE)",
         "description": "Lactona sesquiterpénica de Artemisia annua. Reacciona selectivamente con depósitos de hierro libre intra-tumoral liberando radicales libres que inducen apoptosis dirigida.",
         "disclaimer": "Monitorear enzimas hepáticas y evitar su uso continuado sin supervisión médica.",
-        "imageSrc": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1543883341-ab66702da8b9?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Citotoxicidad selectiva dependiente de hierro (efecto Caballo de Troya)",
             "Inhibición de factores de transcripción de angiogénesis tumoral",
@@ -242,7 +242,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "BOSWELLIA SERRATA (AKBA)",
         "description": "Resina ayurvédica estandarizada en ácido acetil-11-ceto-beta-boswélico (AKBA). Inhibidor selectivo de la 5-lipoxigenasa (5-LOX), reduce edemas peritumorales e inflamación severa.",
         "disclaimer": "Excelente perfil gástrico en comparación con antiinflamatorios convencionales.",
-        "imageSrc": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Inhibición específica de leucotrienos inflamatorios (vía 5-LOX)",
             "Disminución documentada del edema peritumoral y la presión intracraneal",
@@ -261,7 +261,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "COMPLEJO B METILADO (MTHFR PROTOCOL)",
         "description": "Formas bioactivas de Metilfolato (5-MTHF), Metilcobalamina (B12) y Piridoxal-5-Fosfato (B6). Claves para sortear mutaciones genéticas en MTHFR y reducir la homocisteína.",
         "disclaimer": "Personalizar según analíticas de homocisteína y perfil genético de metilación.",
-        "imageSrc": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Donación eficiente de grupos metilo para la reparación y silenciamiento del ADN",
             "Conversión de homocisteína proinflamatoria en metionina segura",
@@ -278,7 +278,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "VITAMINA D3 + K2 (MK-7)",
         "description": "Hormona secosteroidal clave en la transcripción de más de 200 genes inmunológicos. La K2 asegura que el calcio movilizado se deposite en los huesos y no en las arterias.",
         "disclaimer": "Monitorear niveles de 25(OH)D en sangre periódicamente para titular la dosis óptima.",
-        "imageSrc": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Modulación transcripcional de linfocitos T reguladores y péptidos antimicrobianos",
             "Mantenimiento de la densidad y salud de la microarquitectura ósea",
@@ -295,7 +295,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "MAGNESIO BISGLICINATO / TREONATO",
         "description": "Forma quelada de máxima absorción y tolerancia gastrointestinal. Participa en más de 300 reacciones enzimáticas, promueve el tono parasimpático y cruza la barrera hematoencefálica.",
         "disclaimer": "Consulta tolerancia digestiva y función renal con tu profesional de la salud.",
-        "imageSrc": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Activación del sistema parasimpático y relajación neuromuscular profunda",
             "Estímulo a la síntesis de GABA favoreciendo un sueño reparador",
@@ -312,7 +312,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "OMEGA 3 (EPA / DHA PURIFICADO IFOS)",
         "description": "Ácidos grasos esenciales con certificación IFOS 5 estrellas libre de metales pesados. Precursores de mediadores especializados de la resolución inflamatoria (resolvinas y protectinas).",
         "disclaimer": "Verificar dosis en pacientes anticoagulados o con cirugías programadas.",
-        "imageSrc": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Resolución activa de focos inflamatorios crónicos tisulares",
             "Mantenimiento de la fluidez y comunicación de membranas celulares",
@@ -329,7 +329,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "CARDO MARIANO (SILIBININA FITOSOMADA)",
         "description": "Extracto con flavonolignanos activos que estabilizan la membrana del hepatocito, estimulan la regeneración del tejido hepático y promueven la síntesis de glutatión endógeno.",
         "disclaimer": "Consulta interacciones potenciales en citocromo P450 con fármacos oncológicos activos.",
-        "imageSrc": "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Protección hepática frente a la sobrecarga y toxicidad metabólica",
             "Estimulación de la producción de glutatión (Fases I y II hepáticas)",
@@ -346,7 +346,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "SELENIO & ZINC BISGLICINATO",
         "description": "Oligoelementos estructurales catalíticos. El selenio es el corazón de la glutatión peroxidasa; el zinc gobierna más de 2000 factores de transcripción y la integridad timocítica.",
         "disclaimer": "Respetar las dosis terapéuticas recomendadas para evitar toxicidad por selenio.",
-        "imageSrc": "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Cofactores indispensables de enzimas antioxidantes endógenas (SOD y GPx)",
             "Maduración y correcto funcionamiento de linfocitos T cooperadores",
@@ -365,7 +365,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "MELATONINA EN ALTA DOSIS",
         "description": "Molécula antiquísima producida por todas las mitocondrias. A dosis oncológicas actúa como potente depurador de radicales libres, inductor de apoptosis y modulador epigenético.",
         "disclaimer": "Titular gradualmente bajo supervisión médica especializada en medicina integrativa.",
-        "imageSrc": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Barrido selectivo de radicales hidroxilo dentro de las crestas mitocondriales",
             "Sincronización del reloj biológico circadiano y facilitación de sueño REM profundo",
@@ -382,7 +382,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "PROBIÓTICOS MULTICEPA & PREBIÓTICOS",
         "description": "Cepas de Lactobacillus y Bifidobacterium con fibra prebiótica. Nutren el tejido linfoide asociado al intestino (GALT), promoviendo la síntesis de ácidos grasos de cadena corta.",
         "disclaimer": "Seleccionar cepas con resistencia al ácido gástrico y certificación de viabilidad.",
-        "imageSrc": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Restauración de la eubiosis intestinal tras terapias antimicrobianas",
             "Producción de butirato que nutre y sella los colonocitos",
@@ -399,7 +399,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "L-GLUTAMINA & PÉPTIDOS DE COLÁGENO",
         "description": "Nutrientes estructurales de rápida asimilación para la pared intestinal. Sellan las uniones estrechas (zonulina), disminuyen la hiperpermeabilidad y alivian mucositis.",
         "disclaimer": "Consultar con el médico tratante en protocolos con restricciones específicas de glutamina.",
-        "imageSrc": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Combustible primario para la regeneración y división de enterocitos",
             "Disminución del paso de macromoléculas y endotoxinas a la circulación sanguínea",
@@ -416,7 +416,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "CALOSTRO BOVINO & FACTORES TRANSFERENCIA",
         "description": "Primer alimento biológico rico en inmunoglobulinas IgG, lactoferrina y polipéptidos ricos en prolina (PRP). Entrenan al sistema inmune adaptativo frente a infecciones oportunistas.",
         "disclaimer": "Verificar pureza libre de hormonas artificiales y antibióticos.",
-        "imageSrc": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Suministro pasivo de inmunoglobulinas de amplio espectro",
             "Quelación de hierro libre en el lumen intestinal mediante lactoferrina",
@@ -433,7 +433,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "ZEOLITA MICRONIZADA & CARBÓN VEGETAL",
         "description": "Mineral aluminosilicato con estructura de panal de carga negativa. Atrae y retiene toxinas catiónicas, pesticidas y amoníaco en el tracto digestivo para su eliminación segura.",
         "disclaimer": "Separar al menos 2 horas de cualquier medicamento o suplemento nutricional.",
-        "imageSrc": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Quelación pasiva de metales pesados y micotoxinas sin entrar en sangre",
             "Alivio de la carga tóxica que llega al hígado por circulación enterohepática",
@@ -450,7 +450,7 @@ MASTER_SUPPLEMENTS_BANK = [
         "name": "RESVERATROL TRANS & QUERCETINA",
         "description": "Dúo senolítico por excelencia. Activan las sirtuínas (SIRT1), modulan la respuesta a la hipoxia tisular (HIF-1) y promueven la limpieza celular profunda por autofagia.",
         "disclaimer": "Consultar en personas que consuman anticoagulantes o antiplaquetarios.",
-        "imageSrc": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+        "imageSrc": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&h=675&q=85",
         "keyBenefits": [
             "Estimulación de la autofagia y eliminación de células senescentes dañadas",
             "Estabilización de mastocitos y reducción de la liberación de histamina",

@@ -54,15 +54,15 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
       <div
         style={{
           position: 'absolute',
-          top: '-140px',
-          left: '22%',
-          width: '760px',
-          height: '760px',
+          top: '-120px',
+          left: '18%',
+          width: '840px',
+          height: '840px',
           borderRadius: '50%',
           background: isNight
-            ? 'radial-gradient(circle, rgba(56, 189, 248, 0.28) 0%, rgba(30, 58, 138, 0.18) 50%, transparent 75%)'
-            : 'radial-gradient(circle, rgba(212, 175, 55, 0.26) 0%, rgba(16, 185, 129, 0.22) 45%, transparent 75%)',
-          filter: 'blur(100px)',
+            ? 'radial-gradient(circle, rgba(56, 189, 248, 0.48) 0%, rgba(30, 58, 138, 0.3) 45%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(245, 158, 11, 0.46) 0%, rgba(16, 185, 129, 0.45) 38%, rgba(5, 150, 105, 0.25) 55%, transparent 75%)',
+          filter: 'blur(58px)',
           willChange: 'transform, opacity',
           animation: `auroraOrbitTop ${currentSpeed.top} ease-in-out infinite`
         }}
@@ -72,15 +72,15 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
       <div
         style={{
           position: 'absolute',
-          bottom: '-160px',
-          right: '18%',
-          width: '860px',
-          height: '860px',
+          bottom: '-140px',
+          right: '15%',
+          width: '920px',
+          height: '920px',
           borderRadius: '50%',
           background: isNight
-            ? 'radial-gradient(circle, rgba(99, 102, 241, 0.24) 0%, rgba(15, 23, 42, 0.3) 55%, transparent 75%)'
-            : 'radial-gradient(circle, rgba(5, 150, 105, 0.28) 0%, rgba(4, 47, 46, 0.25) 50%, transparent 75%)',
-          filter: 'blur(110px)',
+            ? 'radial-gradient(circle, rgba(99, 102, 241, 0.48) 0%, rgba(14, 165, 233, 0.32) 45%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(5, 150, 105, 0.52) 0%, rgba(52, 211, 153, 0.42) 40%, rgba(4, 47, 46, 0.28) 60%, transparent 75%)',
+          filter: 'blur(65px)',
           willChange: 'transform, opacity',
           animation: `auroraOrbitBottom ${currentSpeed.bottom} ease-in-out infinite`
         }}
@@ -90,28 +90,28 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
       <div
         style={{
           position: 'absolute',
-          top: 'calc(50% - 280px)',
-          left: 'calc(50% - 280px)',
-          width: '560px',
-          height: '560px',
+          top: 'calc(50% - 300px)',
+          left: 'calc(50% - 300px)',
+          width: '600px',
+          height: '600px',
           borderRadius: '50%',
           background: isNight
-            ? 'radial-gradient(circle, rgba(96, 165, 250, 0.18) 0%, rgba(30, 64, 175, 0.1) 45%, transparent 70%)'
-            : 'radial-gradient(circle, rgba(254, 240, 138, 0.15) 0%, rgba(16, 185, 129, 0.16) 45%, transparent 70%)',
-          filter: 'blur(80px)',
+            ? 'radial-gradient(circle, rgba(96, 165, 250, 0.35) 0%, rgba(30, 64, 175, 0.18) 45%, transparent 70%)'
+            : 'radial-gradient(circle, rgba(254, 240, 138, 0.35) 0%, rgba(16, 185, 129, 0.4) 40%, transparent 70%)',
+          filter: 'blur(50px)',
           willChange: 'transform, opacity',
           animation: `vitalPulse ${currentSpeed.pulse} ease-in-out infinite`
         }}
       />
 
-      {/* 4. Viñeta Periférica de Alto Contraste para Enmarcar la Pantalla */}
+      {/* 4. Viñeta Periférica Suave (No sofoca la luz) */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
           background: isNight
-            ? 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(2, 4, 11, 0.6) 80%, rgba(2, 4, 11, 0.92) 100%)'
-            : 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(1, 19, 15, 0.55) 80%, rgba(1, 19, 15, 0.9) 100%)'
+            ? 'radial-gradient(circle at 50% 50%, transparent 60%, rgba(2, 4, 11, 0.3) 85%, rgba(2, 4, 11, 0.6) 100%)'
+            : 'radial-gradient(circle at 50% 50%, transparent 60%, rgba(1, 19, 15, 0.25) 85%, rgba(1, 19, 15, 0.55) 100%)'
         }}
       />
     </div>

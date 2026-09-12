@@ -83,10 +83,10 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
             src={currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE}
             alt={currentItem.name}
             style={{
-              width: '92%',
-              height: '92%',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 16px 32px rgba(0,0,0,0.95))'
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              filter: 'brightness(0.95) contrast(1.08)'
             }}
             onError={(e) => {
               const target = e.currentTarget;

@@ -111,21 +111,20 @@ export const SupplementCard: React.FC<SupplementCardProps> = ({
         transform: isFading ? 'translateY(3px)' : 'translateY(0)',
         transition: 'opacity 0.5s ease, transform 0.5s ease'
       }}>
-        {/* Columna 1: Gráfico de Frasco/Gotas + Icono Solar */}
+        {/* Columna 1: Ventana Panorámica 16:9 del Suplemento + Emblema */}
         <div style={{
-          width: '155px',
-          height: '100%',
-          maxHeight: '145px',
+          width: '200px',
+          height: '120px',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           borderRadius: '16px',
           background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(2, 20, 16, 0.9) 100%)',
-          border: '1.6px solid rgba(212, 175, 55, 0.55)',
+          border: '1.8px solid rgba(212, 175, 55, 0.75)',
           overflow: 'hidden',
           flexShrink: 0,
-          boxShadow: '0 6px 18px rgba(0,0,0,0.55)'
+          boxShadow: '0 8px 24px rgba(0,0,0,0.65)'
         }}>
           <img
             src={currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE}
@@ -133,8 +132,8 @@ export const SupplementCard: React.FC<SupplementCardProps> = ({
             style={{
               width: '100%',
               height: '100%',
-              objectFit: 'contain',
-              padding: '6px'
+              objectFit: 'cover',
+              filter: 'brightness(0.95) contrast(1.08)'
             }}
             onError={(e) => {
               const target = e.currentTarget;

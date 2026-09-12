@@ -43,7 +43,7 @@ COMMUNITY_ART_BANK = [
         "author": "Elena R. (Sobreviviente de Cáncer, Taller Arte y Esperanza)",
         "caption": "El loto florece desde el fango con la mayor pureza: mi cuerpo renace con más fuerza y luz cada día",
         "fullDescription": "Pinté esta obra recordando que las circunstancias difíciles son el suelo fértil donde germina nuestra mayor fortaleza. La contemplación estética activa el córtex prefrontal y serena la amígdala cerebral.",
-        "imageSrc": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85"
+        "imageSrc": "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=1200&h=675&q=85"
     },
     {
         "id": "com-art-2",
@@ -338,7 +338,7 @@ MASTERS_ART_BANK = [
         "author": "Katsushika Hokusai (Ukiyo-e Japonés, 1832)",
         "caption": "Simplicidad, equilibrio y gracia en cada trazo: la quietud que habita en lo sencillo",
         "fullDescription": "La filosofía zen japonesa busca vaciar la mente de ruido para permitir que la serenidad llene el espacio interior. Un soporte visual ideal para la respiración 4x4.",
-        "imageSrc": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=85"
+        "imageSrc": "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=1200&h=675&q=85"
     },
     {
         "id": "mas-art-18",
