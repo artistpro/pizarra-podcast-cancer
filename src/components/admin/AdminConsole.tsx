@@ -185,9 +185,10 @@ const ART_PRESETS: ArtCard[] = [
 ];
 
 const RSS_PRESETS = [
-  { name: "🌱 Noticias Positivas (Periodismo de Soluciones)", url: "https://noticiaspositivas.org/feed/" },
-  { name: "🔬 The Conversation (Salud y Bienestar)", url: "https://theconversation.com/es/salud/atom.xml" },
-  { name: "🌿 EFE Verde (Sostenibilidad y Vida)", url: "https://www.efeverde.com/feed/" }
+  { name: "🩺 EFE Salud (Medicina y Bienestar)", url: "https://efesalud.com/feed/" },
+  { name: "🔬 Infosalus (Investigación Biomédica)", url: "https://www.infosalus.com/rss/rss.aspx" },
+  { name: "💊 Gaceta Médica (Ciencia Clínica)", url: "https://gacetamedica.com/feed/" },
+  { name: "🌱 Noticias Positivas (Salud Holística)", url: "https://noticiaspositivas.org/feed/" }
 ];
 
 export const AdminConsole: React.FC = () => {

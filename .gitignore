@@ -16,6 +16,7 @@ dist-ssr
 !.env.example
 MANUAL_SISTEMA_24_7.md
 *MANUAL*.md
+.news_budget_ledger.json
 
 # Editor directories and files
 .vscode/*
