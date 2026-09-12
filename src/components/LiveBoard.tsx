@@ -184,8 +184,7 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
           position: 'relative',
           boxShadow: '0 0 50px rgba(0, 0, 0, 0.9)',
           opacity: isTransitioning ? 0.05 : 1,
-          filter: isTransitioning ? 'blur(12px)' : 'none',
-          transition: 'opacity 0.75s ease-in-out, filter 0.75s ease-in-out'
+          transition: 'opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
         }}
       >
         {/* Fondo Ambiental Bioluminiscente Dinámico de Luz Viva y Respiración (v1.8) */}
@@ -210,9 +209,8 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
             position: 'relative',
             zIndex: 1,
             opacity: isTransitioning ? 0.05 : 1,
-            filter: isTransitioning ? 'blur(10px)' : 'none',
-            transform: isTransitioning ? 'scale(0.99)' : 'scale(1)',
-            transition: 'opacity 0.75s ease-in-out, filter 0.75s ease-in-out, transform 0.75s ease-in-out'
+            transform: isTransitioning ? 'scale(0.985)' : 'scale(1)',
+            transition: 'opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
           }}
         >
           {/* A. Pizarra General Multi-Ficha */}

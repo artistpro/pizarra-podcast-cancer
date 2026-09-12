@@ -56,7 +56,7 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
 
     window.addEventListener('resize', handleResize);
 
-    const particleCount = 45;
+    const particleCount = 18;
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -143,9 +143,8 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
       border: '1.8px solid rgba(212, 175, 55, 0.55)',
       boxShadow: '0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 35px rgba(0, 0, 0, 0.5)',
       background: isNight
-        ? 'linear-gradient(135deg, rgba(6, 26, 56, 0.88) 0%, rgba(2, 12, 28, 0.95) 100%)'
-        : 'linear-gradient(135deg, rgba(4, 38, 30, 0.88) 0%, rgba(2, 18, 14, 0.95) 100%)',
-      backdropFilter: 'blur(16px)',
+        ? 'linear-gradient(135deg, rgba(6, 26, 56, 0.94) 0%, rgba(2, 12, 28, 0.97) 100%)'
+        : 'linear-gradient(135deg, rgba(4, 38, 30, 0.94) 0%, rgba(2, 18, 14, 0.97) 100%)',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',

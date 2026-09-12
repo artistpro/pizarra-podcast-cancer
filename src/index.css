@@ -45,10 +45,9 @@ html, body {
   font-family: 'Outfit', sans-serif;
 }
 
-/* Efectos de Vidrio Glassmorphism */
+/* Efectos de Vidrio Glassmorphism Optimizado (Cero CPU Blur) */
 .glass-panel {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(4, 38, 31, 0.94);
   border-radius: 12px;
   position: relative;
   transition: all 0.3s ease;

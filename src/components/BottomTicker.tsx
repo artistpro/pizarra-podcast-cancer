@@ -72,7 +72,6 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
         borderRadius: '42px',
         border: '2.5px solid rgba(212, 175, 55, 0.85)',
         background: 'linear-gradient(90deg, rgba(3, 30, 24, 0.98) 0%, rgba(2, 22, 17, 0.96) 100%)',
-        backdropFilter: 'blur(16px)',
         overflow: 'hidden',
         boxShadow: '0 8px 28px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.35)'
       }}>
@@ -156,7 +155,6 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
         borderRadius: '42px',
         border: '2.5px solid rgba(16, 185, 129, 0.85)',
         background: 'linear-gradient(90deg, rgba(3, 30, 24, 0.98) 0%, rgba(2, 22, 17, 0.96) 100%)',
-        backdropFilter: 'blur(16px)',
         overflow: 'hidden',
         boxShadow: '0 8px 28px rgba(0, 0, 0, 0.75), 0 0 25px rgba(16, 185, 129, 0.35)'
       }}>

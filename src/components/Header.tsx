@@ -17,8 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ state, effectiveTheme }) => {
       justifyContent: 'space-between',
       padding: '14px 36px',
       borderBottom: isNight ? '1.5px solid rgba(234, 179, 8, 0.35)' : '1.5px solid rgba(212, 175, 55, 0.35)',
-      background: isNight ? 'rgba(5, 13, 34, 0.85)' : 'rgba(2, 24, 19, 0.78)',
-      backdropFilter: 'blur(16px)',
+      background: isNight ? 'rgba(5, 13, 34, 0.95)' : 'rgba(2, 24, 19, 0.94)',
       transition: 'background 1s ease, border-color 1s ease'
     }}>
       {/* Brand & Isotipo */}
