@@ -63,8 +63,8 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
       <div
         style={{
           position: 'absolute',
-          top: '-180px',
-          left: '2%',
+          top: '-220px',
+          left: '-8%',
           width: '740px',
           height: '740px',
           borderRadius: '50%',
@@ -80,8 +80,8 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
       <div
         style={{
           position: 'absolute',
-          bottom: '-200px',
-          right: '2%',
+          bottom: '-240px',
+          right: '-8%',
           width: '780px',
           height: '780px',
           borderRadius: '50%',
