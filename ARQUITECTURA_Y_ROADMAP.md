@@ -99,3 +99,16 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
 
 ### 🔹 Fase 4: Reproductor y Audio Visualizer
 - [ ] Visualizador de espectro de audio (onda senoidal o barras de frecuencia sutiles en la esquina) sincronizado con el streaming de Astra Radio.
+
+---
+
+## 📋 5. Huella de Auditoría y Verificación de Producción (Audit Trail)
+
+| Identificador | `AUD-20260912-PODCAST-001` |
+| :--- | :--- |
+| **Fecha de Certificación:** | 12 de Septiembre de 2026 |
+| **Módulos Auditados:** | • **Buenas Noticias:** Filtro lingüístico anti-inglés, pool español EFE/Infosalus/Gaceta, banco de 24 referencias integrativas, directriz anti-alarmismo, blindaje YouTube Safe y presupuesto Regla 12 (`.news_budget_ledger.json`).<br>• **Arte Que Sana:** Galería dinámica de 8 obras (4 de sanantes/comunidad + 4 de grandes maestros de la luz), rotación continua de 4 obras cada 24 horas (00:00), guía respiratoria 4x4 en pantalla completa y blindaje total ante desnudez o censura en YouTube. |
+| **Infraestructura Activa:** | • **VPS 1 (`217.216.48.120:2222`):** Cronjobs verificados a las `06:00/18:00` (`auto_news_updater.py`) y a las `00:00` (`auto_art_updater.py`).<br>• **Firebase RTDB:** Nodos `goodNews.json` (4 activas) y `artCards.json` (8 activas) sincronizados en tiempo real.<br>• **YouTube Live Stream:** Transmisión 24/7 continua con clave `wy04-7pxe-5w3z-13dr-10a5` en 1080p sin microcortes ni reinicios.<br>• **Frontend (Vercel):** `pizarra-podcast-cancer.vercel.app` sincronizado con control interactivo en `AdminConsole.tsx`. |
+| **Conformidad de Reglas:** | Reglas 1 (Aprobación explícita), 3 (Aislamiento de riesgo), 9 (Feedback continuo), 10 (Cero popups), 11 (Cero borrado) y 12 (Budget guard & Circuit breaker) al 100% verificadas. |
+| **Commits Oficiales:** | `e3688e0`, `c2f3286`, `f3017a8`, `99a605f` |
+
