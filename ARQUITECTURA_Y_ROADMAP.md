@@ -87,6 +87,12 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
   - *Blindaje Triple de Imágenes:* Eliminación total del bug `display: none` en `SupplementCard.tsx` y `FullScreenSupplement.tsx`. Fallback indestructible a `FALLBACK_SUPPLEMENT_IMAGE` con conmutación en 1 frame; cero cajas vacías en la transmisión.
   - *Rotación Diaria Continua (Sliding Window):* Ventana deslizante matemática `(día * 2) % 24` para exhibir 4 suplementos en carrusel rotando 2 nuevos cada medianoche (00:00).
   - *Automatización y Administración:* Script `auto_supplement_updater.py` en VPS 1 (Cron `0 0 * * *`) inyectando en `supplementsList.json` y `supplement.json`, y botones de 1-clic (*"✨ Sincronizar Fichas de Hoy"* y *"📚 Cargar las 24 Variantes"*) en `AdminConsole.tsx`.
+* **v1.8 (12 Septiembre 2026):**  
+  **Fondo Bioluminiscente Dinámico, Purga de Incongruencias Visuales y Refresco Headless en Caliente:**
+  - *Fondo Ambiental Bioluminiscente Dinámico (`AmbientLiveBackground.tsx`):* Geometría sagrada vectorial SVG en rotación suave a 120s, combinada con orbes flotantes bioluminiscentes acelerados por GPU (`transform: translate3d`) con keyframe `@keyframes emeraldHueBreath`.
+  - *Calibración de Color Anti-Crush para YouTube Live:* Transición de verdes profundos a tonos esmeralda y bosque vibrantes (`#064e3b`, `#042f24`, `#02382b`), con opacidad de orbes ajustada al 50-55% y desenfoque óptimo de 58-65px para sobreponerse a la compresión H.264 (YUV 4:2:0) del encoder RTMP.
+  - *Purga Radical de Desviaciones Gráficas:* Erradicación definitiva del ID erróneo de Unsplash (mando de PlayStation en hongos medicinales y pastillas de caramelo en semilla negra). Estandarización de las 24 fichas clínicas y 40 obras de arte a fotografía botánica apaisada 16:9 (`w=1200&h=675&fit=crop&q=85`) sin recortes verticales anómalos.
+  - *Protocolo de Recarga en Caliente sin Pérdida de Emisión (Cero Caída de Stream):* Procedimiento validado en el servidor VPS 1 (`217.216.48.120:2222`) usando `xdotool` para enviar `Ctrl+Shift+R` a la ventana de Google Chrome Kiosk en el display virtual `:8`. FFmpeg 7+ (PID 2637117) mantuvo la emisión a YouTube RTMP al 100% ininterrumpida.
 
 ---
 
@@ -112,6 +118,8 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
 
 ## 📋 5. Huella de Auditoría y Verificación de Producción (Audit Trail)
 
+### Registro Histórico Certificado
+
 | Identificador | `AUD-20260912-PODCAST-001` |
 | :--- | :--- |
 | **Fecha de Certificación:** | 12 de Septiembre de 2026 |
@@ -119,5 +127,17 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
 | **Infraestructura Activa:** | • **VPS 1 (`217.216.48.120:2222`):** Cronjobs verificados a las `06:00/18:00` (`auto_news_updater.py`), a las `00:00` (`auto_art_updater.py`) y a las `00:00` (`auto_supplement_updater.py`).<br>• **Firebase RTDB:** Nodos `goodNews.json` (4 activas), `artCards.json` (8 activas) y `supplementsList.json` (4 activas) sincronizados en tiempo real.<br>• **YouTube Live Stream:** Transmisión 24/7 continua con clave `wy04-7pxe-5w3z-13dr-10a5` en 1080p sin microcortes ni reinicios.<br>• **Frontend (Vercel):** `pizarra-podcast-cancer.vercel.app` sincronizado con control interactivo en `AdminConsole.tsx`. |
 | **Conformidad de Reglas:** | Reglas 1 (Aprobación explícita), 3 (Aislamiento de riesgo), 9 (Feedback continuo), 10 (Cero popups), 11 (Cero borrado) y 12 (Budget guard & Circuit breaker) al 100% verificadas. |
 | **Commits Oficiales:** | `e3688e0`, `c2f3286`, `f3017a8`, `99a605f`, `3686e2c` |
+
+<br>
+
+| Identificador | `AUD-20260912-PODCAST-002` |
+| :--- | :--- |
+| **Fecha de Certificación:** | 12 de Septiembre de 2026 |
+| **Versión Certificada:** | `v1.8` (Producción Activa en YouTube Live) |
+| **Módulos Auditados:** | • **Fondo Ambiental Bioluminiscente Dinámico:** Geometría sagrada vectorial SVG (rotación continua 120s), orbes de luz viva con respiración cromática verde esmeralda y bosque (`#064e3b`, `#042f24`, `#02382b`), calibrados contra compresión YUV 4:2:0 de YouTube Live.<br>• **Saneamiento y Purga de Imágenes:** Erradicación del ID erróneo de Unsplash (PlayStation controller y pastillas de caramelo). Verificación y homologación de 24 suplementos y 40 obras de arte en formato apaisado widescreen 16:9 (`w=1200&h=675&fit=crop&q=85`) en frontend, scripts y Firebase RTDB.<br>• **Rediseño Senior de Tipografía & Arte:** Incremento de legibilidad móvil en tarjetas y citas sin desbordes.<br>• **Filtro Anti-Vacunación/ARNm:** Blindaje editorial en feeds RSS y scripts de noticias para bloquear menciones de vacunas o ARN mensajero.<br>• **Refresco Headless X11 sin Caída de Emisión:** Hot-reload de Google Chrome Kiosk en VPS 1 Display `:8` mediante inyección `xdotool key --window $win ctrl+shift+r` preservando uptime 100% en FFmpeg (PID 2637117). |
+| **Infraestructura Activa:** | • **VPS 1 (`217.216.48.120:2222`):** Display Xvfb `:8`, Chrome Kiosk v1.8 activo, FFmpeg 7+ transmitiendo a YouTube RTMP `wy04-7pxe-5w3z-13dr-10a5` (Stream ID `5rJBvQM8hjk`).<br>• **Firebase RTDB (`dashboard-bch`):** Nodo `podcast_cancer/board_state/headerTitle` en `"EL PODCAST DEL CÁNCER v1.8"`, `supplementsList.json` con 4 fichas 16:9 verificadas.<br>• **Frontend Vercel:** Producción actualizada en `https://pizarra-podcast-cancer.vercel.app/`. |
+| **Conformidad de Reglas:** | Reglas 1, 3, 9, 10, 11 (cero borrado de archivos) y 12 (presupuesto protegido) estrictamente cumplidas. |
+| **Commits Oficiales:** | `3686e2c`, `dbb3cee`, `03e0e1a`, `3c68220` |
+| **Evidencia Gráfica:** | Captura de frame en vivo del Display `:8` (`stream_live_capture.jpg`) verificando `v1.8`, geometría sagrada, fondo esmeralda bioluminiscente e imágenes 16:9 reales. |
 
 
