@@ -157,19 +157,19 @@ html, body {
   }
 }
 
-/* Órbita del foco de luz superior */
+/* Órbita del foco de luz superior (Acotada a la periferia superior izquierda) */
 @keyframes auroraOrbitTop {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
     opacity: 0.75;
   }
   35% {
-    transform: translate3d(240px, 90px, 0) scale(1.22);
-    opacity: 0.95;
+    transform: translate3d(70px, 35px, 0) scale(1.08);
+    opacity: 0.90;
   }
   70% {
-    transform: translate3d(-160px, 120px, 0) scale(0.95);
-    opacity: 0.7;
+    transform: translate3d(-35px, 45px, 0) scale(0.96);
+    opacity: 0.70;
   }
   100% {
     transform: translate3d(0, 0, 0) scale(1);
@@ -177,35 +177,35 @@ html, body {
   }
 }
 
-/* Órbita del foco de luz inferior */
+/* Órbita del foco de luz inferior (Acotada a la periferia inferior derecha) */
 @keyframes auroraOrbitBottom {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.7;
+    opacity: 0.70;
   }
   40% {
-    transform: translate3d(-220px, -110px, 0) scale(1.25);
-    opacity: 0.95;
+    transform: translate3d(-65px, -35px, 0) scale(1.08);
+    opacity: 0.90;
   }
   75% {
-    transform: translate3d(180px, -60px, 0) scale(0.92);
+    transform: translate3d(35px, -20px, 0) scale(0.95);
     opacity: 0.68;
   }
   100% {
     transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.7;
+    opacity: 0.70;
   }
 }
 
-/* Pulso vital central sincronizado con respiración (12 segundos) */
+/* Pulso vital central sincronizado con respiración (Sutil y no invasivo) */
 @keyframes vitalPulse {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: 0.45;
   }
   50% {
-    transform: scale(1.35);
-    opacity: 0.88;
+    transform: scale(1.12);
+    opacity: 0.75;
   }
 }
 

@@ -59,52 +59,52 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
           willChange: 'opacity'
         }}
       />
-      {/* 1. Foco de Luz Superior (Orbe Ámbar / Esmeralda Vivificante - Soft Falloff sin CPU Blur) */}
+      {/* 1. Foco de Luz Superior (Orbe Ámbar / Esmeralda - Anclado a la esquina superior izquierda) */}
       <div
         style={{
           position: 'absolute',
-          top: '-120px',
-          left: '18%',
-          width: '840px',
-          height: '840px',
+          top: '-180px',
+          left: '2%',
+          width: '740px',
+          height: '740px',
           borderRadius: '50%',
           background: isNight
-            ? 'radial-gradient(circle at center, rgba(56, 189, 248, 0.48) 0%, rgba(30, 58, 138, 0.32) 30%, rgba(15, 23, 42, 0.18) 55%, rgba(2, 6, 23, 0.05) 75%, transparent 85%)'
-            : 'radial-gradient(circle at center, rgba(245, 158, 11, 0.46) 0%, rgba(16, 185, 129, 0.40) 25%, rgba(5, 150, 105, 0.26) 45%, rgba(4, 47, 36, 0.12) 65%, transparent 82%)',
+            ? 'radial-gradient(circle at center, rgba(56, 189, 248, 0.45) 0%, rgba(30, 58, 138, 0.28) 30%, rgba(15, 23, 42, 0.15) 55%, rgba(2, 6, 23, 0.04) 75%, transparent 85%)'
+            : 'radial-gradient(circle at center, rgba(245, 158, 11, 0.42) 0%, rgba(16, 185, 129, 0.36) 25%, rgba(5, 150, 105, 0.22) 45%, rgba(4, 47, 36, 0.10) 65%, transparent 82%)',
           willChange: 'transform, opacity',
           animation: `auroraOrbitTop ${currentSpeed.top} ease-in-out infinite`
         }}
       />
 
-      {/* 2. Foco de Luz Inferior (Orbe Jade Profundo / Bosque Terapéutico - Soft Falloff sin CPU Blur) */}
+      {/* 2. Foco de Luz Inferior (Orbe Jade Profundo / Bosque - Anclado a la esquina inferior derecha) */}
       <div
         style={{
           position: 'absolute',
-          bottom: '-140px',
-          right: '15%',
-          width: '920px',
-          height: '920px',
+          bottom: '-200px',
+          right: '2%',
+          width: '780px',
+          height: '780px',
           borderRadius: '50%',
           background: isNight
-            ? 'radial-gradient(circle at center, rgba(99, 102, 241, 0.48) 0%, rgba(14, 165, 233, 0.32) 30%, rgba(30, 58, 138, 0.16) 55%, rgba(2, 6, 23, 0.05) 75%, transparent 85%)'
-            : 'radial-gradient(circle at center, rgba(5, 150, 105, 0.50) 0%, rgba(52, 211, 153, 0.38) 28%, rgba(6, 78, 59, 0.24) 48%, rgba(2, 44, 34, 0.10) 68%, transparent 82%)',
+            ? 'radial-gradient(circle at center, rgba(99, 102, 241, 0.45) 0%, rgba(14, 165, 233, 0.28) 30%, rgba(30, 58, 138, 0.14) 55%, rgba(2, 6, 23, 0.04) 75%, transparent 85%)'
+            : 'radial-gradient(circle at center, rgba(5, 150, 105, 0.45) 0%, rgba(52, 211, 153, 0.34) 28%, rgba(6, 78, 59, 0.20) 48%, rgba(2, 44, 34, 0.08) 68%, transparent 82%)',
           willChange: 'transform, opacity',
           animation: `auroraOrbitBottom ${currentSpeed.bottom} ease-in-out infinite`
         }}
       />
 
-      {/* 3. Halo Central de Pulso Vital (Coherencia y Ritmo Biológico - Soft Falloff sin CPU Blur) */}
+      {/* 3. Halo Central de Pulso Vital (Sutil, elegante y no invasivo en el área de lectura) */}
       <div
         style={{
           position: 'absolute',
-          top: 'calc(50% - 300px)',
-          left: 'calc(50% - 300px)',
-          width: '600px',
-          height: '600px',
+          top: 'calc(50% - 200px)',
+          left: 'calc(50% - 200px)',
+          width: '400px',
+          height: '400px',
           borderRadius: '50%',
           background: isNight
-            ? 'radial-gradient(circle at center, rgba(96, 165, 250, 0.35) 0%, rgba(30, 64, 175, 0.20) 30%, rgba(15, 23, 42, 0.08) 55%, transparent 75%)'
-            : 'radial-gradient(circle at center, rgba(254, 240, 138, 0.35) 0%, rgba(16, 185, 129, 0.35) 30%, rgba(6, 78, 59, 0.16) 55%, transparent 75%)',
+            ? 'radial-gradient(circle at center, rgba(96, 165, 250, 0.20) 0%, rgba(30, 64, 175, 0.10) 30%, rgba(15, 23, 42, 0.04) 55%, transparent 75%)'
+            : 'radial-gradient(circle at center, rgba(254, 240, 138, 0.18) 0%, rgba(16, 185, 129, 0.16) 30%, rgba(6, 78, 59, 0.08) 55%, transparent 75%)',
           willChange: 'transform, opacity',
           animation: `vitalPulse ${currentSpeed.pulse} ease-in-out infinite`
         }}
