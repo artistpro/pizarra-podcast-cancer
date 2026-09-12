@@ -400,7 +400,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
     "¿Quieres ver tu mensaje o testimonio aquí en la pizarra? Más información en la descripción del directo",
     "Pedir ayuda y descansar cuando tu cuerpo lo necesita también es un acto de valentía"
   ],
-  dailyReminderRotationSpeed: 95, // Segundos del ciclo continuo de scroll (desplazamiento hiper pausado de 8 min)
+  dailyReminderRotationSpeed: 280, // Segundos del ciclo continuo sincronizado a 42 px/s con 30 FPS
   
   nextLiveLabel: "INVITACIÓN",
   nextLiveList: [
@@ -410,7 +410,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
     "¿Quieres participar con tu caso o pregunta? Escríbenos en los enlaces de la descripción",
     "Directo de Preguntas y Respuestas: resuelve tus dudas en vivo con especialistas"
   ],
-  nextLiveRotationSpeed: 85, // Segundos del ciclo continuo de scroll (6.5 min)
+  nextLiveRotationSpeed: 260, // Segundos del ciclo continuo sincronizado a 42 px/s con 30 FPS
   
   // 6. Overlay Código QR Afiliados & Recompensas (iHerb)
   qrOverlayEnabled: true,

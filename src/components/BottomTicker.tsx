@@ -51,6 +51,24 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
   const doubledReminders = [...reminderList, ...reminderList];
   const doubledLiveList = [...liveList, ...liveList];
 
+  // Sincronización estricta con FFmpeg a 30 FPS:
+  // A 30 fps, la velocidad ideal se sitúa entre 1.2 y 1.4 px/cuadro (40 a 42 px/s).
+  // Esto elimina el judder/vibración estroboscópica sin importar la cantidad de mensajes.
+  const calculatePacedDuration = (items: string[], configuredSpeed?: number) => {
+    const totalChars = (items || []).reduce((acc, str) => acc + (str?.length || 0), 0) + ((items || []).length * 15);
+    // Cada carácter en Outfit 2.25rem promedia ~22px con tracking y separadores
+    const estimatedDistance = Math.max(2500, totalChars * 22);
+    const calculatedSeconds = Math.round(estimatedDistance / 42); // 42 px/s constante
+
+    if (configuredSpeed && configuredSpeed >= 180) {
+      return configuredSpeed;
+    }
+    return Math.max(calculatedSeconds, 180);
+  };
+
+  const reminderDuration = calculatePacedDuration(reminderList, dailyReminderRotationSpeed);
+  const liveDuration = calculatePacedDuration(liveList, nextLiveRotationSpeed);
+
   // Limpiar etiqueta de invitación si venía como "INVITACIÓN ESPECIAL"
   const formattedLiveLabel = (nextLiveLabel && nextLiveLabel.toUpperCase().includes("ESPECIAL"))
     ? "INVITACIÓN"
@@ -116,13 +134,16 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
           alignItems: 'center'
         }}>
           <div
-            key={`reminders-${(reminderList || []).join('-').slice(0, 40)}-${dailyReminderRotationSpeed}-${lastUpdated || 0}`}
+            key={`reminders-${(reminderList || []).join('-').slice(0, 40)}-${reminderDuration}-${lastUpdated || 0}`}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               whiteSpace: 'nowrap',
               willChange: 'transform',
-              animation: `marquee ${Math.max(15, dailyReminderRotationSpeed)}s linear infinite`
+              transform: 'translate3d(0, 0, 0)',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              animation: `marquee ${reminderDuration}s linear infinite`
             }}
           >
             {doubledReminders.map((msg, idx) => {
@@ -198,13 +219,16 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
           alignItems: 'center'
         }}>
           <div
-            key={`live-${(liveList || []).join('-').slice(0, 40)}-${nextLiveRotationSpeed}-${lastUpdated || 0}`}
+            key={`live-${(liveList || []).join('-').slice(0, 40)}-${liveDuration}-${lastUpdated || 0}`}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               whiteSpace: 'nowrap',
               willChange: 'transform',
-              animation: `marquee ${Math.max(15, nextLiveRotationSpeed)}s linear infinite`
+              transform: 'translate3d(0, 0, 0)',
+              backfaceVisibility: 'hidden',
+              WebkitBackfaceVisibility: 'hidden',
+              animation: `marquee ${liveDuration}s linear infinite`
             }}
           >
             {doubledLiveList.map((msg, idx) => {

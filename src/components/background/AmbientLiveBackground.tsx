@@ -27,11 +27,11 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
     );
   }
 
-  // Multiplicador de velocidad de las órbitas y pulsos
+  // Multiplicador de velocidad de las órbitas y pulsos (Calibrado para fluidez continua a 30 FPS)
   const speedMultipliers = {
-    calm: { breath: '45s', top: '50s', bottom: '60s', pulse: '16s' },
-    normal: { breath: '32s', top: '36s', bottom: '44s', pulse: '12s' },
-    deep: { breath: '22s', top: '26s', bottom: '32s', pulse: '8s' }
+    calm: { breath: '55s', top: '65s', bottom: '75s', pulse: '20s' },
+    normal: { breath: '42s', top: '52s', bottom: '64s', pulse: '16s' },
+    deep: { breath: '30s', top: '38s', bottom: '46s', pulse: '12s' }
   };
 
   const currentSpeed = speedMultipliers[speed] || speedMultipliers.normal;
