@@ -12,6 +12,7 @@ import { DEFAULT_BOARD_STATE, getEffectiveTheme, normalizeBoardState, DEFAULT_IN
 import { saveBoardState, subscribeBoardState, sendLiveAlert } from '../../firebase';
 import { fetchPositiveNewsFromRSS } from '../../services/rssService';
 import { fetchDailyHealthNews } from '../../services/newsService';
+import { getDailyArtGallery } from '../../services/artService';
 import { QrAffiliateOverlay } from '../QrAffiliateOverlay';
 
 const SUPPLEMENT_PRESETS: SupplementData[] = [
@@ -243,6 +244,18 @@ export const AdminConsole: React.FC = () => {
       setIsAutoGeneratingNews(false);
       setTimeout(() => setSaveStatus(''), 4500);
     }
+  };
+
+  const handleLoadDailyArt = async () => {
+    const dailyArt = getDailyArtGallery();
+    const updated = {
+      ...state,
+      artCards: dailyArt
+    };
+    setState(updated);
+    await saveBoardState(updated);
+    setSaveStatus('✅ Sincronizada Galería Diaria (8 Obras: Comunidad + Maestros)');
+    setTimeout(() => setSaveStatus(''), 4500);
   };
 
   const handleFetchRSS = async (urlToFetch?: string) => {
@@ -952,6 +965,24 @@ export const AdminConsole: React.FC = () => {
                 />
                 <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>seg</span>
               </div>
+
+              <button
+                type="button"
+                onClick={handleLoadDailyArt}
+                style={{
+                  padding: '6px 14px',
+                  fontSize: '0.8rem',
+                  background: 'linear-gradient(135deg, #d4af37 0%, #b48c1e 100%)',
+                  border: '1.4px solid #fef08a',
+                  color: '#021813',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: 800,
+                  boxShadow: '0 0 10px rgba(212, 175, 55, 0.35)'
+                }}
+              >
+                ✨ Sincronizar Galería de Hoy (8 Obras)
+              </button>
 
               <button
                 type="button"

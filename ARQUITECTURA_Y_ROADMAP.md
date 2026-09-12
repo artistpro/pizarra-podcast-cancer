@@ -74,6 +74,13 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
   - *Banco Curado de 24 Referencias Clínicas:* Expansión a 24 monografías clínicas que rotan matemáticamente cada día del mes sin repeticiones.
   - *Salvaguarda de Presupuesto (Regla 12):* Disyuntor anti-bucles (*Circuit Breaker*) y ledger atómico `.news_budget_ledger.json` con tope de 10 llamadas/día para DeepSeek API.
   - *Despliegue Multi-Entorno:* Actualizado en VPS 1 (`/home/rik/streams/podcast_cancer/scripts/auto_news_updater.py`) y sincronizado con Vercel (`pizarra-podcast-cancer.vercel.app`, commit `e3688e0`).
+* **v1.6 (12 Septiembre 2026):**  
+  **Galería Dinámica "Arte Que Sana" (8 Obras, Rotación Diaria & Balance 50/50):**
+  - *Galería Activa de 8 Obras:* Carrusel continuo en pantalla general y formato museo en pantalla completa con guía de respiración 4x4 (*Inhala, Retén, Exhala, Paz*).
+  - *Balance Comunitario y Universal:* 50% Obras y testimonios reales de pacientes y sobrevivientes oncológicos (iniciativas de arte-terapia) + 50% Grandes Maestros del Impresionismo y Luz (Monet, Van Gogh, Klimt, etc.).
+  - *Algoritmo de Rotación 24h:* Banco maestro de 40 obras con ventana deslizante diaria (`offset = (día * 2) % 20`): 4 obras nuevas cada día a las 00:00 y 4 conservadas.
+  - *Blindaje Total YouTube Live:* Cero desnudez, cero términos anatómicos/sensibles, cero imágenes quirúrgicas para garantizar streaming libre de penalizaciones.
+  - *Automatización Full-Stack:* Script `auto_art_updater.py` con cron a las 00:00 en VPS 1 inyectando en Firebase RTDB y botón interactivo *"✨ Sincronizar Galería de Hoy"* en `AdminConsole.tsx`.
 
 ---
 
