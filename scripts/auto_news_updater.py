@@ -101,19 +101,42 @@ FEEDS = [
     }
 ]
 
-# Filtro temático de salud y medicina integrativa
+# Filtro temático de salud, medicina integrativa, espiritualidad y estilo de vida
 HEALTH_KEYWORDS = [
+    # Biología y Medicina
     "salud", "célula", "cáncer", "oncolog", "médic", "terap", "inmun", "estudio", 
     "investiga", "paciente", "cuerpo", "vida", "alimento", "nutri", "sueño", 
-    "ejercicio", "bienestar", "cerebro", "biolog", "clínic", "hábito", "enfermedad", 
+    "ejercicio", "bienestar", "cerebro", "biolog", "clínic", "hábito", 
     "prevención", "tratamiento", "hospital", "fármaco", "esperanza", "respir", 
-    "estrés", "tumor", "adn", "mitocondria", "molecular", "avance", "órgano", "proteína"
+    "estrés", "tumor", "adn", "mitocondria", "molecular", "avance", "órgano", "proteína",
+    # Mente, Espiritualidad, Amor, Familia, Comunidad y Motivación
+    "espiritual", "medita", "calma", "paz", "mente", "emocion", "amor", "familia", 
+    "compasión", "gratitud", "serenidad", "vínculo", "comunidad", "resiliencia", 
+    "motivaci", "ánimo", "fuerza interior", "descanso", "naturaleza", "bosque",
+    "caminar", "dieta", "antioxidante", "oxitocina", "vago", "coherencia"
 ]
 
 def is_health_related(text: str) -> bool:
-    """Verifica si el contenido trata efectivamente de salud, medicina, biología o bienestar."""
+    """Verifica si el contenido trata efectivamente de salud, medicina, biología, mente o bienestar."""
     t_lower = text.lower()
     return any(k in t_lower for k in HEALTH_KEYWORDS)
+
+# Filtro de seguridad estricto contra temas sexuales, íntimos o borderline (YouTube Advertiser-Safe)
+SENSITIVE_SEXUAL_WORDS = [
+    "sexo", "sexual", "sexualidad", "erótic", "pareja", "intimidad", "infidelidad", 
+    "sueño erótico", "coito", "genital", "pene", "vagina", "útero", "uterin", 
+    "mioma", "menstrua", "ovario", "senos", "mamas", "testículo", "esperm", 
+    "fecundaci", "preservativo", "anticoncept", "orgasmo", "libido", "deseo sexual",
+    "ginecolog", "androlog", "reproductiv", "cama", "desnudo", "desnuda", "seducci"
+]
+
+def contains_sensitive_content(text: str) -> bool:
+    """Detecta términos íntimos, sexuales o ambiguos que puedan comprometer la emisión ante YouTube."""
+    t_lower = text.lower()
+    for word in SENSITIVE_SEXUAL_WORDS:
+        if re.search(r'\b' + re.escape(word) + r'\b', t_lower):
+            return True
+    return False
 
 # Palabras que denotan alarmismo o sensacionalismo negativo (Filtro Anti-Miedo)
 ALARMIST_WORDS = [
@@ -299,6 +322,10 @@ def fetch_rss_items(feed_url, feed_name, category, is_spanish):
             if contains_alarmism(cleaned_title) or contains_alarmism(cleaned_desc):
                 continue
                 
+            # FILTRO DE SEGURIDAD ESTRICTA (YOUTUBE ADVERTISER & FAMILY SAFE): Cero temas sexuales o íntimos
+            if contains_sensitive_content(cleaned_title) or contains_sensitive_content(cleaned_desc):
+                continue
+                
             # FILTRO TEMÁTICO DE SALUD Y MEDICINA INTEGRATIVA
             if is_spanish and not is_health_related(cleaned_title + " " + cleaned_desc):
                 continue
@@ -354,15 +381,16 @@ def synthesize_with_deepseek(raw_items):
         items_prompt.append(f"Noticia {idx+1}:\nTítulo original: {it['title']}\nResumen: {it['description']}\nFuente: {it['source']}\n")
 
     prompt_text = (
-        "Eres el editor científico jefe de 'El Podcast del Cáncer'. Transforma estas noticias médicas en 4 fichas divulgativas, profundamente esperanzadoras, humanas y 100% EN ESPAÑOL.\n"
+        "Eres el editor científico y humano jefe de 'El Podcast del Cáncer'. Transforma estas noticias médicas en 4 fichas divulgativas, profundamente esperanzadoras, humanas y 100% EN ESPAÑOL.\n"
         "REGLAS INQUEBRANTABLES:\n"
-        "1. PROHIBIDO el alarmismo, pronósticos fatales, cifras de mortalidad o términos sensacionalistas. Cero miedo.\n"
-        "2. PROHIBIDO prometer 'curas milagrosas'. Enfócate en avances científicos rigurosos, medicina integrativa, vitalidad celular, esperanza y calidad de vida.\n"
-        "3. IDIOMA: Absolutamente TODO el texto generado debe ser en ESPAÑOL impecable, cálido y profesional.\n"
-        "4. Para cada noticia debes devolver un objeto JSON con:\n"
+        "1. SEGURIDAD TOTAL ANTE YOUTUBE: PROHIBIDO TERMINANTEMENTE cualquier alusión a sexualidad, pareja, intimidad o anatomía sensible. Cero contenido borderline o para adultos.\n"
+        "2. PILARES TEMÁTICOS PRIORITARIOS: Fomenta la esperanza activa, la fuerza mental, la paz espiritual, el amor, la familia, la compasión, la nutrición consciente, el ejercicio y la ciencia biomédica integrativa.\n"
+        "3. CERO ALARMISMO: Prohibido usar palabras como 'mortalidad', 'letal', 'fatal' o sensacionalismo. Cero miedo y cero promesas de curas mágicas.\n"
+        "4. IDIOMA: Absolutamente TODO el texto generado debe ser en ESPAÑOL impecable, cálido y profesional.\n"
+        "5. Para cada noticia debes devolver un objeto JSON con:\n"
         "   - 'title': Titular claro, positivo y periodístico en español (máx 12 palabras).\n"
         "   - 'description': Explicación narrativa comprensible y esperanzadora (2 líneas, 150-200 caracteres).\n"
-        "   - 'category': Una de estas categorías: 'INVESTIGACIÓN Y CIENCIA', 'MEDICINA INTEGRATIVA', 'ESTILO DE VIDA', 'BIENESTAR Y SALUD', 'NUTRICIÓN INTEGRATIVA'.\n"
+        "   - 'category': Una de estas categorías: 'INVESTIGACIÓN Y CIENCIA', 'MEDICINA INTEGRATIVA', 'ESTILO DE VIDA', 'BIENESTAR Y SALUD', 'NUTRICIÓN INTEGRATIVA', 'PAZ Y ESPIRITUALIDAD'.\n"
         "   - 'keyPoints': Un arreglo de EXACTAMENTE 4 frases concisas con los puntos clave positivos para la salud.\n"
         "\nDEVUELVE EXCLUSIVAMENTE UN ARREGLO JSON VÁLIDO CON LOS 4 OBJETOS:\n"
         "[\n"
@@ -806,9 +834,9 @@ def build_daily_news():
     
     for idx, it in enumerate(raw_four):
         img = it.get("image")
-        if not img or not img.startswith("http"):
+        if not img or not img.startswith("http") or contains_sensitive_content(img):
             img = extract_og_image(it["link"])
-        if not img or not img.startswith("http"):
+        if not img or not img.startswith("http") or contains_sensitive_content(img):
             img = DEFAULT_FALLBACK_IMAGES[idx % len(DEFAULT_FALLBACK_IMAGES)]
             
         # Si la síntesis con IA fue exitosa y en español:
@@ -817,8 +845,10 @@ def build_daily_news():
             cand_title = ai_item.get("title", "")
             cand_desc = ai_item.get("description", "")
             
-            # FILTRO TOLERANCIA CERO: Confirmar que esté en español y sin alarmismo
-            if is_spanish_text(cand_title) and is_spanish_text(cand_desc) and not contains_alarmism(cand_title):
+            # FILTRO TOLERANCIA CERO: Confirmar que esté en español, sin alarmismo y sin temas sensibles
+            if (is_spanish_text(cand_title) and is_spanish_text(cand_desc) 
+                and not contains_alarmism(cand_title) and not contains_alarmism(cand_desc)
+                and not contains_sensitive_content(cand_title) and not contains_sensitive_content(cand_desc)):
                 history.append(it["link"])
                 history.append(it["title"])
                 selected_news.append({
@@ -838,8 +868,10 @@ def build_daily_news():
                 })
                 continue
 
-        # Si no hubo IA o falló, PERO el ítem es nativo en español y pasa los filtros:
-        if it.get("is_spanish", False) and is_spanish_text(it["title"]) and not contains_alarmism(it["title"]):
+        # Si no hubo IA o falló, PERO el ítem es nativo en español y pasa todos los filtros de seguridad:
+        if (it.get("is_spanish", False) and is_spanish_text(it["title"]) 
+            and not contains_alarmism(it["title"]) and not contains_alarmism(it["description"])
+            and not contains_sensitive_content(it["title"]) and not contains_sensitive_content(it["description"])):
             history.append(it["link"])
             history.append(it["title"])
             selected_news.append({
@@ -903,10 +935,17 @@ def main():
     print(f"Procesadas {len(news)} noticias:")
     for idx, n in enumerate(news):
         print(f"   {idx+1}. [{n['category']}] {n['title']} (Fuente: {n['source']})")
-        if not is_spanish_text(n['title']):
-            print(f"⚠️ ALERTA CRÍTICA: Se detectó no-español en {n['title']}. Reemplazando...")
-            n['title'] = CURATED_NEWS_BANK[idx % len(CURATED_NEWS_BANK)]['title']
-            n['description'] = CURATED_NEWS_BANK[idx % len(CURATED_NEWS_BANK)]['description']
+        # Doble verificación final de seguridad (Español, Cero Miedo y Cero Temas Sensibles)
+        if (not is_spanish_text(n['title']) or contains_sensitive_content(n['title']) 
+            or contains_sensitive_content(n['description']) or contains_alarmism(n['title'])):
+            print(f"⚠️ FILTRO DE SEGURIDAD ACTIVADO en '{n['title'][:40]}...'. Sustituyendo por banco curado...")
+            fallback = CURATED_NEWS_BANK[idx % len(CURATED_NEWS_BANK)]
+            n['title'] = fallback['title']
+            n['description'] = fallback['description']
+            n['category'] = fallback['category']
+            n['keyPoints'] = fallback['keyPoints']
+            n['source'] = fallback['source']
+            n['imageSrc'] = fallback['imageSrc']
         
     upload_to_firebase(news)
     print("=== [FIN DEL PIPELINE CON ÉXITO] ===")

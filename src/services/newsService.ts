@@ -374,6 +374,19 @@ const ALARMIST_TERMS = [
   "peor escenario", "sentencia", "deadly", "mortality"
 ];
 
+const SENSITIVE_SEXUAL_TERMS = [
+  "sexo", "sexual", "sexualidad", "erótic", "pareja", "intimidad", "infidelidad", 
+  "sueño erótico", "coito", "genital", "pene", "vagina", "útero", "uterin", 
+  "mioma", "menstrua", "ovario", "senos", "mamas", "testículo", "esperm", 
+  "fecundaci", "preservativo", "anticoncept", "orgasmo", "libido", "deseo sexual",
+  "ginecolog", "androlog", "reproductiv", "cama", "desnudo", "desnuda", "seducci"
+];
+
+function containsSensitiveContent(text: string): boolean {
+  const lower = text.toLowerCase();
+  return SENSITIVE_SEXUAL_TERMS.some(t => lower.includes(t));
+}
+
 function isSpanishText(text: string): boolean {
   if (!text || text.trim().length < 5) return false;
   const words = text.toLowerCase().match(/[a-záéíóúñü]+/g) || [];
@@ -412,17 +425,18 @@ export async function fetchDailyHealthNews(rssUrl?: string): Promise<FetchNewsRe
       const data = await response.json();
       if (data.status === 'ok' && Array.isArray(data.items) && data.items.length > 0) {
         
-        // Filtrar estrictamente solo ítems en español y libres de alarmismo
+        // Filtrar estrictamente solo ítems en español, libres de alarmismo y libres de contenido sensible
         const validItems = data.items.filter((item: any) => {
           const title = (item.title || "").replace(/<[^>]*>?/gm, '').trim();
           const desc = (item.description || "").replace(/<[^>]*>?/gm, '').trim();
-          return isSpanishText(title) && !containsAlarmism(title) && !containsAlarmism(desc);
+          return isSpanishText(title) && !containsAlarmism(title) && !containsAlarmism(desc) 
+            && !containsSensitiveContent(title) && !containsSensitiveContent(desc);
         });
 
         if (validItems.length >= 4) {
           const parsedItems: NewsItem[] = validItems.slice(0, 4).map((item: any, idx: number) => {
             let image = item.enclosure?.link || item.thumbnail;
-            if (!image || !image.startsWith('http')) {
+            if (!image || !image.startsWith('http') || containsSensitiveContent(image)) {
               const fallbackImages = [
                 "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=85",
                 "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1200&q=85",
