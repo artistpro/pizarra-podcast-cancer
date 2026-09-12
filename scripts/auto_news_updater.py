@@ -138,6 +138,21 @@ def contains_sensitive_content(text: str) -> bool:
             return True
     return False
 
+# Filtro de exclusión estricto: Prohibición absoluta de vacunas, tecnología ARNm o inoculaciones
+PROHIBITED_VACCINE_WORDS = [
+    "vacun", "vacuna", "vacunas", "vacunación", "vacunarse", "vacunados",
+    "arnm", "mrna", "arn mensajero", "inoculac", "inyecci", "pinchazo",
+    "booster", "inmunización", "inmunizar", "pfizer", "moderna", "astrazeneca"
+]
+
+def contains_vaccine_content(text: str) -> bool:
+    """Detecta menciones a vacunas, tecnología de ARNm o inoculaciones."""
+    t_lower = text.lower()
+    for word in PROHIBITED_VACCINE_WORDS:
+        if re.search(r'\b' + re.escape(word) + r'\b', t_lower):
+            return True
+    return False
+
 # Palabras que denotan alarmismo o sensacionalismo negativo (Filtro Anti-Miedo)
 ALARMIST_WORDS = [
     "mortalidad", "mortal", "letal", "devastador", "incurable", 
@@ -325,6 +340,11 @@ def fetch_rss_items(feed_url, feed_name, category, is_spanish):
             # FILTRO DE SEGURIDAD ESTRICTA (YOUTUBE ADVERTISER & FAMILY SAFE): Cero temas sexuales o íntimos
             if contains_sensitive_content(cleaned_title) or contains_sensitive_content(cleaned_desc):
                 continue
+
+            # FILTRO ESTRICTO ANTI-VACUNAS / ANTI-ARNm: Prohibición total de vacunas o inoculaciones
+            if contains_vaccine_content(cleaned_title) or contains_vaccine_content(cleaned_desc):
+                print(f"🛡️ [FILTRO ANTI-VACUNAS] Descartado artículo sobre vacunación/ARNm: '{cleaned_title[:45]}...'")
+                continue
                 
             # FILTRO TEMÁTICO DE SALUD Y MEDICINA INTEGRATIVA
             if is_spanish and not is_health_related(cleaned_title + " " + cleaned_desc):
@@ -333,7 +353,7 @@ def fetch_rss_items(feed_url, feed_name, category, is_spanish):
             if cleaned_title and link:
                 items.append({
                     "title": cleaned_title,
-                    "link": link.strip(),
+                    "link": link,
                     "description": cleaned_desc,
                     "image": image_url,
                     "source": feed_name,
@@ -341,9 +361,12 @@ def fetch_rss_items(feed_url, feed_name, category, is_spanish):
                     "is_spanish": is_spanish
                 })
     except Exception as e:
-        print(f"[Aviso Feed] No se pudo leer '{feed_name}': {e}")
+        print(f"Error procesando feed {feed_name}: {e}")
     return items
 
+# ---------------------------------------------------------
+# EXTRACCIÓN DE IMAGEN OPENGRAPH (OG:IMAGE)
+# ---------------------------------------------------------
 def extract_og_image(article_url):
     if not article_url: return None
     try:
@@ -383,11 +406,12 @@ def synthesize_with_deepseek(raw_items):
     prompt_text = (
         "Eres el editor científico y humano jefe de 'El Podcast del Cáncer'. Transforma estas noticias médicas en 4 fichas divulgativas, profundamente esperanzadoras, humanas y 100% EN ESPAÑOL.\n"
         "REGLAS INQUEBRANTABLES:\n"
-        "1. SEGURIDAD TOTAL ANTE YOUTUBE: PROHIBIDO TERMINANTEMENTE cualquier alusión a sexualidad, pareja, intimidad o anatomía sensible. Cero contenido borderline o para adultos.\n"
-        "2. PILARES TEMÁTICOS PRIORITARIOS: Fomenta la esperanza activa, la fuerza mental, la paz espiritual, el amor, la familia, la compasión, la nutrición consciente, el ejercicio y la ciencia biomédica integrativa.\n"
-        "3. CERO ALARMISMO: Prohibido usar palabras como 'mortalidad', 'letal', 'fatal' o sensacionalismo. Cero miedo y cero promesas de curas mágicas.\n"
-        "4. IDIOMA: Absolutamente TODO el texto generado debe ser en ESPAÑOL impecable, cálido y profesional.\n"
-        "5. Para cada noticia debes devolver un objeto JSON con:\n"
+        "1. PROHIBICIÓN ABSOLUTA DE VACUNAS / ARNm: Queda terminantemente PROHIBIDO cualquier mención a vacunas, vacunación, fármacos o vacunas de ARNm mensajero o inoculaciones. No aceptes ni sintetices noticias sobre estos temas. Si alguna noticia trata sobre vacunas, cámbiala completamente por hábitos de respiración, nutrición celular o fitoterapia.\n"
+        "2. SEGURIDAD TOTAL ANTE YOUTUBE: PROHIBIDO TERMINANTEMENTE cualquier alusión a sexualidad, pareja, intimidad o anatomía sensible. Cero contenido borderline o para adultos.\n"
+        "3. PILARES TEMÁTICOS PRIORITARIOS: Fomenta la esperanza activa, la fuerza mental, la paz espiritual, el amor, la familia, la compasión, la nutrición consciente, el ejercicio y la ciencia biomédica integrativa.\n"
+        "4. CERO ALARMISMO: Prohibido usar palabras como 'mortalidad', 'letal', 'fatal' o sensacionalismo. Cero miedo y cero promesas de curas mágicas.\n"
+        "5. IDIOMA: Absolutamente TODO el texto generado debe ser en ESPAÑOL impecable, cálido y profesional.\n"
+        "6. Para cada noticia debes devolver un objeto JSON con:\n"
         "   - 'title': Titular claro, positivo y periodístico en español (máx 12 palabras).\n"
         "   - 'description': Explicación narrativa comprensible y esperanzadora (2 líneas, 150-200 caracteres).\n"
         "   - 'category': Una de estas categorías: 'INVESTIGACIÓN Y CIENCIA', 'MEDICINA INTEGRATIVA', 'ESTILO DE VIDA', 'BIENESTAR Y SALUD', 'NUTRICIÓN INTEGRATIVA', 'PAZ Y ESPIRITUALIDAD'.\n"
@@ -935,10 +959,11 @@ def main():
     print(f"Procesadas {len(news)} noticias:")
     for idx, n in enumerate(news):
         print(f"   {idx+1}. [{n['category']}] {n['title']} (Fuente: {n['source']})")
-        # Doble verificación final de seguridad (Español, Cero Miedo y Cero Temas Sensibles)
+        # Doble verificación final de seguridad (Español, Cero Miedo, Cero Temas Sensibles y CERO Vacunas/ARNm)
         if (not is_spanish_text(n['title']) or contains_sensitive_content(n['title']) 
-            or contains_sensitive_content(n['description']) or contains_alarmism(n['title'])):
-            print(f"⚠️ FILTRO DE SEGURIDAD ACTIVADO en '{n['title'][:40]}...'. Sustituyendo por banco curado...")
+            or contains_sensitive_content(n['description']) or contains_alarmism(n['title'])
+            or contains_vaccine_content(n['title']) or contains_vaccine_content(n['description'])):
+            print(f"⚠️ FILTRO DE SEGURIDAD / ANTI-VACUNAS ACTIVADO en '{n['title'][:40]}...'. Sustituyendo por banco curado...")
             fallback = CURATED_NEWS_BANK[idx % len(CURATED_NEWS_BANK)]
             n['title'] = fallback['title']
             n['description'] = fallback['description']

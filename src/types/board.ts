@@ -187,7 +187,7 @@ export const DEFAULT_INCENTIVE_NAMES: string[] = [
 export const DEFAULT_BOARD_STATE: BoardState = {
   theme: "auto",
   isLive: true,
-  headerTitle: "EL PODCAST DEL CÁNCER",
+  headerTitle: "EL PODCAST DEL CÁNCER v1.7",
   headerSubtitle: "COMUNIDAD SANANTE",
   
   // Configuración de Emisión en Bucle
@@ -503,6 +503,9 @@ export const normalizeBoardState = (saved: any): BoardState => {
   return {
     ...DEFAULT_BOARD_STATE,
     ...saved,
+    headerTitle: (saved.headerTitle && saved.headerTitle.includes("1.1")) 
+      ? saved.headerTitle.replace(/1\.1/g, "1.7") 
+      : (saved.headerTitle || DEFAULT_BOARD_STATE.headerTitle),
     broadcastMode: saved.broadcastMode || DEFAULT_BOARD_STATE.broadcastMode || "auto_loop",
     generalViewDuration: saved.generalViewDuration || DEFAULT_BOARD_STATE.generalViewDuration || 180,
     fullScreenDuration: saved.fullScreenDuration || DEFAULT_BOARD_STATE.fullScreenDuration || 120,

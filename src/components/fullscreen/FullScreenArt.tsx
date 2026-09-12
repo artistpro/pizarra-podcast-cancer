@@ -129,7 +129,7 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
           textAlign: 'center',
           paddingTop: '10px',
           color: '#fbbf24',
-          fontSize: '1.35rem',
+          fontSize: '1.45rem',
           fontWeight: 900,
           textShadow: '0 2px 10px rgba(0,0,0,0.95)'
         }}>
@@ -147,8 +147,8 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
       }}>
         <div>
           <div className="font-cinzel" style={{
-            fontSize: '1.25rem',
-            letterSpacing: '4px',
+            fontSize: '1.3rem',
+            letterSpacing: '3px',
             color: '#d4af37',
             fontWeight: 900,
             marginBottom: '6px',
@@ -158,8 +158,8 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
           </div>
 
           <h1 className="font-cinzel" style={{
-            fontSize: '3.4rem',
-            lineHeight: 1.18,
+            fontSize: '3.6rem',
+            lineHeight: 1.15,
             fontWeight: 900,
             color: '#ffffff',
             letterSpacing: '1px',
@@ -170,10 +170,10 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
           </h1>
 
           <p style={{
-            fontSize: '1.75rem',
-            lineHeight: 1.42,
-            color: '#f8fafc',
-            fontWeight: 500,
+            fontSize: '1.95rem',
+            lineHeight: 1.4,
+            color: '#ffffff',
+            fontWeight: 600,
             textShadow: '0 2px 8px rgba(0,0,0,0.95)',
             margin: 0
           }}>
@@ -212,7 +212,7 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
 
           <div>
             <div className="font-cinzel" style={{
-              fontSize: '1.75rem',
+              fontSize: '1.92rem',
               fontWeight: 900,
               color: currentBreath.color,
               letterSpacing: '2.5px',
@@ -223,7 +223,7 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
               {currentBreath.text}
             </div>
             <p style={{
-              fontSize: '1.48rem',
+              fontSize: '1.58rem',
               color: '#ffffff',
               margin: 0,
               fontWeight: 600,

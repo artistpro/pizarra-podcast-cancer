@@ -382,9 +382,21 @@ const SENSITIVE_SEXUAL_TERMS = [
   "ginecolog", "androlog", "reproductiv", "cama", "desnudo", "desnuda", "seducci"
 ];
 
+// Filtro inquebrantable de exclusión: Prohibición absoluta de vacunas, inoculaciones o tecnología de ARNm
+const PROHIBITED_VACCINE_TERMS = [
+  "vacun", "vacuna", "vacunas", "vacunación", "vacunarse", "vacunados",
+  "arnm", "mrna", "arn mensajero", "inoculac", "inyecci", "pinchazo",
+  "booster", "inmunización", "inmunizar", "pfizer", "moderna", "astrazeneca"
+];
+
 function containsSensitiveContent(text: string): boolean {
   const lower = text.toLowerCase();
   return SENSITIVE_SEXUAL_TERMS.some(t => lower.includes(t));
+}
+
+function containsVaccineContent(text: string): boolean {
+  const lower = text.toLowerCase();
+  return PROHIBITED_VACCINE_TERMS.some(t => lower.includes(t));
 }
 
 function isSpanishText(text: string): boolean {
@@ -425,12 +437,13 @@ export async function fetchDailyHealthNews(rssUrl?: string): Promise<FetchNewsRe
       const data = await response.json();
       if (data.status === 'ok' && Array.isArray(data.items) && data.items.length > 0) {
         
-        // Filtrar estrictamente solo ítems en español, libres de alarmismo y libres de contenido sensible
+        // Filtrar estrictamente solo ítems en español, libres de alarmismo, libres de contenido sensible y SIN vacunas
         const validItems = data.items.filter((item: any) => {
           const title = (item.title || "").replace(/<[^>]*>?/gm, '').trim();
           const desc = (item.description || "").replace(/<[^>]*>?/gm, '').trim();
           return isSpanishText(title) && !containsAlarmism(title) && !containsAlarmism(desc) 
-            && !containsSensitiveContent(title) && !containsSensitiveContent(desc);
+            && !containsSensitiveContent(title) && !containsSensitiveContent(desc)
+            && !containsVaccineContent(title) && !containsVaccineContent(desc);
         });
 
         if (validItems.length >= 4) {
