@@ -79,6 +79,10 @@ export interface BoardState {
   headerTitle: string;
   headerSubtitle: string;
   
+  // Fondo Ambiental Dinámico de Luz y Respiración (v1.8)
+  animatedBackgroundEnabled?: boolean;
+  animatedBackgroundSpeed?: 'calm' | 'normal' | 'deep';
+  
   // Dirección de Emisión & Master Loop
   broadcastMode: BroadcastMode;
   generalViewDuration: number; // Duración de Pizarra General en segundos (ej. 180s = 3 min)
@@ -187,8 +191,10 @@ export const DEFAULT_INCENTIVE_NAMES: string[] = [
 export const DEFAULT_BOARD_STATE: BoardState = {
   theme: "auto",
   isLive: true,
-  headerTitle: "EL PODCAST DEL CÁNCER v1.7",
+  headerTitle: "EL PODCAST DEL CÁNCER v1.8",
   headerSubtitle: "COMUNIDAD SANANTE",
+  animatedBackgroundEnabled: true,
+  animatedBackgroundSpeed: "normal",
   
   // Configuración de Emisión en Bucle
   broadcastMode: "auto_loop",
@@ -503,9 +509,11 @@ export const normalizeBoardState = (saved: any): BoardState => {
   return {
     ...DEFAULT_BOARD_STATE,
     ...saved,
-    headerTitle: (saved.headerTitle && saved.headerTitle.includes("1.1")) 
-      ? saved.headerTitle.replace(/1\.1/g, "1.7") 
+    headerTitle: (saved.headerTitle && (saved.headerTitle.includes("1.1") || saved.headerTitle.includes("1.7"))) 
+      ? saved.headerTitle.replace(/1\.[17]/g, "1.8") 
       : (saved.headerTitle || DEFAULT_BOARD_STATE.headerTitle),
+    animatedBackgroundEnabled: saved.animatedBackgroundEnabled !== undefined ? saved.animatedBackgroundEnabled : true,
+    animatedBackgroundSpeed: saved.animatedBackgroundSpeed || "normal",
     broadcastMode: saved.broadcastMode || DEFAULT_BOARD_STATE.broadcastMode || "auto_loop",
     generalViewDuration: saved.generalViewDuration || DEFAULT_BOARD_STATE.generalViewDuration || 180,
     fullScreenDuration: saved.fullScreenDuration || DEFAULT_BOARD_STATE.fullScreenDuration || 120,

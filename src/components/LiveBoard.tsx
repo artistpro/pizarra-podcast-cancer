@@ -13,6 +13,7 @@ import { FullScreenSupplement } from './fullscreen/FullScreenSupplement';
 import { FullScreenArt } from './fullscreen/FullScreenArt';
 import { QrAffiliateOverlay } from './QrAffiliateOverlay';
 import { LiveAlertsOverlay } from './LiveAlertsOverlay';
+import { AmbientLiveBackground } from './background/AmbientLiveBackground';
 
 interface LiveBoardProps {
   state: BoardState;
@@ -155,10 +156,6 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
 
   const isNight = effectiveTheme === 'night';
 
-  const bgStyle = isNight
-    ? { background: 'radial-gradient(circle at 50% 25%, #0c2044 0%, #050e24 45%, #02040b 100%)' }
-    : { background: 'radial-gradient(circle at 50% 25%, #053b30 0%, #03211b 45%, #01130f 100%)' };
-
   return (
     <div
       style={{
@@ -188,12 +185,20 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
           boxShadow: '0 0 50px rgba(0, 0, 0, 0.9)',
           opacity: isTransitioning ? 0.05 : 1,
           filter: isTransitioning ? 'blur(12px)' : 'none',
-          transition: 'opacity 0.75s ease-in-out, filter 0.75s ease-in-out',
-          ...bgStyle
+          transition: 'opacity 0.75s ease-in-out, filter 0.75s ease-in-out'
         }}
       >
+        {/* Fondo Ambiental Bioluminiscente Dinámico de Luz Viva y Respiración (v1.8) */}
+        <AmbientLiveBackground
+          isNight={isNight}
+          enabled={state.animatedBackgroundEnabled !== false}
+          speed={state.animatedBackgroundSpeed || 'normal'}
+        />
+
         {/* 1. Cabecera Fija y Permanente de Transmisión */}
-        <Header state={state} effectiveTheme={effectiveTheme} />
+        <div style={{ position: 'relative', zIndex: 2 }}>
+          <Header state={state} effectiveTheme={effectiveTheme} />
+        </div>
 
         {/* 2. Escenario Central Variable con Transición Suave */}
         <div
@@ -203,6 +208,7 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
             overflow: 'hidden',
             display: 'flex',
             position: 'relative',
+            zIndex: 1,
             opacity: isTransitioning ? 0.05 : 1,
             filter: isTransitioning ? 'blur(10px)' : 'none',
             transform: isTransitioning ? 'scale(0.99)' : 'scale(1)',
@@ -309,7 +315,7 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
         <QrAffiliateOverlay state={state} />
 
         {/* 3. Barras Horizontales Inferiores Fijas y Permanentes (Nunca se reinician ni se mueven) */}
-        <footer style={{ width: '100%', paddingBottom: '8px' }}>
+        <footer style={{ width: '100%', paddingBottom: '8px', position: 'relative', zIndex: 2 }}>
           <BottomTicker
             dailyReminder={state.dailyReminder}
             dailyReminders={state.dailyReminders}

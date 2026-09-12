@@ -436,7 +436,7 @@ export const AdminConsole: React.FC = () => {
               PANEL DE CONTROL • MASTER BROADCAST DIRECTOR
             </h1>
             <p style={{ color: '#d4af37', fontSize: '0.88rem', marginTop: '4px' }}>
-              El Podcast del Cáncer • v1.7 (Senior-Friendly Bold & Catálogo Sulack) • Dirección de Escenas en Vivo & Transición Pizarra ⟷ Pantalla Completa
+              El Podcast del Cáncer • v1.8 (Senior-Friendly Bold, Catálogo Sulack & Fondo Vivo) • Dirección de Escenas en Vivo & Transición Pizarra ⟷ Pantalla Completa
             </p>
           </div>
 
@@ -830,6 +830,43 @@ export const AdminConsole: React.FC = () => {
                 onChange={(e) => setState({ ...state, headerTitle: e.target.value })}
                 style={{ width: '100%', padding: '10px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px' }}
               />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>
+                Fondo Bioluminiscente Dinámico (Luz & Respiración)
+              </label>
+              <button
+                type="button"
+                onClick={() => setState({ ...state, animatedBackgroundEnabled: state.animatedBackgroundEnabled === false ? true : false })}
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: (state.animatedBackgroundEnabled !== false) ? '1px solid #10b981' : '1px solid #64748b',
+                  background: (state.animatedBackgroundEnabled !== false) ? 'rgba(16, 185, 129, 0.2)' : '#021813',
+                  color: (state.animatedBackgroundEnabled !== false) ? '#a7f3d0' : '#94a3b8',
+                  fontWeight: 600,
+                  cursor: 'pointer'
+                }}
+              >
+                {(state.animatedBackgroundEnabled !== false) ? '✨ Activo (Luz Viva y Respiración)' : '⏸️ Estático'}
+              </button>
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '6px' }}>
+                Ritmo de Órbitas y Pulso Vital
+              </label>
+              <select
+                value={state.animatedBackgroundSpeed || 'normal'}
+                onChange={(e) => setState({ ...state, animatedBackgroundSpeed: e.target.value as 'calm' | 'normal' | 'deep' })}
+                style={{ width: '100%', padding: '10px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px' }}
+              >
+                <option value="calm">🧘 Meditación Profunda (Órbitas lentas 50s / Pulso 16s)</option>
+                <option value="normal">🌿 Sereno y Armónico (Órbitas 36s / Pulso 12s - Recomendado)</option>
+                <option value="deep">🌊 Fluido y Envolvente (Órbitas 26s / Pulso 8s)</option>
+              </select>
             </div>
           </div>
         </section>
