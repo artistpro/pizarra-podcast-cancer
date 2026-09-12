@@ -67,9 +67,17 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
       pulseSpeed: Math.random() * 0.02 + 0.01
     }));
 
+    const targetFPS = 30;
+    const frameInterval = 1000 / targetFPS;
+    let lastTime = performance.now();
     let rotationAngle = 0;
 
-    const render = () => {
+    const render = (currentTime: number = performance.now()) => {
+      animationFrameId = requestAnimationFrame(render);
+      const delta = currentTime - lastTime;
+      if (delta < frameInterval) return;
+      lastTime = currentTime - (delta % frameInterval);
+
       ctx.clearRect(0, 0, width, height);
 
       // 1. Partículas Estelares
