@@ -46,12 +46,19 @@ export const AmbientLiveBackground: React.FC<AmbientLiveBackgroundProps> = ({
         zIndex: 0,
         contain: 'strict',
         isolation: 'isolate',
-        animation: isNight
-          ? `nightHueBreath ${currentSpeed.breath} ease-in-out infinite`
-          : `emeraldHueBreath ${currentSpeed.breath} ease-in-out infinite`,
-        transition: 'background-color 1.5s ease'
+        backgroundColor: isNight ? '#020614' : '#02241c'
       }}
     >
+      {/* Capa de Respiración Cromática por Opacidad (100% Compositor, 0 Repaints) */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: isNight ? '#091738' : '#064e3b',
+          animation: `layerFadeBreath ${currentSpeed.breath} ease-in-out infinite`,
+          willChange: 'opacity'
+        }}
+      />
       {/* 1. Foco de Luz Superior (Orbe Ámbar / Esmeralda Vivificante - Soft Falloff sin CPU Blur) */}
       <div
         style={{

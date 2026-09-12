@@ -91,15 +91,18 @@ html, body {
   animation: pulse-red 2s infinite ease-in-out;
 }
 
-/* Animación de Marquee Continuo */
+/* Animación de Marquee Continuo Acelerado por Compositor (Hardware Layer) */
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .animate-marquee {
   display: inline-flex;
   white-space: nowrap;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
   animation: marquee 30s linear infinite;
 }
 
@@ -132,47 +135,25 @@ html, body {
 @keyframes qrSlideUp {
   0% {
     opacity: 0;
-    transform: translateY(30px) scale(0.92);
+    transform: translate3d(0, 30px, 0) scale(0.92);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
 /* =========================================================
-   FONDO AMBIENTAL BIOLUMINISCENTE Y RESPIRACIÓN CROMÁTICA (v1.8)
+   FONDO AMBIENTAL BIOLUMINISCENTE Y RESPIRACIÓN DE OPACIDAD (CERO REPAINTS)
    ========================================================= */
 
-/* Respiración cromática continua de la base esmeralda */
-@keyframes emeraldHueBreath {
-  0% {
-    background-color: #042f24;
+/* Respiración suave por opacidad (100% compositor-driven, 0 repaints) */
+@keyframes layerFadeBreath {
+  0%, 100% {
+    opacity: 0.15;
   }
-  33% {
-    background-color: #064e3b;
-  }
-  66% {
-    background-color: #02382b;
-  }
-  100% {
-    background-color: #042f24;
-  }
-}
-
-/* Respiración cromática continua de la base noche (azul zafiro) */
-@keyframes nightHueBreath {
-  0% {
-    background-color: #030a1c;
-  }
-  33% {
-    background-color: #091738;
-  }
-  66% {
-    background-color: #05102a;
-  }
-  100% {
-    background-color: #030a1c;
+  50% {
+    opacity: 0.85;
   }
 }
 

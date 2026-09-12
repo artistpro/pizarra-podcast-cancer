@@ -57,7 +57,7 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
 
     window.addEventListener('resize', handleResize);
 
-    const particleCount = 75;
+    const particleCount = 22;
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,

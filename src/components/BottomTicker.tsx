@@ -113,9 +113,7 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
           overflow: 'hidden',
           position: 'relative',
           display: 'flex',
-          alignItems: 'center',
-          maskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)'
+          alignItems: 'center'
         }}>
           <div
             key={`reminders-${(reminderList || []).join('-').slice(0, 40)}-${dailyReminderRotationSpeed}-${lastUpdated || 0}`}
@@ -123,6 +121,7 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
               display: 'inline-flex',
               alignItems: 'center',
               whiteSpace: 'nowrap',
+              willChange: 'transform',
               animation: `marquee ${Math.max(15, dailyReminderRotationSpeed)}s linear infinite`
             }}
           >
@@ -196,9 +195,7 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
           overflow: 'hidden',
           position: 'relative',
           display: 'flex',
-          alignItems: 'center',
-          maskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)'
+          alignItems: 'center'
         }}>
           <div
             key={`live-${(liveList || []).join('-').slice(0, 40)}-${nextLiveRotationSpeed}-${lastUpdated || 0}`}
@@ -206,6 +203,7 @@ export const BottomTicker: React.FC<BottomTickerProps> = ({
               display: 'inline-flex',
               alignItems: 'center',
               whiteSpace: 'nowrap',
+              willChange: 'transform',
               animation: `marquee ${Math.max(15, nextLiveRotationSpeed)}s linear infinite`
             }}
           >
