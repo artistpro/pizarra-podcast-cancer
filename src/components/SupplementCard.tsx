@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { SupplementData } from '../types/board';
-import { FALLBACK_SUPPLEMENT_IMAGE } from '../services/supplementService';
+import { handleSafeImageError, FALLBACK_SUPPLEMENT_IMAGE } from '../utils/imageFallbacks';
 
 interface SupplementCardProps {
   supplement?: SupplementData;
@@ -134,12 +134,7 @@ export const SupplementCard: React.FC<SupplementCardProps> = ({
               objectFit: 'cover',
               filter: 'brightness(0.95) contrast(1.08)'
             }}
-            onError={(e) => {
-              const target = e.currentTarget;
-              if (target.src !== FALLBACK_SUPPLEMENT_IMAGE) {
-                target.src = FALLBACK_SUPPLEMENT_IMAGE;
-              }
-            }}
+            onError={(e) => handleSafeImageError(e, 'supplement')}
           />
 
           {/* Icono Solar Dorado Superpuesto */}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { ArtCard, BoardState } from '../../types/board';
+import { handleSafeImageError } from '../../utils/imageFallbacks';
 
 interface FullScreenArtProps {
   cards: ArtCard[];
@@ -100,9 +101,7 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
               objectFit: 'cover',
               filter: 'brightness(0.96) contrast(1.06)'
             }}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1000&q=80";
-            }}
+            onError={(e) => handleSafeImageError(e, 'art')}
           />
 
           {/* Badge Superior */}

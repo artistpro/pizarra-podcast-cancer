@@ -99,7 +99,7 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
     author: "Taller Vivir con Sentido (Programa Psico-Oncológico)",
     caption: "Cuando las aguas de la mente se calman, podemos contemplar con claridad la belleza de nuestro ser",
     fullDescription: "Las escenas de agua quieta modulan la frecuencia cardíaca y estimulan el ritmo alfa del cerebro, facilitando un descanso reparador y libre de rumiación mental.",
-    imageSrc: "https://images.unsplash.com/photo-1439853941329-a99ce0409a82?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85"
   },
   {
     id: "com-art-13",
@@ -115,7 +115,7 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
     author: "Colectivo de Arte-Terapia San Juan de Dios",
     caption: "Una pequeña llama de esperanza basta para disipar todas las sombras y calmar el pensamiento",
     fullDescription: "El punto de enfoque en una luz cálida es uno de los ejercicios de anclaje más efectivos para cortar espirales de preocupación y anclar la mente en el presente.",
-    imageSrc: "https://images.unsplash.com/photo-1508672019048-805b876b67e2?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=1200&q=85"
   },
   {
     id: "com-art-15",
@@ -178,7 +178,7 @@ export const MASTERS_ART_BANK: ArtCard[] = [
     author: "Claude Monet (Impresionismo, Giverny, 1916)",
     caption: "El agua refleja la calma del cielo: un remanso visual para soltar tensiones y serenar la mente",
     fullDescription: "Monet concibió sus salas de nenúfares como un asilo de contemplación pacífica para los heridos. La cadencia azul y esmeralda disminuye la frecuencia cardíaca.",
-    imageSrc: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=85"
   },
   {
     id: "mas-art-2",
@@ -258,7 +258,7 @@ export const MASTERS_ART_BANK: ArtCard[] = [
     author: "Pierre-Auguste Renoir (1874)",
     caption: "El fluir constante del río nos enseña a soltar el pasado y navegar con confianza hacia el porvenir",
     fullDescription: "La cadencia del agua en la pintura impresionista induce calma en el sistema nervioso simpático, disminuyendo la tensión muscular en hombros y cuello.",
-    imageSrc: "https://images.unsplash.com/photo-1526604966848-d7adac402bff?auto=format&fit=crop&w=1200&q=85"
+    imageSrc: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85"
   },
   {
     id: "mas-art-12",

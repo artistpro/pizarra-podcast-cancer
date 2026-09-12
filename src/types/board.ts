@@ -362,7 +362,7 @@ export const DEFAULT_BOARD_STATE: BoardState = {
       name: "CARDO MARIANO (SILIBININA)",
       description: "Extracto con flavonolignanos activos que estabilizan la membrana del hepatocito, estimulan la regeneración del tejido hepático y promueven la síntesis de glutatión endógeno.",
       disclaimer: "Consulta interacciones potenciales en citocromo P450 con tus fármacos oncológicos activos.",
-      imageSrc: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=600&q=80",
+      imageSrc: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=600&q=80",
       keyBenefits: [
         "Protección hepática frente a la sobrecarga y toxicidad metabólica",
         "Estimulación de la producción de glutatión (Fases I y II hepáticas)",

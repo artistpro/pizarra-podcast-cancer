@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { ArtCard } from '../types/board';
+import { handleSafeImageError } from '../utils/imageFallbacks';
 
 interface ArtThatHealsProps {
   card?: ArtCard;
@@ -68,9 +69,7 @@ export const ArtThatHeals: React.FC<ArtThatHealsProps> = ({
               transform: isFading ? 'scale(1.03)' : 'scale(1)',
               transition: 'opacity 0.5s ease, transform 0.5s ease'
             }}
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=600&q=80";
-            }}
+            onError={(e) => handleSafeImageError(e, 'art')}
           />
         ) : null}
 

@@ -18,7 +18,7 @@ export const MASTER_SUPPLEMENTS_BANK: SupplementData[] = [
     name: "AZUL DE METILENO (GRADO USP)",
     description: "Aceptor y donante catalítico de electrones a nivel mitocondrial. Optimiza el consumo de oxígeno celular en el complejo IV y ejerce una potente acción antioxidante y neuroprotectora.",
     disclaimer: "Uso exclusivo grado USP libre de metales pesados. Consulta dosis e interacciones farmacológicas con tu médico tratante.",
-    imageSrc: "https://images.unsplash.com/photo-1579165466791-78822d31e0bc?auto=format&fit=crop&w=1200&h=675&q=85",
+    imageSrc: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&h=675&q=85",
     keyBenefits: [
       "Optimización de la respiración celular y síntesis de ATP mitocondrial",
       "Neutralización selectiva de radicales libres sin bloquear la señal fisiológica",
@@ -141,7 +141,7 @@ export const MASTER_SUPPLEMENTS_BANK: SupplementData[] = [
     name: "COMPLEJO DE HONGOS MEDICINALES",
     description: "Sinergia de Reishi, Melena de León, Cordyceps y Cola de Pavo (PSK/PSP). Ricos en beta-glucanos 1,3/1,6 que entrenan la vigilancia inmune y activan las células Natural Killer.",
     disclaimer: "Verificar extractos estandarizados en polisacáridos y libre de micotoxinas.",
-    imageSrc: "https://images.unsplash.com/photo-1543883341-ab66702da8b9?auto=format&fit=crop&w=1200&h=675&q=85",
+    imageSrc: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&h=675&q=85",
     keyBenefits: [
       "Activación y maduración de células dendríticas y Natural Killer (NK)",
       "Apoyo adaptogénico frente a la fatiga y el desgaste biológico",
@@ -281,7 +281,7 @@ export const MASTER_SUPPLEMENTS_BANK: SupplementData[] = [
     name: "OMEGA 3 (EPA / DHA PURIFICADO IFOS)",
     description: "Ácidos grasos esenciales con certificación IFOS 5 estrellas libre de metales pesados. Precursores de mediadores especializados de la resolución inflamatoria (resolvinas y protectinas).",
     disclaimer: "Verificar dosis en pacientes anticoagulados o con cirugías programadas.",
-    imageSrc: "https://images.unsplash.com/photo-1550572017-edd951aa8f72?auto=format&fit=crop&w=1200&h=675&q=85",
+    imageSrc: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=1200&h=675&q=85",
     keyBenefits: [
       "Resolución activa de focos inflamatorios crónicos tisulares",
       "Mantenimiento de la fluidez y comunicación de membranas celulares",
@@ -315,7 +315,7 @@ export const MASTER_SUPPLEMENTS_BANK: SupplementData[] = [
     name: "SELENIO & ZINC BISGLICINATO",
     description: "Oligoelementos estructurales catalíticos. El selenio es el corazón de la glutatión peroxidasa; el zinc gobierna más de 2000 factores de transcripción y la integridad timocítica.",
     disclaimer: "Respetar las dosis terapéuticas recomendadas para evitar toxicidad por selenio.",
-    imageSrc: "https://images.unsplash.com/photo-1543208543-6052513667c0?auto=format&fit=crop&w=1200&h=675&q=85",
+    imageSrc: "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?auto=format&fit=crop&w=1200&h=675&q=85",
     keyBenefits: [
       "Cofactores indispensables de enzimas antioxidantes endógenas (SOD y GPx)",
       "Maduración y correcto funcionamiento de linfocitos T cooperadores",
@@ -387,7 +387,7 @@ export const MASTER_SUPPLEMENTS_BANK: SupplementData[] = [
     name: "CALOSTRO BOVINO & FACTORES TRANSFERENCIA",
     description: "Primer alimento biológico rico en inmunoglobulinas IgG, lactoferrina y polipéptidos ricos en prolina (PRP). Entrenan al sistema inmune adaptativo frente a infecciones oportunistas.",
     disclaimer: "Verificar pureza libre de hormonas artificiales y antibióticos.",
-    imageSrc: "https://images.unsplash.com/photo-1527153857715-3908f2ae5e81?auto=format&fit=crop&w=1200&h=675&q=85",
+    imageSrc: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=1200&h=675&q=85",
     keyBenefits: [
       "Suministro pasivo de inmunoglobulinas de amplio espectro",
       "Quelación de hierro libre en el lumen intestinal mediante lactoferrina",

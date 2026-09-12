@@ -131,7 +131,7 @@ COMMUNITY_ART_BANK = [
         "author": "Taller Vivir con Sentido (Programa Psico-Oncológico)",
         "caption": "Cuando la mente se aquieta como un lago transparente, el cuerpo encuentra su camino natural de vuelta a la armonía",
         "fullDescription": "La quietud de las aguas en reposo induce un descenso inmediato en la frecuencia respiratoria, facilitando la oxigenación óptima de la microcirculación capilar.",
-        "imageSrc": "https://images.unsplash.com/photo-1439853941329-a99ce049f07c?auto=format&fit=crop&w=1200&q=85"
+        "imageSrc": "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=85"
     },
     {
         "id": "com-art-13",
@@ -210,7 +210,7 @@ MASTERS_ART_BANK = [
         "author": "Claude Monet (Impresionismo, 1906)",
         "caption": "La belleza serena del agua nos enseña a reposar en la calma del instante presente",
         "fullDescription": "Monet concibió sus nenúfares como un refugio de paz para mentes abrumadas. Sus pinceladas fluidas inducen una notable desaceleración del ritmo cardíaco.",
-        "imageSrc": "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=1200&q=85"
+        "imageSrc": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=85"
     },
     {
         "id": "mas-art-2",
