@@ -87,35 +87,35 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
   },
   {
     id: "com-art-11",
-    title: "Montañas de Paciencia y Resiliencia",
-    author: "Roberto H. (Sanante, Comunidad Hombres de Esperanza)",
-    caption: "La montaña no lucha contra el viento, permanece firme en su quietud: así cultivo mi paz interior",
-    fullDescription: "La serenidad ante la incertidumbre clínica reduce la activación del sistema nervioso simpático, permitiendo un ahorro metabólico crucial para la recuperación física.",
-    imageSrc: "/art/montanas_resiliencia.jpg"
+    title: "El Viaje de Rosa — Unidos en la Sanación",
+    author: "Rosa Henríquez & Morgen Chesonis González · Brushes with Cancer, Adrienne Arsht Center Miami (2024)",
+    caption: "El arte nace cuando dos almas se encuentran: la que sana y la que crea, tejiendo esperanza con cada pincelada",
+    fullDescription: "Brushes with Cancer es un programa real que une artistas profesionales con sobrevivientes de cáncer. Morgen Chesonis González pintó esta obra inspirada en el viaje de Rosa Henríquez. Foto: Gregory Reed / ArtBurst Miami.",
+    imageSrc: "/art/brushes_rosa_morgen.jpg"
   },
   {
     id: "com-art-12",
-    title: "El Reflejo del Lago Sereno",
-    author: "Taller Vivir con Sentido (Programa Psico-Oncológico)",
-    caption: "Cuando las aguas de la mente se calman, podemos contemplar con claridad la belleza de nuestro ser",
-    fullDescription: "Las escenas de agua quieta modulan la frecuencia cardíaca y estimulan el ritmo alfa del cerebro, facilitando un descanso reparador y libre de rumiación mental.",
-    imageSrc: "/art/lago_sereno_acuarela.jpg"
+    title: "El Viaje de Ashley — La Fuerza que Florece",
+    author: "Caryn Frishman, inspirada en Ashley Smith · Brushes with Cancer, Adrienne Arsht Center Miami (2024)",
+    caption: "La artista recibió la historia de una sobreviviente y la transformó en color, forma y luz para el mundo",
+    fullDescription: "Caryn Frishman presentó su pintura inspirada en Ashley Smith en el programa Brushes with Cancer del Adrienne Arsht Center. Cada obra nace de conversaciones profundas entre artista y sobreviviente. Foto: Gregory Reed / ArtBurst Miami.",
+    imageSrc: "/art/brushes_caryn_ashley.jpg"
   },
   {
     id: "com-art-13",
-    title: "Hojas Doradas de Renovación",
-    author: "Clara S. (Sobreviviente de Cáncer, Colectivo Renacer)",
-    caption: "Soltar lo que ya cumplió su ciclo nos permite abrir los brazos a una vida llena de nueva luz",
-    fullDescription: "El otoño enseña la sabiduría del desprendimiento sin resistencia. La aceptación activa potencia la resiliencia psicológica y mejora la adherencia a hábitos saludables.",
-    imageSrc: "/art/hojas_doradas.jpg"
+    title: "Colores de la Resiliencia",
+    author: "Caryn Frishman · Programa Brushes with Cancer, Miami (2024) · Miami Art Zine",
+    caption: "Convertir el dolor en arte es uno de los actos más valientes y sanadores que un ser humano puede realizar",
+    fullDescription: "El programa Brushes with Cancer empareja artistas visuales con pacientes y sobrevivientes para crear obras que honran sus historias. Documentado por Miami Art Zine en septiembre 2024.",
+    imageSrc: "/art/brushes_caryn_zine.jpg"
   },
   {
     id: "com-art-14",
-    title: "Velas de la Quietud Interior",
-    author: "Colectivo de Arte-Terapia San Juan de Dios",
-    caption: "Una pequeña llama de esperanza basta para disipar todas las sombras y calmar el pensamiento",
-    fullDescription: "El punto de enfoque en una luz cálida es uno de los ejercicios de anclaje más efectivos para cortar espirales de preocupación y anclar la mente en el presente.",
-    imageSrc: "/art/velas_quietud.jpg"
+    title: "Comunidad Sanante — Invierno 2025",
+    author: "Colectivo Brushes with Cancer · Chicago Chapter, Winter 2025",
+    caption: "Cuando la comunidad se reúne alrededor del arte, la soledad del diagnóstico se disuelve en pertenencia y amor",
+    fullDescription: "Exposición comunitaria del programa Brushes with Cancer, capítulo Chicago, enero 2025. El programa opera en más de 25 ciudades de Estados Unidos conectando artistas con sobrevivientes de cáncer. Fuente: Chicago Social Butterflies.",
+    imageSrc: "/art/brushes_winter_2025.jpg"
   },
   {
     id: "com-art-15",
