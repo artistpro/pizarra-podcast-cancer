@@ -119,19 +119,19 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
   },
   {
     id: "com-art-15",
-    title: "Raíces Vivas junto al Río",
-    author: "Taller de Pintura Creativa Vida Sana",
-    caption: "Nutridos por el agua fresca de la compasión, crecemos flexibles ante la corriente de la vida",
-    fullDescription: "La plasticidad de los árboles ribereños inspira adaptabilidad cognitiva: la capacidad de flexibilizar planes y acoger el autocuidado como prioridad absoluta.",
-    imageSrc: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85"
+    title: "El Viaje de Rosa — Unidos en la Sanación",
+    author: "Rosa Henríquez & Morgen Chesonis González · Brushes with Cancer, Adrienne Arsht Center Miami (2024)",
+    caption: "El arte nace cuando dos almas se encuentran: la que sana y la que crea, tejiendo esperanza",
+    fullDescription: "Brushes with Cancer une artistas profesionales con sobrevivientes de cáncer. Morgen Chesonis González pintó esta obra inspirada en el viaje de Rosa Henríquez. Foto: Gregory Reed / ArtBurst Miami.",
+    imageSrc: "/art/brushes_rosa_morgen.jpg"
   },
   {
     id: "com-art-16",
-    title: "El Abrazo de la Mañana",
-    author: "Patricia G. (Sobreviviente y Escritora, Red Lazos de Amor)",
-    caption: "Inhalar el aire fresco de la mañana es recibir un nuevo regalo de vida con inmenso amor y gratitud",
-    fullDescription: "La práctica matutina de respiración consciente incrementa la oxigenación celular y estimula la liberación de endorfinas protectoras del estado de ánimo.",
-    imageSrc: "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&w=1200&q=85"
+    title: "El Viaje de Ashley — La Fuerza que Florece",
+    author: "Caryn Frishman, inspirada en Ashley Smith · Brushes with Cancer, Adrienne Arsht Center Miami (2024)",
+    caption: "La artista recibió la historia de una sobreviviente y la transformó en color, forma y luz para el mundo",
+    fullDescription: "Caryn Frishman presentó su pintura inspirada en Ashley Smith en Brushes with Cancer del Adrienne Arsht Center. Cada obra nace de conversaciones profundas entre artista y sobreviviente. Foto: Gregory Reed / ArtBurst Miami.",
+    imageSrc: "/art/brushes_caryn_ashley.jpg"
   },
   {
     id: "com-art-17",
