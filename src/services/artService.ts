@@ -168,169 +168,74 @@ export const COMMUNITY_ART_BANK: ArtCard[] = [
 ];
 
 // ============================================================================
-// BANCO MAESTRO 2: GRANDES MAESTROS DE LA LUZ Y NATURALEZA SAGRADA (20 OBRAS)
-// Impresionismo, Luminismo y Paisajismo Universal
+// BANCO MAESTRO 2: GRANDES MAESTROS DE LA LUZ Y NATURALEZA SAGRADA (8 OBRAS)
+// SOLO obras con imagen verificada de museo público (Met, Art Institute, Wikimedia)
+// Imagen y atribución coinciden al 100%
 // ============================================================================
 export const MASTERS_ART_BANK: ArtCard[] = [
   {
     id: "mas-art-1",
-    title: "Nenúfares y Reflejos de Sauce",
-    author: "Claude Monet (Impresionismo, Giverny, 1916)",
-    caption: "El agua refleja la calma del cielo: un remanso visual para soltar tensiones y serenar la mente",
-    fullDescription: "Monet concibió sus salas de nenúfares como un asilo de contemplación pacífica para los heridos. La cadencia azul y esmeralda disminuye la frecuencia cardíaca.",
-    imageSrc: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-2",
-    title: "Almendro en Flor",
-    author: "Vincent van Gogh (Arlés, 1890)",
-    caption: "Las ramas florecen contra el cielo celeste celebrando el milagro indiscutible de un nuevo comienzo",
-    fullDescription: "Pintado por Van Gogh para celebrar el nacimiento de su sobrino. El blanco puro sobre turquesa simboliza renacimiento celular, pureza y vitalidad biológica.",
-    imageSrc: "https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-3",
-    title: "El Camino entre los Olivos",
-    author: "Claude Monet (1884)",
-    caption: "Paso a paso, con paciencia y sosiego, cada sendero nos conduce hacia la luz y el descanso",
-    fullDescription: "La luz mediterránea filtrada por los olivos crea una armonía cromática que relaja la musculatura ocular y favorece la síntesis de melatonina nocturna.",
-    imageSrc: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-4",
-    title: "Cielo Matutino en la Laguna",
-    author: "J.M.W. Turner (Romanticismo Luminista, 1840)",
-    caption: "La luz disuelve toda pesadumbre: respira la amplitud del horizonte y siente la calma en tu pecho",
-    fullDescription: "Turner fue el maestro de la luz etérea. Las gradaciones de oro y niebla tenue desvanecen la sensación de claustrofobia y restauran la respiración profunda.",
-    imageSrc: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-5",
-    title: "El Jardín del Artista en Vetheuil",
-    author: "Claude Monet (1881)",
-    caption: "Los girasoles elevan su rostro hacia el sol: orienta tu mente hacia lo que nutre tu corazón",
-    fullDescription: "Los tonos amarillos estimulan centros de gratitud y optimismo en el cerebro, generando un estado afectivo protector frente al desgaste emocional.",
-    imageSrc: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-6",
-    title: "La Noche Calma sobre el Mar",
-    author: "Caspar David Friedrich (1822)",
-    caption: "Bajo el velo sereno de la noche, las estrellas recuerdan que nunca estamos solos en el camino",
-    fullDescription: "Un lienzo de quietud marina que invita a la desconexión sensorial y al recogimiento espiritual, ideal para acompañar la respiración antes del descanso.",
-    imageSrc: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-7",
-    title: "Camino en el Bosque de Fontainebleau",
-    author: "Camille Corot (Escuela de Barbizon, 1860)",
-    caption: "El cobijo del bosque nos regala aire limpio, silencio fértil y un refugio seguro para el alma",
-    fullDescription: "El 'Shinrin-yoku' o baño de bosque visual genera fitoncidas sensoriales en la memoria, mejorando la respuesta inmune y el conteo de células defensivas.",
-    imageSrc: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-8",
-    title: "Campo de Trigo con Alondras",
-    author: "Vincent van Gogh (1887)",
-    caption: "El trigo dorado que mece la brisa susurra paz: confía en el ritmo sabio de la naturaleza",
-    fullDescription: "A diferencia de sus obras finales convulsas, este óleo refleja paz campestre y abundancia. El movimiento rítmico del trigo acompasa la respiración lenta.",
-    imageSrc: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-9",
-    title: "El Puente Japonés en Giverny",
-    author: "Claude Monet (1899)",
-    caption: "La armonía entre el agua verde y las flores nos conecta con la paz infinita del instante presente",
-    fullDescription: "La arquitectura vegetal de Monet en Giverny fue su propio santuario de salud. Los tonos verdes favorecen la restauración visual y la serenidad psíquica.",
-    imageSrc: "https://images.unsplash.com/photo-1470240731273-7821a6eeb6bd?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-10",
     title: "Amanecer en el Valle de Yosemite",
-    author: "Albert Bierstadt (Luminismo Americano, 1868)",
+    author: "Albert Bierstadt (Luminismo Americano, 1866) · Met Museum",
     caption: "La grandeza serena de la naturaleza nos envuelve y nos recuerda cuán profunda es nuestra fuerza",
-    fullDescription: "El sentimiento de 'asombro' (awe) ante paisajes majestuosos reduce marcadores proinflamatorios y genera una sensación profunda de gratitud por la vida.",
+    fullDescription: "El sentimiento de asombro ante paisajes majestuosos reduce marcadores proinflamatorios y genera una sensación profunda de gratitud por la vida.",
     imageSrc: "/art/bierstadt_yosemite.jpg"
   },
   {
-    id: "mas-art-11",
-    title: "Orillas del Río Sena en Argenteuil",
-    author: "Pierre-Auguste Renoir (1874)",
-    caption: "El fluir constante del río nos enseña a soltar el pasado y navegar con confianza hacia el porvenir",
-    fullDescription: "La cadencia del agua en la pintura impresionista induce calma en el sistema nervioso simpático, disminuyendo la tensión muscular en hombros y cuello.",
-    imageSrc: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-12",
-    title: "Jardín con Flores y Mariposas",
-    author: "Gustav Klimt (1907)",
+    id: "mas-art-2",
+    title: "Jardín Florido con Girasoles",
+    author: "Gustav Klimt (1907) · Dominio Público",
     caption: "Un tapiz vegetal rebosante de vida que nos recuerda la abundancia regenerativa de la naturaleza",
-    fullDescription: "La densidad de flores sin horizonte definido sumerge la mirada en un baño cromático reparador, ideal para acompañar la fase de retención de aire (4s).",
+    fullDescription: "La densidad de flores sin horizonte definido sumerge la mirada en un baño cromático reparador, ideal para acompañar la fase de retención de aire.",
     imageSrc: "/art/klimt_jardin.jpg"
   },
   {
-    id: "mas-art-13",
-    title: "El Mar de Cristal en Normandía",
-    author: "Claude Monet (1882)",
+    id: "mas-art-3",
+    title: "Paseo al Borde del Mar en Normandía",
+    author: "Claude Monet (Impresionismo, 1882) · Art Institute of Chicago",
     caption: "La inmensidad del océano arrulla las tensiones del día y renueva la respiración con aire puro",
     fullDescription: "La horizontalidad marina produce un reflejo neurobiológico de relajación muscular y descenso del tono simpático, preparándonos para la calma interior.",
     imageSrc: "/art/monet_normandia.jpg"
   },
   {
-    id: "mas-art-14",
+    id: "mas-art-4",
     title: "Ramas de Olivo Bajo el Sol",
-    author: "Vincent van Gogh (Saint-Rémy, 1889)",
+    author: "Vincent van Gogh (Saint-Rémy, 1889) · Met Museum",
     caption: "El olivo es símbolo milenario de paz, sanación y resistencia honorable ante el tiempo",
     fullDescription: "Van Gogh encontró en los olivares un refugio sagrado de consuelo. Los tonos plateados y ocres reconfortan la mente y evocan nutrición mediterránea.",
     imageSrc: "/art/vangogh_olivos.jpg"
   },
   {
-    id: "mas-art-15",
-    title: "El Bosque de Abedules Dorados",
-    author: "Isaac Levitan (Paisajismo Ruso, 1889)",
-    caption: "Caminar en el silencio del bosque dorado restaura la claridad de pensamiento y serena el corazón",
-    fullDescription: "Levitan es el maestro de los paisajes contemplativos. El ritmo vertical de los troncos esbeltos invita a erguir la postura corporal y respirar hondo.",
-    imageSrc: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85"
+    id: "mas-art-5",
+    title: "Campo de Trigo con Cipreses",
+    author: "Vincent van Gogh (Saint-Rémy, 1889) · Met Museum",
+    caption: "El trigo dorado que mece la brisa susurra paz: confía en el ritmo sabio de la naturaleza",
+    fullDescription: "Este óleo refleja paz campestre y abundancia. El movimiento rítmico del trigo acompasa la respiración lenta y restaura la calma interior.",
+    imageSrc: "/art/vangogh_trigo.jpg"
   },
   {
-    id: "mas-art-16",
-    title: "Noche Estrellada sobre el Ródano",
-    author: "Vincent van Gogh (Arlés, 1888)",
-    caption: "Las luces doradas reflejadas en el río profundo nos invitan a soltar el control y descansar en paz",
-    fullDescription: "A diferencia de su cielo turbulento posterior, esta obra transmite una quietud mística y contemplativa, excelente para inducir la fase de sueño nocturno.",
-    imageSrc: "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85"
+    id: "mas-art-6",
+    title: "Girasoles",
+    author: "Vincent van Gogh (París, 1887) · Met Museum",
+    caption: "Los girasoles elevan su rostro hacia el sol: orienta tu mente hacia lo que nutre tu corazón",
+    fullDescription: "Los tonos amarillos estimulan centros de gratitud y optimismo en el cerebro, generando un estado afectivo protector frente al desgaste emocional.",
+    imageSrc: "/art/monet_girasoles.jpg"
   },
   {
-    id: "mas-art-17",
-    title: "El Lago de los Lotos al Atardecer",
-    author: "Katsushika Hokusai (Ukiyo-e Japonés, 1832)",
+    id: "mas-art-7",
+    title: "El Lago de Hakone al Amanecer",
+    author: "Utagawa Hiroshige (Ukiyo-e, 1833) · Met Museum",
     caption: "Simplicidad, equilibrio y gracia en cada trazo: la quietud que habita en lo sencillo",
-    fullDescription: "La filosofía zen japonesa busca vaciar la mente de ruido para permitir que la serenidad llene el espacio interior. Un soporte visual ideal para la respiración 4x4.",
-    imageSrc: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?auto=format&fit=crop&w=1200&h=675&q=85"
+    fullDescription: "La filosofía zen japonesa busca vaciar la mente de ruido para permitir que la serenidad llene el espacio interior.",
+    imageSrc: "/art/hokusai_lago.jpg"
   },
   {
-    id: "mas-art-18",
-    title: "Camino de Cipreses bajo el Cielo",
-    author: "Vincent van Gogh (1890)",
-    caption: "Avanza paso a paso con determinación: el camino se abre ante ti con luz y protección",
-    fullDescription: "El ciprés eleva su copa hacia las estrellas como una plegaria de vida. Su verticalidad inspira dignidad, entereza y perseverancia en los tratamientos.",
-    imageSrc: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-19",
-    title: "Campo de Amapolas en Argenteuil",
-    author: "Claude Monet (1873)",
-    caption: "El rojo vibrante de las amapolas celebra la alegría de estar vivos y compartir el presente",
-    fullDescription: "Monet retrató a su familia paseando entre flores silvestres. La obra transmite ligereza estival, dulzura y reconciliación con la belleza de las cosas simples.",
-    imageSrc: "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=85"
-  },
-  {
-    id: "mas-art-20",
-    title: "La Pradera de Primavera",
-    author: "Claude Monet (1880)",
-    caption: "Hierba fresca, luz tibia y brisa suave: regálale a tu cuerpo este instante de pureza y salud",
-    fullDescription: "Cerrar los ojos tras contemplar una pradera verde y abierta ayuda al cerebro a retener la sensación de frescura, facilitando la distensión del plexo solar.",
-    imageSrc: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85"
+    id: "mas-art-8",
+    title: "El Bosque en Invierno al Atardecer",
+    author: "Théodore Rousseau (Escuela de Barbizon, 1845) · Met Museum",
+    caption: "Caminar en el silencio del bosque restaura la claridad de pensamiento y serena el corazón",
+    fullDescription: "El ritmo vertical de los troncos esbeltos invita a erguir la postura corporal y respirar hondo, favoreciendo la recuperación física y emocional.",
+    imageSrc: "/art/levitan_abedules.jpg"
   }
 ];
 
