@@ -976,6 +976,28 @@ export const AdminConsole: React.FC = () => {
                 </div>
 
                 <div style={{ marginBottom: '8px' }}>
+                  <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Título de la Obra:</label>
+                  <input
+                    type="text"
+                    value={art.title || ''}
+                    onChange={(e) => updateArtCard(idx, 'title', e.target.value)}
+                    placeholder="Ej: Colores de la Resiliencia"
+                    style={{ width: '100%', padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '8px' }}>
+                  <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Autor / Artista / Paciente / Fuente:</label>
+                  <input
+                    type="text"
+                    value={art.author || ''}
+                    onChange={(e) => updateArtCard(idx, 'author', e.target.value)}
+                    placeholder="Ej: Caryn Frishman · Brushes with Cancer (2024)"
+                    style={{ width: '100%', padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '8px' }}>
                   <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>URL Imagen de Arte:</label>
                   <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
                     <input
