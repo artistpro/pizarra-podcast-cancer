@@ -4,14 +4,14 @@ import type { BoardState } from "./types/board";
 import { DEFAULT_BOARD_STATE, normalizeBoardState } from "./types/board";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBndIKt7SPNUl4mG7IRVd6EGUGkZLpLD0A",
-  authDomain: "dashboard-bch.firebaseapp.com",
-  databaseURL: "https://dashboard-bch-default-rtdb.firebaseio.com",
-  projectId: "dashboard-bch",
-  storageBucket: "dashboard-bch.firebasestorage.app",
-  messagingSenderId: "1082690329234",
-  appId: "1:1082690329234:web:8129fa99bdded9aa3f244b",
-  measurementId: "G-D66Z66FM1X"
+  apiKey: "AIzaSyDb6Ao14FwaFXrMhEm1jDQfUwW_KQF7m1M",
+  authDomain: "pizarrapodcast-9d0cc.firebaseapp.com",
+  databaseURL: "https://pizarrapodcast-9d0cc-default-rtdb.firebaseio.com",
+  projectId: "pizarrapodcast-9d0cc",
+  storageBucket: "pizarrapodcast-9d0cc.firebasestorage.app",
+  messagingSenderId: "221614509108",
+  appId: "1:221614509108:web:6b0a452d485d92a5258e61",
+  measurementId: "G-MWZTE8Q95H"
 };
 
 let db: any = null;
@@ -55,7 +55,7 @@ export const saveBoardState = async (state: BoardState): Promise<void> => {
   // 3. Fallback Infalible: REST API directo (HTTP PUT a Firebase RTDB)
   if (!savedSuccessfully) {
     try {
-      const resp = await fetch("https://dashboard-bch-default-rtdb.firebaseio.com/podcast_cancer/board_state.json", {
+      const resp = await fetch("https://pizarrapodcast-9d0cc-default-rtdb.firebaseio.com/podcast_cancer/board_state.json", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cleanPayload)
@@ -144,7 +144,7 @@ export const sendLiveAlert = async (alert: any): Promise<void> => {
 
   if (!sent) {
     try {
-      await fetch("https://dashboard-bch-default-rtdb.firebaseio.com/podcast_cancer/live_alerts/latest.json", {
+      await fetch("https://pizarrapodcast-9d0cc-default-rtdb.firebaseio.com/podcast_cancer/live_alerts/latest.json", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cleanAlert)

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { uploadToCloudinary } from '../../utils/cloudinary';
 import type { 
   BoardState, 
   NewsItem, 
@@ -65,6 +66,25 @@ export const AdminConsole: React.FC = () => {
   const [saveStatus, setSaveStatus] = useState<string>('');
   const [isFetchingRSS, setIsFetchingRSS] = useState<boolean>(false);
   const [isAutoGeneratingNews, setIsAutoGeneratingNews] = useState<boolean>(false);
+  const [uploadingField, setUploadingField] = useState<string | null>(null);
+
+  const handleImageUpload = async (
+    file: File,
+    folder: 'art' | 'supplements' | 'news',
+    onSuccess: (url: string) => void
+  ) => {
+    const key = `${folder}-${Date.now()}`;
+    setUploadingField(key);
+    try {
+      const url = await uploadToCloudinary(file, folder);
+      onSuccess(url);
+    } catch (err) {
+      console.error('Error subiendo imagen:', err);
+      alert('Error al subir la imagen. Intenta de nuevo.');
+    } finally {
+      setUploadingField(null);
+    }
+  };
 
   useEffect(() => {
     const unsub = subscribeBoardState((latest) => {
@@ -957,12 +977,42 @@ export const AdminConsole: React.FC = () => {
 
                 <div style={{ marginBottom: '8px' }}>
                   <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>URL Imagen de Arte:</label>
-                  <input
-                    type="text"
-                    value={art.imageSrc}
-                    onChange={(e) => updateArtCard(idx, 'imageSrc', e.target.value)}
-                    style={{ width: '100%', padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
-                  />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                    <input
+                      type="text"
+                      value={art.imageSrc}
+                      onChange={(e) => updateArtCard(idx, 'imageSrc', e.target.value)}
+                      style={{ flex: 1, padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px' }}
+                    />
+                    <label style={{
+                      background: uploadingField === `art-upload-${idx}` ? '#374151' : 'rgba(212,175,55,0.15)',
+                      border: '1px solid rgba(212,175,55,0.4)',
+                      color: '#fde68a',
+                      padding: '6px 10px',
+                      borderRadius: '6px',
+                      fontSize: '0.75rem',
+                      cursor: uploadingField === `art-upload-${idx}` ? 'wait' : 'pointer',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {uploadingField === `art-upload-${idx}` ? '⏳ Subiendo...' : '📷 Subir foto'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            setUploadingField(`art-upload-${idx}`);
+                            handleImageUpload(file, 'art', (url) => updateArtCard(idx, 'imageSrc', url));
+                          }
+                          e.target.value = '';
+                        }}
+                      />
+                    </label>
+                  </div>
+                  {art.imageSrc && (
+                    <img src={art.imageSrc} alt="preview" style={{ marginTop: '6px', maxHeight: '80px', borderRadius: '4px', objectFit: 'cover', border: '1px solid rgba(212,175,55,0.2)' }} />
+                  )}
                 </div>
 
                 <div style={{ marginBottom: '8px' }}>
@@ -1151,12 +1201,42 @@ export const AdminConsole: React.FC = () => {
 
                 <div>
                   <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>URL Miniatura:</label>
-                  <input
-                    type="text"
-                    value={item.imageSrc}
-                    onChange={(e) => updateGoodNews(idx, 'imageSrc', e.target.value)}
-                    style={{ width: '100%', padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
-                  />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                    <input
+                      type="text"
+                      value={item.imageSrc}
+                      onChange={(e) => updateGoodNews(idx, 'imageSrc', e.target.value)}
+                      style={{ flex: 1, padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px' }}
+                    />
+                    <label style={{
+                      background: uploadingField === `news-upload-${idx}` ? '#374151' : 'rgba(212,175,55,0.15)',
+                      border: '1px solid rgba(212,175,55,0.4)',
+                      color: '#fde68a',
+                      padding: '6px 10px',
+                      borderRadius: '6px',
+                      fontSize: '0.75rem',
+                      cursor: uploadingField === `news-upload-${idx}` ? 'wait' : 'pointer',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {uploadingField === `news-upload-${idx}` ? '⏳ Subiendo...' : '📷 Subir foto'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            setUploadingField(`news-upload-${idx}`);
+                            handleImageUpload(file, 'news', (url) => updateGoodNews(idx, 'imageSrc', url));
+                          }
+                          e.target.value = '';
+                        }}
+                      />
+                    </label>
+                  </div>
+                  {item.imageSrc && (
+                    <img src={item.imageSrc} alt="preview" style={{ marginTop: '6px', maxHeight: '60px', borderRadius: '4px', objectFit: 'cover', border: '1px solid rgba(212,175,55,0.2)' }} />
+                  )}
                 </div>
               </div>
             ))}
@@ -1407,12 +1487,42 @@ export const AdminConsole: React.FC = () => {
 
                 <div style={{ marginBottom: '8px' }}>
                   <label style={{ fontSize: '0.75rem', color: '#94a3b8' }}>URL Imagen Frasco / Gotero:</label>
-                  <input
-                    type="text"
-                    value={sup.imageSrc}
-                    onChange={(e) => updateSupplement(idx, 'imageSrc', e.target.value)}
-                    style={{ width: '100%', padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px', marginTop: '4px' }}
-                  />
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                    <input
+                      type="text"
+                      value={sup.imageSrc}
+                      onChange={(e) => updateSupplement(idx, 'imageSrc', e.target.value)}
+                      style={{ flex: 1, padding: '6px', background: '#021813', border: '1px solid rgba(212, 175, 55, 0.3)', color: '#fff', borderRadius: '6px' }}
+                    />
+                    <label style={{
+                      background: uploadingField === `sup-upload-${idx}` ? '#374151' : 'rgba(212,175,55,0.15)',
+                      border: '1px solid rgba(212,175,55,0.4)',
+                      color: '#fde68a',
+                      padding: '6px 10px',
+                      borderRadius: '6px',
+                      fontSize: '0.75rem',
+                      cursor: uploadingField === `sup-upload-${idx}` ? 'wait' : 'pointer',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {uploadingField === `sup-upload-${idx}` ? '⏳ Subiendo...' : '📷 Subir foto'}
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: 'none' }}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            setUploadingField(`sup-upload-${idx}`);
+                            handleImageUpload(file, 'supplements', (url) => updateSupplement(idx, 'imageSrc', url));
+                          }
+                          e.target.value = '';
+                        }}
+                      />
+                    </label>
+                  </div>
+                  {sup.imageSrc && (
+                    <img src={sup.imageSrc} alt="preview" style={{ marginTop: '6px', maxHeight: '80px', borderRadius: '4px', objectFit: 'contain', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(212,175,55,0.2)' }} />
+                  )}
                 </div>
 
                 <div style={{ marginBottom: '8px' }}>
