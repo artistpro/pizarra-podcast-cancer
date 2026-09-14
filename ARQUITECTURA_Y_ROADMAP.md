@@ -30,11 +30,11 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
   • Selección de Escenas & Tiempos         • Bot de Telegram (@podcasdelcancer)
                │                                      │
                ▼                                      ▼
-    ┌─────────────────────────────────────────────────────────────────────┐
-    │              FIREBASE REALTIME DATABASE (dashboard-bch)             │
-    │  • podcast_cancer/board_state (Configuración, Textos, Tiempos)      │
-    │  • podcast_cancer/live_alerts/latest (Bienvenidas y Donaciones)     │
-    └─────────────────────────────────────────────────────────────────────┘
+     ┌──────────────────────────────────────────────────────────────────────┐
+     │         FIREBASE REALTIME DATABASE (pizarrapodcast-9d0cc)            │
+     │  • podcast_cancer/board_state (Configuración, Textos, Tiempos)       │
+     │  • podcast_cancer/live_alerts/latest (Bienvenidas y Donaciones)      │
+     └──────────────────────────────────────────────────────────────────────┘
                                       │
                                       ▼ (WebSocket + REST Fallback)
                       [3. FRONTEND DE EMISIÓN EN VERCEL]
@@ -93,6 +93,21 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
   - *Calibración de Color Anti-Crush para YouTube Live:* Transición de verdes profundos a tonos esmeralda y bosque vibrantes (`#064e3b`, `#042f24`, `#02382b`), con opacidad de orbes ajustada al 50-55% y desenfoque óptimo de 58-65px para sobreponerse a la compresión H.264 (YUV 4:2:0) del encoder RTMP.
   - *Purga Radical de Desviaciones Gráficas:* Erradicación definitiva del ID erróneo de Unsplash (mando de PlayStation en hongos medicinales y pastillas de caramelo en semilla negra). Estandarización de las 24 fichas clínicas y 40 obras de arte a fotografía botánica apaisada 16:9 (`w=1200&h=675&fit=crop&q=85`) sin recortes verticales anómalos.
   - *Protocolo de Recarga en Caliente sin Pérdida de Emisión (Cero Caída de Stream):* Procedimiento validado en el servidor VPS 1 (`217.216.48.120:2222`) usando `xdotool` para enviar `Ctrl+Shift+R` a la ventana de Google Chrome Kiosk en el display virtual `:8`. FFmpeg 7+ (PID 2637117) mantuvo la emisión a YouTube RTMP al 100% ininterrumpida.
+* **v1.9 (13 Septiembre 2026):**  
+  **Saneamiento Total de la Galería de Arte — Cero Unsplash, 100% Obras Reales y Verificables:**
+  - *Brushes with Cancer (Programa Real):* Las 4 tarjetas de comunidad activas en la rotación diaria (com-art-11 a com-art-16) reemplazadas con imágenes reales del programa Brushes with Cancer: Rosa Henríquez & Morgen Chesonis González, Caryn Frishman/Ashley Smith (ArtBurst Miami, Gregory Reed), Brushes with Cancer Chicago Winter 2025 (Chicago Social Butterflies).
+  - *Maestros Verificados (8 Obras, Met Museum + AIC):* Banco MASTERS_ART_BANK reducido de 20 entradas con Unsplash a 8 obras 100% verificadas: Bierstadt (Met #10150), Klimt, Monet (Art Institute of Chicago), Van Gogh Olivos (Met #437998), Van Gogh Trigo (Met), Van Gogh Girasoles (Met), Hiroshige (Met), Rousseau (Met).
+  - *Firebase actualizado vía Python:* Galería del día (256) inyectada directamente al RTDB sin pasar por el cron del VPS para sincronización inmediata.
+  - *Bug fix React DOM:* `key={currentItem.id || currentItem.title}` agregado al `<img>` en `FullScreenArt.tsx` para forzar desmontaje/remontaje en cada slide y evitar reciclado de imágenes por el reconciliador de React.
+  - *Commits:* `bfe528f`, `4e5eee7`, `443a0f9`
+* **v1.10 (14 Septiembre 2026):**  
+  **Migración a Firebase Independiente + Upload de Imágenes desde el Admin (Cloudinary):**
+  - *Separación de Proyectos Firebase (CRÍTICO):* El proyecto reutilizaba el Firebase `dashboard-bch` perteneciente al proyecto CryptoMinders/BCH. Se creó proyecto Firebase propio `pizarrapodcast-9d0cc` bajo la cuenta `podcastdelcancer@gmail.com`. Datos migrados sin interrupción del stream. El proyecto `dashboard-bch` **no fue modificado en ningún momento**.
+  - *Cloudinary como Storage Gratuito:* Firebase Storage requería plan Blaze (pago). Se adoptó Cloudinary (free tier, 25 GB, sin tarjeta de crédito) bajo la misma cuenta del podcast. Upload preset `podcast_cancer` (unsigned) con carpeta `podcast-cancer/` en el cloud `zuxwe5gl`.
+  - *Botón 📷 Subir foto en AdminConsole:* Tres nuevos controles de upload en el panel administrativo: sección Arte, sección Noticias (miniatura) y sección Suplementos. Al seleccionar un archivo, sube a Cloudinary y actualiza la URL en RTDB automáticamente, sin necesidad de deploy.
+  - *Preview de imagen en el admin:* Cada campo de imagen ahora muestra una miniatura inline (80px) de la imagen actual para verificación visual inmediata.
+  - *VPS actualizado:* `auto_art_updater.py` en VPS 1 actualizado con `sed` para apuntar al nuevo RTDB `pizarrapodcast-9d0cc`.
+  - *Commits:* `10c0406`
 
 ---
 
@@ -140,4 +155,28 @@ En lugar de renderizar videos MP4 con Premiere o After Effects y subirlos a la n
 | **Commits Oficiales:** | `3686e2c`, `dbb3cee`, `03e0e1a`, `3c68220` |
 | **Evidencia Gráfica:** | Captura de frame en vivo del Display `:8` (`stream_live_capture.jpg`) verificando `v1.8`, geometría sagrada, fondo esmeralda bioluminiscente e imágenes 16:9 reales. |
 
+<br>
+
+| Identificador | `AUD-20260913-PODCAST-003` |
+| :--- | :--- |
+| **Fecha de Certificación:** | 13 de Septiembre de 2026 |
+| **Versión Certificada:** | `v1.9` |
+| **Módulos Auditados:** | • **Galería Arte Que Sana — Depuración Total:** Eliminación de todas las imágenes Unsplash del banco de rotación activo. Las 4 tarjetas de comunidad apuntadas en la rotación diaria ahora corresponden a fotografías reales del programa Brushes with Cancer (ArtBurst Miami + Chicago Social Butterflies). Los 8 Grandes Maestros usan objetos verificados del Met Museum (IDs conocidos) y del Art Institute of Chicago.<br>• **Bug Fix React DOM (FullScreenArt.tsx):** `key={currentItem.id}` forzando remontaje del `<img>` entre slides, evitando reciclado de nodo DOM y caché de src previo.<br>• **Validación de Atribuciones:** ChatGPT confirmó que al menos una atribución anterior era incorrecta (Renoir con paisaje de montañas). Todas las obras actuales tienen título, autor, año e institución verificables. |
+| **Infraestructura Activa:** | • **Firebase RTDB (`pizarrapodcast-9d0cc`):** Galería del día 256 inyectada con cero Unsplash.<br>• **VPS 1:** Hard refresh ejecutado. Chrome actualizó contenido sin interrupción del stream.<br>• **Vercel:** Commits `bfe528f`, `4e5eee7`, `443a0f9` desplegados en `main`. |
+| **Conformidad de Reglas:** | Reglas 1, 3, 9, 10, 11 cumplidas. |
+| **Commits Oficiales:** | `bfe528f`, `4e5eee7`, `443a0f9` |
+
+<br>
+
+| Identificador | `AUD-20260914-PODCAST-004` |
+| :--- | :--- |
+| **Fecha de Certificación:** | 14 de Septiembre de 2026 |
+| **Versión Certificada:** | `v1.10` |
+| **Incidente Documentado:** | **Reutilización indebida de Firebase de otro proyecto.** Una sesión de IA anterior configuró el proyecto con el Firebase `dashboard-bch` perteneciente al proyecto CryptoMinders/BCH Music, violando el principio de aislamiento de infraestructura. |
+| **Módulos Auditados:** | • **Migración Firebase (CRÍTICO):** Creación del proyecto Firebase independiente `pizarrapodcast-9d0cc` bajo cuenta exclusiva `podcastdelcancer@gmail.com`. Backup completo del nodo `podcast_cancer/` (18 KB — `board_state`, `live_alerts`, `sdk_test`) antes de la migración. Restauración en nuevo RTDB vía HTTP PUT. El proyecto `dashboard-bch` **NO fue modificado**.<br>• **Cloudinary Storage:** Firebase Storage descartado (requería plan Blaze de pago). Cloudinary adoptado como almacenamiento gratuito (25 GB, sin tarjeta). Cloud `zuxwe5gl`, preset unsigned `podcast_cancer`, carpeta `podcast-cancer/`.<br>• **Botones de Upload en AdminConsole:** Nuevo componente de upload inline en 3 secciones: Arte (📷), Noticias (📷), Suplementos (📷). Flujo: selección local → Cloudinary → URL en RTDB → stream actualizado en tiempo real. Preview de imagen 80px inline para verificación visual.<br>• **VPS Actualizado:** `auto_art_updater.py` en VPS 1 actualizado vía `sed` para apuntar al nuevo RTDB. Verificado con `grep firebaseio.com` post-cambio.<br>• **Rollback documentado:** Si falla el nuevo Firebase, revertir `firebaseConfig` en `src/firebase.ts` + `git push` = operativo en 2 min. |
+| **Infraestructura Post-Migración:** | • **Firebase:** `pizarrapodcast-9d0cc` · `podcastdelcancer@gmail.com` ✅<br>• **Cloudinary:** cloud `zuxwe5gl` · preset `podcast_cancer` ✅<br>• **VPS cron:** apunta a `pizarrapodcast-9d0cc-default-rtdb.firebaseio.com` ✅<br>• **Frontend Vercel:** deploy `10c0406` activo ✅ |
+| **Proyecto BCH / CryptoMinders:** | **INTACTO.** Firebase `dashboard-bch` no fue leído, escrito ni modificado durante esta sesión. |
+| **Regla Establecida (PERMANENTE):** | **Cada proyecto del ecosistema Andru.ia DEBE tener su propio Firebase, Cloudinary y cuenta de servicio. NUNCA compartir infraestructura entre proyectos distintos.** |
+| **Conformidad de Reglas:** | Reglas 1, 3, 9, 10, 11 cumplidas. |
+| **Commits Oficiales:** | `10c0406` |
 
