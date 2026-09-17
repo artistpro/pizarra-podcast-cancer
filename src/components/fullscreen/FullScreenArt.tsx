@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { ArtCard, BoardState } from '../../types/board';
 import { handleSafeImageError } from '../../utils/imageFallbacks';
+import { optimizeImageUrl } from '../../utils/cloudinary';
 
 interface FullScreenArtProps {
   cards: ArtCard[];
@@ -30,6 +31,16 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
 
     return () => clearInterval(interval);
   }, [cards, rotationSpeed]);
+
+  // Precarga anticipada de la siguiente obra para transición inmediata sin congelamiento
+  useEffect(() => {
+    if (!cards || cards.length <= 1) return;
+    const nextCard = cards[(currentIndex + 1) % cards.length];
+    if (nextCard?.imageSrc) {
+      const preloadImg = new Image();
+      preloadImg.src = optimizeImageUrl(nextCard.imageSrc, 1280);
+    }
+  }, [currentIndex, cards]);
 
   // Ciclo de respiración consciente 4x4 (4s cada fase)
   useEffect(() => {
@@ -94,8 +105,9 @@ export const FullScreenArt: React.FC<FullScreenArtProps> = ({
         }}>
           <img
             key={currentItem.id || currentItem.title}
-            src={currentItem.imageSrc}
+            src={optimizeImageUrl(currentItem.imageSrc, 1280)}
             alt={currentItem.title}
+            decoding="async"
             style={{
               width: '100%',
               height: '100%',

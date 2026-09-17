@@ -1,5 +1,6 @@
 import React from 'react';
 import type { StoryCard } from '../types/board';
+import { optimizeImageUrl } from '../utils/cloudinary';
 
 interface FeaturedStoryProps {
   card: StoryCard;
@@ -46,8 +47,9 @@ export const FeaturedStory: React.FC<FeaturedStoryProps> = ({ card }) => {
         overflow: 'hidden'
       }}>
         <img
-          src={card.imageSrc}
+          src={optimizeImageUrl(card.imageSrc, 800)}
           alt={card.title}
+          decoding="async"
           style={{
             width: '100%',
             height: '100%',

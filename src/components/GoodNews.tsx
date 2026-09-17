@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { NewsItem } from '../types/board';
+import { optimizeImageUrl } from '../utils/cloudinary';
 
 interface GoodNewsProps {
   news: NewsItem[];
@@ -28,6 +29,16 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
     return () => clearInterval(interval);
   }, [news, rotationSpeed]);
 
+  // Precarga silenciosa de la siguiente noticia
+  useEffect(() => {
+    if (!news || news.length <= 1) return;
+    const nextItem = news[(currentIndex + 1) % news.length];
+    if (nextItem?.imageSrc) {
+      const preloadImg = new Image();
+      preloadImg.src = optimizeImageUrl(nextItem.imageSrc, 800);
+    }
+  }, [currentIndex, news]);
+
   const currentItem = news && news.length > 0 ? news[currentIndex % news.length] : null;
 
   return (
@@ -54,8 +65,9 @@ export const GoodNews: React.FC<GoodNewsProps> = ({
       }}>
         {currentItem ? (
           <img
-            src={currentItem.imageSrc}
+            src={optimizeImageUrl(currentItem.imageSrc, 800)}
             alt={currentItem.title}
+            decoding="async"
             style={{
               width: '100%',
               height: '100%',

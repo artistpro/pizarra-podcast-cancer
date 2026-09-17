@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { ArtCard } from '../types/board';
 import { handleSafeImageError } from '../utils/imageFallbacks';
+import { optimizeImageUrl } from '../utils/cloudinary';
 
 interface ArtThatHealsProps {
   card?: ArtCard;
@@ -32,6 +33,16 @@ export const ArtThatHeals: React.FC<ArtThatHealsProps> = ({
     return () => clearInterval(interval);
   }, [artList, rotationSpeed]);
 
+  // Precarga silenciosa anticipada de la siguiente obra
+  useEffect(() => {
+    if (!artList || artList.length <= 1) return;
+    const nextCard = artList[(currentIndex + 1) % artList.length];
+    if (nextCard?.imageSrc) {
+      const preloadImg = new Image();
+      preloadImg.src = optimizeImageUrl(nextCard.imageSrc, 1280);
+    }
+  }, [currentIndex, artList]);
+
   const currentItem = artList.length > 0 ? artList[currentIndex % artList.length] : null;
 
   return (
@@ -58,8 +69,9 @@ export const ArtThatHeals: React.FC<ArtThatHealsProps> = ({
       }}>
         {currentItem ? (
           <img
-            src={currentItem.imageSrc}
+            src={optimizeImageUrl(currentItem.imageSrc, 1280)}
             alt={currentItem.title}
+            decoding="async"
             style={{
               width: '100%',
               height: '100%',

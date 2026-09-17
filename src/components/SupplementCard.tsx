@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { SupplementData } from '../types/board';
 import { handleSafeImageError, FALLBACK_SUPPLEMENT_IMAGE } from '../utils/imageFallbacks';
+import { optimizeImageUrl } from '../utils/cloudinary';
 
 interface SupplementCardProps {
   supplement?: SupplementData;
@@ -31,6 +32,17 @@ export const SupplementCard: React.FC<SupplementCardProps> = ({
 
     return () => clearInterval(interval);
   }, [supList, rotationSpeed]);
+
+  // Precarga silenciosa del siguiente suplemento
+  useEffect(() => {
+    if (!supList || supList.length <= 1) return;
+    const nextSup = supList[(currentIndex + 1) % supList.length];
+    const targetSrc = nextSup?.imageSrc || FALLBACK_SUPPLEMENT_IMAGE;
+    if (targetSrc) {
+      const preloadImg = new Image();
+      preloadImg.src = optimizeImageUrl(targetSrc, 800);
+    }
+  }, [currentIndex, supList]);
 
   const currentItem = supList.length > 0 ? supList[currentIndex % supList.length] : null;
 
@@ -126,8 +138,9 @@ export const SupplementCard: React.FC<SupplementCardProps> = ({
           boxShadow: '0 8px 24px rgba(0,0,0,0.65)'
         }}>
           <img
-            src={currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE}
+            src={optimizeImageUrl(currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE, 800)}
             alt={currentItem.name}
+            decoding="async"
             style={{
               width: '100%',
               height: '100%',

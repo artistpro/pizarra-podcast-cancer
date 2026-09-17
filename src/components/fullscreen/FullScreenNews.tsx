@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { NewsItem, BoardState } from '../../types/board';
+import { optimizeImageUrl } from '../../utils/cloudinary';
 
 interface FullScreenNewsProps {
   news: NewsItem[];
@@ -28,6 +29,16 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
 
     return () => clearInterval(interval);
   }, [news, rotationSpeed]);
+
+  // Precarga silenciosa de la siguiente noticia
+  useEffect(() => {
+    if (!news || news.length <= 1) return;
+    const nextNews = news[(currentIndex + 1) % news.length];
+    if (nextNews?.imageSrc) {
+      const preloadImg = new Image();
+      preloadImg.src = optimizeImageUrl(nextNews.imageSrc, 1280);
+    }
+  }, [currentIndex, news]);
 
   const currentItem = news && news.length > 0 ? news[currentIndex % news.length] : null;
 
@@ -68,8 +79,9 @@ export const FullScreenNews: React.FC<FullScreenNewsProps> = ({
         background: '#011410'
       }}>
         <img
-          src={currentItem.imageSrc}
+          src={optimizeImageUrl(currentItem.imageSrc, 1280)}
           alt={currentItem.title}
+          decoding="async"
           style={{
             width: '100%',
             height: '100%',

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { SupplementData, BoardState } from '../../types/board';
 import { handleSafeImageError, FALLBACK_SUPPLEMENT_IMAGE } from '../../utils/imageFallbacks';
+import { optimizeImageUrl } from '../../utils/cloudinary';
 
 interface FullScreenSupplementProps {
   supplements: SupplementData[];
@@ -29,6 +30,17 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
 
     return () => clearInterval(interval);
   }, [supplements, rotationSpeed]);
+
+  // Precarga anticipada del siguiente suplemento
+  useEffect(() => {
+    if (!supplements || supplements.length <= 1) return;
+    const nextSup = supplements[(currentIndex + 1) % supplements.length];
+    const targetSrc = nextSup?.imageSrc || FALLBACK_SUPPLEMENT_IMAGE;
+    if (targetSrc) {
+      const preloadImg = new Image();
+      preloadImg.src = optimizeImageUrl(targetSrc, 1280);
+    }
+  }, [currentIndex, supplements]);
 
   const currentItem = supplements && supplements.length > 0 ? supplements[currentIndex % supplements.length] : null;
 
@@ -80,8 +92,9 @@ export const FullScreenSupplement: React.FC<FullScreenSupplementProps> = ({
           overflow: 'hidden'
         }}>
           <img
-            src={currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE}
+            src={optimizeImageUrl(currentItem.imageSrc || FALLBACK_SUPPLEMENT_IMAGE, 1280)}
             alt={currentItem.name}
+            decoding="async"
             style={{
               width: '100%',
               height: '100%',
