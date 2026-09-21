@@ -1,6 +1,6 @@
 # 🎙️ Pizarra Podcast Cáncer — Dashboard 24/7
 
-**Versión Actual:** v1.11 (Septiembre 2026 — Optimización de Rendimiento Gráfico & Cloudinary)
+**Versión Actual:** v1.12 (Septiembre 2026 — Transiciones 60fps con Stacking Layers & Pausa Canvas)
 **Stream en vivo:** [YouTube Live](https://youtube.com) · **Admin:** [https://pizarra-podcast-cancer.vercel.app/?view=admin](https://pizarra-podcast-cancer.vercel.app/?view=admin)
 
 ---
