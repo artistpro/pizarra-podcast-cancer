@@ -29,7 +29,6 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
 
   // Estado del Director de Emisión: Inicia SIEMPRE en la Pizarra General
   const [currentView, setCurrentView] = useState<ActiveView>('general');
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
   const fullScreenIndexRef = useRef<number>(0);
 
   // Escalar responsivamente la pizarra 1920x1080
@@ -102,14 +101,10 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
 
       fullScreenIndexRef.current = 0;
 
-      // Función para cambiar a la siguiente vista con transición suave
+      // Función para cambiar a la siguiente vista con transición fluida por capas persistentes (Cross-Fade GPU)
       const transitionTo = (nextView: ActiveView, nextCallback: () => void, durationMs: number) => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-          setCurrentView(nextView);
-          setIsTransitioning(false);
-          timeoutId = window.setTimeout(nextCallback, durationMs);
-        }, 750);
+        setCurrentView(nextView);
+        timeoutId = window.setTimeout(nextCallback, durationMs);
       };
 
       if (!includeGeneral) {
@@ -182,9 +177,7 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
           justifyContent: 'space-between',
           overflow: 'hidden',
           position: 'relative',
-          boxShadow: '0 0 50px rgba(0, 0, 0, 0.9)',
-          opacity: isTransitioning ? 0.05 : 1,
-          transition: 'opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
+          boxShadow: '0 0 50px rgba(0, 0, 0, 0.9)'
         }}
       >
         {/* Fondo Ambiental Bioluminiscente Dinámico de Luz Viva y Respiración (v1.8) */}
@@ -199,22 +192,30 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
           <Header state={state} effectiveTheme={effectiveTheme} />
         </div>
 
-        {/* 2. Escenario Central Variable con Transición Suave */}
+        {/* 2. Escenario Central con Stacking Layers (Cross-Fade Real a 60 FPS sin Destrucción de DOM) */}
         <div
           style={{
             flex: 1,
             width: '100%',
             overflow: 'hidden',
-            display: 'flex',
             position: 'relative',
-            zIndex: 1,
-            opacity: isTransitioning ? 0.05 : 1,
-            transform: isTransitioning ? 'scale(0.985)' : 'scale(1)',
-            transition: 'opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)'
+            zIndex: 1
           }}
         >
-          {/* A. Pizarra General Multi-Ficha */}
-          {currentView === 'general' && (
+          {/* Capa A: Pizarra General Multi-Ficha */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              opacity: currentView === 'general' ? 1 : 0,
+              visibility: currentView === 'general' ? 'visible' : 'hidden',
+              pointerEvents: currentView === 'general' ? 'auto' : 'none',
+              transition: 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'opacity'
+            }}
+          >
             <main
               style={{
                 width: '100%',
@@ -247,11 +248,12 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
                 />
               </section>
 
-              {/* Fila 1 - Derecha: Tarjeta Astral Central ("AHORA") */}
+              {/* Fila 1 - Derecha: Tarjeta de Frases / Reflexión ("AHORA") */}
               <section style={{ height: '100%' }}>
                 <AstralLiveCard
                   card={state.astralCard}
                   theme={effectiveTheme}
+                  isActive={currentView === 'general'}
                 />
               </section>
 
@@ -264,46 +266,95 @@ export const LiveBoard: React.FC<LiveBoardProps> = ({ state }) => {
                 />
               </section>
             </main>
-          )}
+          </div>
 
-          {/* B. Protagonismo Astral / Meditación */}
-          {currentView === 'astral' && (
+          {/* Capa B: Frase a Pantalla Completa / Meditación */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              opacity: currentView === 'astral' ? 1 : 0,
+              visibility: currentView === 'astral' ? 'visible' : 'hidden',
+              pointerEvents: currentView === 'astral' ? 'auto' : 'none',
+              transition: 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'opacity'
+            }}
+          >
             <FullScreenAstral
               card={state.astralCard}
               state={state}
               effectiveTheme={effectiveTheme}
+              isActive={currentView === 'astral'}
             />
-          )}
+          </div>
 
-          {/* C. Protagonismo Noticia Destacada */}
-          {currentView === 'news' && (
+          {/* Capa C: Noticia Destacada a Pantalla Completa */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              opacity: currentView === 'news' ? 1 : 0,
+              visibility: currentView === 'news' ? 'visible' : 'hidden',
+              pointerEvents: currentView === 'news' ? 'auto' : 'none',
+              transition: 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'opacity'
+            }}
+          >
             <FullScreenNews
               news={state.goodNews}
               rotationSpeed={state.newsRotationSpeed || 15}
               state={state}
               effectiveTheme={effectiveTheme}
             />
-          )}
+          </div>
 
-          {/* D. Protagonismo Ficha de Suplemento */}
-          {currentView === 'supplement' && (
+          {/* Capa D: Ficha de Suplemento a Pantalla Completa */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              opacity: currentView === 'supplement' ? 1 : 0,
+              visibility: currentView === 'supplement' ? 'visible' : 'hidden',
+              pointerEvents: currentView === 'supplement' ? 'auto' : 'none',
+              transition: 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'opacity'
+            }}
+          >
             <FullScreenSupplement
               supplements={state.supplementsList}
               rotationSpeed={state.supplementRotationSpeed || 25}
               state={state}
               effectiveTheme={effectiveTheme}
             />
-          )}
+          </div>
 
-          {/* E. Protagonismo Arte Que Sana & Galería */}
-          {currentView === 'art' && (
+          {/* Capa E: Arte Que Sana a Pantalla Completa */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              opacity: currentView === 'art' ? 1 : 0,
+              visibility: currentView === 'art' ? 'visible' : 'hidden',
+              pointerEvents: currentView === 'art' ? 'auto' : 'none',
+              transition: 'opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
+              willChange: 'opacity'
+            }}
+          >
             <FullScreenArt
               cards={state.artCards}
               rotationSpeed={state.artRotationSpeed || 20}
               state={state}
               effectiveTheme={effectiveTheme}
             />
-          )}
+          </div>
         </div>
 
         {/* Overlay Flotante de Alertas en Vivo (Bienvenidas de Telegram y Regalos de YouTube) */}

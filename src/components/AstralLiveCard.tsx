@@ -4,9 +4,14 @@ import type { AstralCardData } from '../types/board';
 interface AstralLiveCardProps {
   card: AstralCardData;
   theme?: 'day' | 'night';
+  isActive?: boolean;
 }
 
-export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'day' }) => {
+export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({
+  card,
+  theme = 'day',
+  isActive = true
+}) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   // Lista de frases para rotar
@@ -18,7 +23,7 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
   const [isFading, setIsFading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (quotes.length <= 1) return;
+    if (!isActive || quotes.length <= 1) return;
 
     const intervalTime = Math.max(10, card.rotationSpeed || 20) * 1000;
     const interval = setInterval(() => {
@@ -30,12 +35,13 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [quotes, card.rotationSpeed]);
+  }, [quotes, card.rotationSpeed, isActive]);
 
   const currentQuote = quotes[currentIndex % quotes.length];
 
   // Motor Canvas de Geometría Sagrada y Partículas
   useEffect(() => {
+    if (!isActive) return;
     if (card.bgMode === 'video' && card.videoSrc) return;
 
     const canvas = canvasRef.current;
@@ -137,7 +143,7 @@ export const AstralLiveCard: React.FC<AstralLiveCardProps> = ({ card, theme = 'd
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', handleResize);
     };
-  }, [theme, card.bgMode, card.videoSrc]);
+  }, [theme, card.bgMode, card.videoSrc, isActive]);
 
   const isNight = theme === 'night';
 

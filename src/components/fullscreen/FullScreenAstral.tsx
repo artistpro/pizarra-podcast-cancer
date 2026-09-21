@@ -5,11 +5,13 @@ interface FullScreenAstralProps {
   card: AstralCardData;
   state: BoardState;
   effectiveTheme: 'day' | 'night';
+  isActive?: boolean;
 }
 
 export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
   card,
-  effectiveTheme
+  effectiveTheme,
+  isActive = true
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -21,7 +23,7 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
   const [isFading, setIsFading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (quotes.length <= 1) return;
+    if (!isActive || quotes.length <= 1) return;
     const interval = setInterval(() => {
       setIsFading(true);
       setTimeout(() => {
@@ -31,12 +33,13 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
     }, (card.rotationSpeed || 18) * 1000);
 
     return () => clearInterval(interval);
-  }, [quotes, card.rotationSpeed]);
+  }, [quotes, card.rotationSpeed, isActive]);
 
   const currentQuote = quotes[currentIndex % quotes.length];
 
   // Motor Canvas a pantalla completa
   useEffect(() => {
+    if (!isActive) return;
     if (card.bgMode === 'video' && card.videoSrc) return;
 
     const canvas = canvasRef.current;
@@ -144,7 +147,7 @@ export const FullScreenAstral: React.FC<FullScreenAstralProps> = ({
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [effectiveTheme, card.bgMode, card.videoSrc]);
+  }, [effectiveTheme, card.bgMode, card.videoSrc, isActive]);
 
   return (
     <div style={{
